@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/border_curve.xml" value="0.2484375" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/ic_mail_icon.xml" value="0.2484375" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/ic_username_icon.xml" value="0.2484375" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/font/roboto.xml" value="0.2625" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/activity_main.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/activity_otp.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/activity_password.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/activity_signup.xml" value="0.264" />
       </map>
     </option>
   </component>
