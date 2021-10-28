@@ -35,38 +35,40 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="363dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/edit_border"
+        android:drawableLeft="@drawable/ic_vector__1_"
         android:ems="10"
         android:hint="  Email Address"
-        android:drawableLeft="@drawable/ic_vector__1_"
-        android:paddingStart="11dp"
-        android:paddingEnd="11dp"
         android:inputType="textPersonName"
+        android:paddingStart="11dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="11dp"
+        android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
-        android:layout_width="363dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
         android:background="@drawable/edit_border"
         android:drawableLeft="@drawable/ic_vector__2_"
         android:ems="10"
         android:hint="  Password"
         android:inputType="textPersonName"
         android:paddingStart="11dp"
+        android:paddingTop="16dp"
         android:paddingEnd="11dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
     <TextView
@@ -83,18 +85,18 @@
 
     <android.widget.Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
         android:background="@drawable/button_border"
         android:text="Login"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
         android:textAllCaps="false"
-        android:textSize="23sp"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="23sp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
