@@ -16,4 +16,5 @@
     <string name="verify">Verify</string>
     <string name="forget_password">
         <u>Forget Password</u></string>
+    <string name="sign_up"><u>Sign Up</u></string>
 </resources>

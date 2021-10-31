@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_google_pixel_2___8">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
     <ImageView
         android:id="@+id/imageView2"
@@ -23,12 +28,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="77dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="77dp"
-        android:text="Enter your Email id"
         android:letterSpacing="0.01"
+        android:text="Enter your Email ID"
         android:textColor="@color/white"
-        android:textSize="34sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,27 +44,27 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/border_curve"
-        android:ems="10"
         android:backgroundTint="@color/white"
-        android:inputType="textPersonName"
-        android:hint="Enter your email address"
-        android:letterSpacing="0.04"
-        android:textSize="16sp"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
         android:drawableLeft="@drawable/ic_vector__1_"
         android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="Enter your email address"
+        android:inputType="textPersonName"
+        android:letterSpacing="0.04"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/login_btn"
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginTop="16dp"
@@ -68,6 +73,7 @@
         android:letterSpacing="0.04"
         android:foreground="?attr/selectableItemBackground"
         android:textAllCaps="false"
+        android:fontFamily="@font/roboto"
         android:textColor="@color/white"
         android:textSize="23sp"
         android:textStyle="bold"
@@ -75,3 +81,4 @@
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
