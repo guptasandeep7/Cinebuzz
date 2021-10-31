@@ -3,8 +3,9 @@
     <string name="enter_your_email_address">Enter your Email Address</string>
     <string name="let_s_get_started">Let\'s get started</string>
     <string name="enter_your_name">Enter your name</string>
-    <string name="already_have_an_account_log_in">Already have an account ? <font fgcolor="#9300C7"> <u>Log In</u></font></string>
-    <string name="resend_otp_after_30_secs"><u>Resend OTP after 30 secs</u></string>
+    <string name="already_have_an_account_log_in">Already have an account ? <font fgcolor="#BB86FC"> <b><u>Log In</u></b></font></string>
+    <string name="resend_otp_after_30_secs">
+        <u>Resend OTP after 30 secs</u></string>
     <string name="confirm_password">Confirm Password</string>
     <string name="create_your_password">Create your password</string>
     <string name="password">Password</string>
@@ -13,4 +14,6 @@
     <string name="enter_your_otp">Enter your OTP</string>
     <string name="enter_otp">Enter OTP</string>
     <string name="verify">Verify</string>
+    <string name="forget_password">
+        <u>Forget Password</u></string>
 </resources>

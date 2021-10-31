@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@drawable/ic_google_pixel_2___8">
 
     <ImageView
         android:id="@+id/imageView"
@@ -25,6 +25,7 @@
         android:layout_marginStart="122dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="122dp"
+        android:letterSpacing="0.01"
         android:text="Welcome back"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
@@ -44,8 +45,10 @@
         android:drawableLeft="@drawable/ic_vector__1_"
         android:drawablePadding="10dp"
         android:ems="10"
+        android:letterSpacing="0.04"
         android:backgroundTint="@color/white"
         android:hint="Email Address"
+        android:textSize="16sp"
         android:inputType="textPersonName"
         android:paddingStart="11dp"
         android:paddingTop="16dp"
@@ -65,7 +68,9 @@
         android:drawableLeft="@drawable/ic_vector__2_"
         android:drawablePadding="10dp"
         android:ems="10"
+        android:letterSpacing="0.04"
         android:hint="Password"
+        android:textSize="16sp"
         android:inputType="textPassword"
         android:paddingStart="11dp"
         android:paddingTop="16dp"
@@ -83,6 +88,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/forget_password"
         android:paddingEnd="60dp"
+        android:letterSpacing="0.01"
         android:textColor="#BB86FC"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +101,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/border_curve"
         android:text="Login"
+        android:letterSpacing="0.04"
         android:textStyle="bold"
         android:foreground="?attr/selectableItemBackground"
         android:textAllCaps="false"

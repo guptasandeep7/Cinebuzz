@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@drawable/ic_google_pixel_2___8">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -26,6 +26,7 @@
         android:layout_marginTop="76dp"
         android:layout_marginEnd="77dp"
         android:text="Enter your Email id"
+        android:letterSpacing="0.01"
         android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -45,6 +46,8 @@
         android:backgroundTint="@color/white"
         android:inputType="textPersonName"
         android:hint="Enter your email address"
+        android:letterSpacing="0.04"
+        android:textSize="16sp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
         android:paddingEnd="16dp"
@@ -62,12 +65,13 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/border_curve"
         android:text="Login"
+        android:letterSpacing="0.04"
         android:foreground="?attr/selectableItemBackground"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="23sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
