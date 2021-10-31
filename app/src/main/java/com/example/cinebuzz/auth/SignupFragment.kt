@@ -1,4 +1,4 @@
-package com.example.cinebuzz
+package com.example.cinebuzz.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.cinebuzz.R
 
 class SignupFragment: Fragment() {
 
@@ -22,7 +23,7 @@ class SignupFragment: Fragment() {
 
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.fragment_container,VerifyFragment())
+            fragmentTransaction?.replace(R.id.fragment_container, VerifyFragment())
             fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
 
@@ -32,7 +33,7 @@ class SignupFragment: Fragment() {
 
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.fragment_container,LoginFragment())
+            fragmentTransaction?.replace(R.id.fragment_container, LoginFragment())
             fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
 

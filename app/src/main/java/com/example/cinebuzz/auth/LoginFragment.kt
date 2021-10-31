@@ -1,4 +1,4 @@
-package com.example.cinebuzz
+package com.example.cinebuzz.auth
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.cinebuzz.DashboardActivity
+import com.example.cinebuzz.R
 
 class LoginFragment : Fragment() {
 
@@ -26,7 +28,7 @@ class LoginFragment : Fragment() {
 
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.fragment_container,VerifyFragment())
+            fragmentTransaction?.replace(R.id.fragment_container, VerifyFragment())
             fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
 
@@ -35,13 +37,13 @@ class LoginFragment : Fragment() {
         signup.setOnClickListener(View.OnClickListener {
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.fragment_container,SignupFragment())
+            fragmentTransaction?.replace(R.id.fragment_container, SignupFragment())
             fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
         })
 
         login.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(activity,DashboardActivity::class.java))
+            startActivity(Intent(activity, DashboardActivity::class.java))
 
         })
 

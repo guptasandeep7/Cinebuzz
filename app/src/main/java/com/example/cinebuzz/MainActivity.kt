@@ -1,6 +1,7 @@
 package com.example.cinebuzz
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.cinebuzz.auth.LoginFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -9,7 +10,7 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment_container,LoginFragment())
+        fragmentTransaction.replace(R.id.fragment_container, LoginFragment())
         fragmentTransaction.commit()
 
     }
