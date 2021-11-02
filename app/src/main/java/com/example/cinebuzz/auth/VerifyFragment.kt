@@ -47,14 +47,13 @@ class VerifyFragment: Fragment() {
                                 val fragmentManager = activity?.supportFragmentManager
                                 val fragmentTransaction = fragmentManager?.beginTransaction()
                                 fragmentTransaction?.replace(R.id.fragment_container, OtpFragment())
-                                fragmentTransaction?.addToBackStack(null)
                                 fragmentTransaction?.commit()
 
                         }
                     }
 
                     override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                        Toast.makeText(context, "Failed",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Failed ${t.message}",Toast.LENGTH_SHORT).show()
                     }
                 })
             }

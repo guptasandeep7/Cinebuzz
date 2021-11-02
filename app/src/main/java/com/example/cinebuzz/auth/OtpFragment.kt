@@ -29,7 +29,7 @@ class OtpFragment: Fragment() {
         val otpEditText = view.findViewById<EditText>(R.id.otp_edittext)
         val otpProgressbar = view.findViewById<ProgressBar>(R.id.otp_progressBar)
 
-        verify.setOnClickListener(View.OnClickListener {
+        verify.setOnClickListener{
 
 
             if(otpEditText.text.toString()==""){
@@ -58,7 +58,6 @@ class OtpFragment: Fragment() {
                             val fragmentManager = activity?.supportFragmentManager
                             val fragmentTransaction = fragmentManager?.beginTransaction()
                             fragmentTransaction?.replace(R.id.fragment_container, PasswordFragment())
-                            fragmentTransaction?.addToBackStack(null)
                             otpProgressbar.visibility=View.GONE
                             fragmentTransaction?.commit()
 
@@ -87,7 +86,7 @@ class OtpFragment: Fragment() {
             }
 
 
-        })
+        }
         return view
     }
 

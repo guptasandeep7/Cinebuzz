@@ -112,7 +112,6 @@
         android:foreground="?attr/selectableItemBackground"
         android:textAllCaps="false"
         android:fontFamily="@font/roboto"
-        android:textColor="@color/white"
         android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="@+id/password_edittext2"
         app:layout_constraintStart_toStartOf="@+id/password_edittext2"

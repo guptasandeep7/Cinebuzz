@@ -36,7 +36,7 @@ class PasswordFragment: Fragment() {
 
 
 
-        signBtn.setOnClickListener(View.OnClickListener {
+        signBtn.setOnClickListener{
 
             if(passwordEditText.text.toString()==""||confirmPassEditText.text.toString()==""){
                 Toast.makeText(context, "Please enter Password", Toast.LENGTH_SHORT).show()
@@ -67,7 +67,10 @@ class PasswordFragment: Fragment() {
                             confirmPassEditText.text.clear()
                             passwordProgressbar.visibility=View.GONE
 
-                            startActivity(Intent(activity, DashboardActivity::class.java))
+                            val fragmentManager = activity?.supportFragmentManager
+                            val fragmentTransaction = fragmentManager?.beginTransaction()
+                            fragmentTransaction?.replace(R.id.fragment_container, LoginFragment())
+                            fragmentTransaction?.commit()
 
                         }
                         else{
@@ -96,7 +99,7 @@ class PasswordFragment: Fragment() {
             }
 
 
-        })
+        }
         return view
     }
 

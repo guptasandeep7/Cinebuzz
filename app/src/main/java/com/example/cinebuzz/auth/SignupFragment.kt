@@ -34,7 +34,7 @@ class SignupFragment: Fragment() {
         val signupProgressbar = view.findViewById<ProgressBar>(R.id.signup_progressBar)
 
 
-        verifyEmail.setOnClickListener(View.OnClickListener {
+        verifyEmail.setOnClickListener{
 
             if(nameEditText.text.toString() == "" || emailEditText.text.toString() == ""){
                 Toast.makeText(context, "Name/Email cannot be empty",Toast.LENGTH_SHORT).show()
@@ -67,7 +67,6 @@ class SignupFragment: Fragment() {
                             val fragmentManager = activity?.supportFragmentManager
                                 val fragmentTransaction = fragmentManager?.beginTransaction()
                                 fragmentTransaction?.replace(R.id.fragment_container, OtpFragment())
-                                fragmentTransaction?.addToBackStack(null)
                                 signupProgressbar.visibility=View.GONE
                                 fragmentTransaction?.commit()
 
@@ -85,7 +84,7 @@ class SignupFragment: Fragment() {
 
                     override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
 
-                        Toast.makeText(context, "Failed",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Failed ${t.message}",Toast.LENGTH_SHORT).show()
                         verifyEmail.isEnabled=true
 
                     }
@@ -94,17 +93,16 @@ class SignupFragment: Fragment() {
 
 
             }
-        })
+        }
 
-        backToLogin.setOnClickListener(View.OnClickListener {
+        backToLogin.setOnClickListener{
 
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
             fragmentTransaction?.replace(R.id.fragment_container, LoginFragment())
-            fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
 
-        })
+        }
         return view
     }
 
