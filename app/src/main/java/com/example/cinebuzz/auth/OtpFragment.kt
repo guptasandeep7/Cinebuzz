@@ -18,10 +18,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class OtpFragment: Fragment() {
+class OtpFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.otp_fragment, container, false)
 
@@ -29,22 +31,21 @@ class OtpFragment: Fragment() {
         val otpEditText = view.findViewById<EditText>(R.id.otp_edittext)
         val otpProgressbar = view.findViewById<ProgressBar>(R.id.otp_progressBar)
 
-        verify.setOnClickListener{
+        verify.setOnClickListener {
 
 
-            if(otpEditText.text.toString()==""){
+            if (otpEditText.text.toString() == "") {
                 Toast.makeText(context, "Please enter OTP", Toast.LENGTH_SHORT).show()
 
-            }
-            else {
-                verify.isEnabled=false
+            } else {
+                verify.isClickable = false
                 otpProgressbar.visibility = View.VISIBLE
 
                 val request = ServiceBuilder.buildService()
                 val call = request.otp(
                     MyDataItem(
-                                email = userEmail,
-                                otp = otpEditText.text.toString().trim()
+                        email = userEmail,
+                        otp = otpEditText.text.toString().trim()
                     )
                 )
 
@@ -53,20 +54,22 @@ class OtpFragment: Fragment() {
                         call: Call<ResponseBody?>,
                         response: Response<ResponseBody?>
                     ) {
-                        if(response.isSuccessful){
+                        if (response.isSuccessful) {
 
                             val fragmentManager = activity?.supportFragmentManager
                             val fragmentTransaction = fragmentManager?.beginTransaction()
-                            fragmentTransaction?.replace(R.id.fragment_container, PasswordFragment())
-                            otpProgressbar.visibility=View.GONE
+                            fragmentTransaction?.replace(
+                                R.id.fragment_container,
+                                PasswordFragment()
+                            )
+                            otpProgressbar.visibility = View.GONE
                             fragmentTransaction?.commit()
 
 
-                        }
-                        else{
-                            Toast.makeText(context,"OTP is incorrect",Toast.LENGTH_SHORT).show()
-                            otpProgressbar.visibility=View.GONE
-                            verify.isEnabled=true
+                        } else {
+                            otpEditText.setHint("OTP is incorrect")
+                            otpProgressbar.visibility = View.GONE
+                            verify.isClickable = true
 
                         }
 
@@ -74,13 +77,12 @@ class OtpFragment: Fragment() {
 
                     override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
 
-                        Toast.makeText(context, "Connection Failed! Try again ",Toast.LENGTH_SHORT).show()
-                        otpProgressbar.visibility=View.GONE
-                        verify.isEnabled=true
+                        Toast.makeText(context, "Failed ${t.message}", Toast.LENGTH_SHORT).show()
+                        otpProgressbar.visibility = View.GONE
+                        verify.isClickable = true
 
                     }
                 })
-
 
 
             }
@@ -89,7 +91,6 @@ class OtpFragment: Fragment() {
         }
         return view
     }
-
 
 
 }
