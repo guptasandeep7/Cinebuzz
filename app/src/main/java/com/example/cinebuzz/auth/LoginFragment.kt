@@ -72,8 +72,12 @@ class LoginFragment : Fragment() {
                         {
 
 
+
                                 startActivity(Intent(activity, DashboardActivity::class.java))
 
+                        }
+                        else{
+                            Toast.makeText(context, "Invalid Password", Toast.LENGTH_SHORT).show()
                         }
                     }
 

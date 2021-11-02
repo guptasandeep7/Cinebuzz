@@ -28,7 +28,7 @@ class VerifyFragment: Fragment() {
         val next = view.findViewById<Button>(R.id.login_btn)
         val emailEdit=view.findViewById<EditText>(R.id.emailEdittext3)
         next.setOnClickListener(View.OnClickListener {
-            if(emailEdit.text.toString().equals(null))
+            if(emailEdit.text.toString()=="")
             {
                 Toast.makeText(context, "Email/Password cannot be empty", Toast.LENGTH_SHORT).show()
             }
@@ -43,13 +43,13 @@ class VerifyFragment: Fragment() {
                         response: Response<ResponseBody?>
                     ) {
                         if (response.isSuccessful) {
-                            if (response.code() == 200) {
+
                                 val fragmentManager = activity?.supportFragmentManager
                                 val fragmentTransaction = fragmentManager?.beginTransaction()
                                 fragmentTransaction?.replace(R.id.fragment_container, OtpFragment())
                                 fragmentTransaction?.addToBackStack(null)
                                 fragmentTransaction?.commit()
-                            }
+
                         }
                     }
 
