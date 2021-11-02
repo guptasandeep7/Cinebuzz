@@ -15,8 +15,8 @@ import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
+import javax.security.auth.callback.Callback
 
 class SignupFragment: Fragment() {
 
@@ -47,7 +47,7 @@ class SignupFragment: Fragment() {
                     )
                 )
 
-                call.enqueue(object : Callback<ResponseBody?> {
+                call.enqueue(object : retrofit2.Callback<ResponseBody?> {
                     override fun onResponse(
                         call: Call<ResponseBody?>,
                         response: Response<ResponseBody?>
