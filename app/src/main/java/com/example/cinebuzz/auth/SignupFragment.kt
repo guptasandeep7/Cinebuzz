@@ -1,8 +1,6 @@
 package com.example.cinebuzz.auth
 
-import android.content.Context
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,16 +12,22 @@ import com.example.cinebuzz.retrofit.ServiceBuilder
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
 
-class SignupFragment: Fragment() {
-    companion object {
-        lateinit var userEmail: String
-        lateinit var userName:String
+class SignupFragment : Fragment() {
+
+    private fun isValidString(str: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    companion object {
+        lateinit var userEmail: String
+        lateinit var userName: String
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.signup_fragment, container, false)
 
@@ -34,15 +38,16 @@ class SignupFragment: Fragment() {
         val signupProgressbar = view.findViewById<ProgressBar>(R.id.signup_progressBar)
 
 
-        verifyEmail.setOnClickListener{
+        verifyEmail.setOnClickListener {
 
-            if(nameEditText.text.toString() == "" || emailEditText.text.toString() == ""){
-                Toast.makeText(context, "Name/Email cannot be empty",Toast.LENGTH_SHORT).show()
-            }
-            else {
-                verifyEmail.isEnabled=false
+            if (nameEditText.text.toString() == "" || emailEditText.text.toString() == "") {
+                Toast.makeText(context, "Name/Email cannot be empty", Toast.LENGTH_SHORT).show()
+            } else if (!(isValidString(emailEditText.text.toString().trim()))) {
+                emailEditText.hint = "Enter valid Email Id !!!"
+            } else {
+                verifyEmail.isClickable = false
 
-                signupProgressbar.visibility=View.VISIBLE
+                signupProgressbar.visibility = View.VISIBLE
 
                 val request = ServiceBuilder.buildService()
                 val call = request.signup(
@@ -57,45 +62,41 @@ class SignupFragment: Fragment() {
                         call: Call<ResponseBody?>,
                         response: Response<ResponseBody?>
                     ) {
-                        if(response.isSuccessful){
+                        if (response.isSuccessful) {
 
-                            userName=nameEditText.text.toString()
-                            userEmail=emailEditText.text.toString()
-                                emailEditText.text.clear()
-                                nameEditText.text.clear()
+                            userName = nameEditText.text.toString()
+                            userEmail = emailEditText.text.toString()
+                            emailEditText.text.clear()
+                            nameEditText.text.clear()
 
                             val fragmentManager = activity?.supportFragmentManager
-                                val fragmentTransaction = fragmentManager?.beginTransaction()
-                                fragmentTransaction?.replace(R.id.fragment_container, OtpFragment())
-                                signupProgressbar.visibility=View.GONE
-                                fragmentTransaction?.commit()
+                            val fragmentTransaction = fragmentManager?.beginTransaction()
+                            fragmentTransaction?.replace(R.id.fragment_container, OtpFragment())
+                            signupProgressbar.visibility = View.GONE
+                            fragmentTransaction?.commit()
 
-
-
+                        } else {
+                            emailEditText.text.clear()
+                            nameEditText.text.clear()
+                            emailEditText.hint = "Email Id already exist!!!"
+                            verifyEmail.isClickable = true
+                            signupProgressbar.visibility = View.GONE
                         }
-                        else{
-                            Toast.makeText(context, response.code().toString(),Toast.LENGTH_SHORT).show()
-                            verifyEmail.isEnabled=true
-                            signupProgressbar.visibility=View.GONE
-
-                        }
-
                     }
 
                     override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
 
-                        Toast.makeText(context, "Failed ${t.message}",Toast.LENGTH_SHORT).show()
-                        verifyEmail.isEnabled=true
+                        Toast.makeText(context, "Failed ${t.message}", Toast.LENGTH_SHORT).show()
+                        verifyEmail.isClickable = true
 
                     }
                 })
 
 
-
             }
         }
 
-        backToLogin.setOnClickListener{
+        backToLogin.setOnClickListener {
 
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
@@ -105,7 +106,6 @@ class SignupFragment: Fragment() {
         }
         return view
     }
-
 
 
 }

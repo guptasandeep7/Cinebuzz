@@ -15,9 +15,12 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.math.log
 
 class LoginFragment : Fragment() {
+
+    fun isValidString(str: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,8 +56,10 @@ class LoginFragment : Fragment() {
 
             if (emailEditText2.text.toString() == "" || passwordEditText.text.toString() == "") {
                 Toast.makeText(context, "Email/Password cannot be empty", Toast.LENGTH_SHORT).show()
+            } else if (!(isValidString(emailEditText2.text.toString().trim()))) {
+                emailEditText2.setHint("Enter valid Email Id !!!")
             } else {
-                login.isEnabled = false
+                login.isClickable = false
                 loginProgressbar.visibility = View.VISIBLE
                 val request = ServiceBuilder.buildService()
                 val call = request.login(
@@ -63,29 +68,27 @@ class LoginFragment : Fragment() {
                         pass = passwordEditText.text.toString().trim()
                     )
                 )
+                emailEditText2.text.clear()
+                passwordEditText.text.clear()
                 call.enqueue(object : Callback<ResponseBody?> {
                     override fun onResponse(
                         call: Call<ResponseBody?>,
                         response: Response<ResponseBody?>
                     ) {
                         if (response.isSuccessful) {
-                            emailEditText2.text.clear()
-                            passwordEditText.text.clear()
+
+                            loginProgressbar.visibility = View.GONE
                             startActivity(Intent(activity, DashboardActivity::class.java))
-                            loginProgressbar.visibility = View.GONE
-                            login.isEnabled = true
+                            activity?.finish()
 
-                        } else if(response.code()==301){
-                            Toast.makeText(context, "Wrong PAssword", Toast.LENGTH_SHORT)
-                                .show()
-                            login.isEnabled = true
+                        } else if (response.code() == 301) {
+                            passwordEditText.setHint("Wrong Password !!!")
+                            login.isClickable = true
                             loginProgressbar.visibility = View.GONE
 
-                        }
-                        else if(response.code()==401){
-                            Toast.makeText(context, "User Does not exist", Toast.LENGTH_SHORT)
-                                .show()
-                            login.isEnabled = true
+                        } else if (response.code() == 401) {
+                            emailEditText2.setHint("Email Id is not registered !!!")
+                            login.isClickable = true
                             loginProgressbar.visibility = View.GONE
                         }
 
@@ -93,7 +96,7 @@ class LoginFragment : Fragment() {
 
                     override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
                         Toast.makeText(context, "Failed ${t.message}", Toast.LENGTH_SHORT).show()
-                        login.isEnabled = true
+                        login.isClickable = true
                         loginProgressbar.visibility = View.GONE
                     }
                 })
