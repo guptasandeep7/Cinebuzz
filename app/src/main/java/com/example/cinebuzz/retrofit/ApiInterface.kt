@@ -17,4 +17,10 @@ interface ApiInterface {
 
     @POST("signup")
     fun signup(@Body data: MyDataItem): Call<ResponseBody>
+
+    @POST("otp")
+    fun otp(@Body data: MyDataItem): Call<ResponseBody>
+
+    @PUT("password")
+    fun password(@Body data: MyDataItem): Call<ResponseBody>
 }
