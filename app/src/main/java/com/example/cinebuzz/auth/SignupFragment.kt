@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.cinebuzz.R
+import com.example.cinebuzz.auth.VerifyFragment.Companion.forgot
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import okhttp3.ResponseBody
@@ -31,6 +32,8 @@ class SignupFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.signup_fragment, container, false)
 
+        forgot="false"
+
         val verifyEmail = view.findViewById<Button>(R.id.verifyEmail_btn)
         val backToLogin = view.findViewById<TextView>(R.id.back_to_login)
         val nameEditText = view.findViewById<EditText>(R.id.name_edittext)
@@ -40,10 +43,12 @@ class SignupFragment : Fragment() {
 
         verifyEmail.setOnClickListener {
 
-            if (nameEditText.text.toString() == "" || emailEditText.text.toString() == "") {
-                Toast.makeText(context, "Name/Email cannot be empty", Toast.LENGTH_SHORT).show()
-            } else if (!(isValidString(emailEditText.text.toString().trim()))) {
-                emailEditText.hint = "Enter valid Email Id !!!"
+            if (nameEditText.text.toString() == "")
+                nameEditText.error = "Enter name !!!"
+            else if(emailEditText.text.toString() == "")
+                emailEditText.error = "Enter Email Id !!!"
+            else if (!(isValidString(emailEditText.text.toString().trim()))) {
+                emailEditText.error = "Enter valid Email Id !!!"
             } else {
                 verifyEmail.isClickable = false
 
@@ -78,7 +83,7 @@ class SignupFragment : Fragment() {
                         } else {
                             emailEditText.text.clear()
                             nameEditText.text.clear()
-                            emailEditText.hint = "Email Id already exist!!!"
+                            emailEditText.error = "Email Id already exist!!!"
                             verifyEmail.isClickable = true
                             signupProgressbar.visibility = View.GONE
                         }

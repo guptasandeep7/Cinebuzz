@@ -35,7 +35,7 @@ class OtpFragment : Fragment() {
 
 
             if (otpEditText.text.toString() == "") {
-                Toast.makeText(context, "Please enter OTP", Toast.LENGTH_SHORT).show()
+                otpEditText.error="Please enter OTP"
 
             } else {
                 verify.isClickable = false
@@ -58,16 +58,13 @@ class OtpFragment : Fragment() {
 
                             val fragmentManager = activity?.supportFragmentManager
                             val fragmentTransaction = fragmentManager?.beginTransaction()
-                            fragmentTransaction?.replace(
-                                R.id.fragment_container,
-                                PasswordFragment()
-                            )
+                            fragmentTransaction?.replace(R.id.fragment_container, PasswordFragment())
                             otpProgressbar.visibility = View.GONE
                             fragmentTransaction?.commit()
 
 
                         } else {
-                            otpEditText.setHint("OTP is incorrect")
+                            otpEditText.error="OTP is incorrect"
                             otpProgressbar.visibility = View.GONE
                             verify.isClickable = true
 

@@ -1,7 +1,10 @@
 package com.example.cinebuzz.auth
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +18,12 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.widget.Toast
 
-class LoginFragment : Fragment() {
+
+
+
+class LoginFragment : Fragment(){
 
     private fun isValidString(str: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
@@ -41,6 +48,7 @@ class LoginFragment : Fragment() {
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
             fragmentTransaction?.replace(R.id.fragment_container, VerifyFragment())
+            fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
 
         }
@@ -49,15 +57,18 @@ class LoginFragment : Fragment() {
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
             fragmentTransaction?.replace(R.id.fragment_container, SignupFragment())
+            fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
         }
 
-        login.setOnClickListener {
+        login.setOnClickListener{
 
-            if (emailEditText2.text.toString() == "" || passwordEditText.text.toString() == "") {
-                Toast.makeText(context, "Email/Password cannot be empty", Toast.LENGTH_SHORT).show()
-            } else if (!(isValidString(emailEditText2.text.toString().trim()))) {
-                emailEditText2.setHint("Enter valid Email Id !!!")
+            if (emailEditText2.text.toString() == "")
+                emailEditText2.error="Enter email id"
+            else if(passwordEditText.text.toString() == "")
+                passwordEditText.error="Enter password !!!"
+            else if (!(isValidString(emailEditText2.text.toString().trim()))) {
+                emailEditText2.error="Enter valid Email Id !!!"
             } else {
                 login.isClickable = false
                 loginProgressbar.visibility = View.VISIBLE
@@ -80,12 +91,12 @@ class LoginFragment : Fragment() {
                             activity?.finish()
 
                         } else if (response.code() == 301) {
-                            passwordEditText.setHint("Wrong Password !!!")
+                            passwordEditText.error="Wrong Password !!!"
                             login.isClickable = true
                             loginProgressbar.visibility = View.GONE
 
                         } else if (response.code() == 401) {
-                            emailEditText2.setHint("Email Id is not registered !!!")
+                            emailEditText2.error="Email Id is not registered !!!"
                             login.isClickable = true
                             loginProgressbar.visibility = View.GONE
                         }

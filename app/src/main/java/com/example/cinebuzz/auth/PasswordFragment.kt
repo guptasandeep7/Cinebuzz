@@ -27,7 +27,7 @@ class PasswordFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.password_fragment, container, false)
 
-        if (forgot.equals("true")) {
+        if (forgot == "true") {
             view.findViewById<TextView>(R.id.textView).setText("Reset Password")
         }
         val signBtn = view.findViewById<Button>(R.id.sign_btn)

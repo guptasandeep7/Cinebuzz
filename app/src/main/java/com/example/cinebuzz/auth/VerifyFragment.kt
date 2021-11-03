@@ -38,9 +38,9 @@ class VerifyFragment : Fragment() {
         val verifyProgressBar = view.findViewById<ProgressBar>(R.id.verify_progressBar)
         next.setOnClickListener{
             if (emailEdit.text.toString() == "") {
-                emailEdit.hint = "Enter Email Id"
+                emailEdit.error = "Enter Email Id"
             } else if (!(isValidString(emailEdit.text.toString().trim()))) {
-                emailEdit.hint = "Enter valid Email Id !!!"
+                emailEdit.error = "Enter valid Email Id !!!"
             } else {
                 next.isClickable = false
                 verifyProgressBar.visibility = View.VISIBLE
@@ -66,7 +66,7 @@ class VerifyFragment : Fragment() {
                             fragmentTransaction?.commit()
 
                         } else {
-                            emailEdit.hint = "Email Id is not registered !!!"
+                            emailEdit.error = "Email Id is not registered !!!"
                             next.isClickable = true
                             verifyProgressBar.visibility = View.GONE
                         }
