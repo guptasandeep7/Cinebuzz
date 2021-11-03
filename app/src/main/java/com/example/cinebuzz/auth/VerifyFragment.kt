@@ -36,7 +36,7 @@ class VerifyFragment : Fragment() {
         val next = view.findViewById<Button>(R.id.login_btn)
         val emailEdit = view.findViewById<EditText>(R.id.emailEdittext3)
         val verifyProgressBar = view.findViewById<ProgressBar>(R.id.verify_progressBar)
-        next.setOnClickListener(View.OnClickListener {
+        next.setOnClickListener{
             if (emailEdit.text.toString() == "") {
                 emailEdit.hint = "Enter Email Id"
             } else if (!(isValidString(emailEdit.text.toString().trim()))) {
@@ -81,7 +81,7 @@ class VerifyFragment : Fragment() {
             }
 
 
-        })
+        }
         return view
     }
 

@@ -88,6 +88,7 @@ class SignupFragment : Fragment() {
 
                         Toast.makeText(context, "Failed ${t.message}", Toast.LENGTH_SHORT).show()
                         verifyEmail.isClickable = true
+                        signupProgressbar.visibility = View.GONE
 
                     }
                 })

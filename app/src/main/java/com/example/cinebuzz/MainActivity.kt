@@ -1,6 +1,7 @@
 package com.example.cinebuzz
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.cinebuzz.auth.LoginFragment
 
 class MainActivity : AppCompatActivity() {
@@ -14,4 +15,12 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
     }
-}
+    var count=0
+    override fun onBackPressed() {
+           count++
+        if(count==1)
+            Toast.makeText(applicationContext, "Press Twice to exit", Toast.LENGTH_SHORT).show()
+            if(count == 2)
+            super.onBackPressed()
+        }
+    }

@@ -18,7 +18,7 @@ import retrofit2.Response
 
 class LoginFragment : Fragment() {
 
-    fun isValidString(str: String): Boolean {
+    private fun isValidString(str: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
     }
 
@@ -68,8 +68,6 @@ class LoginFragment : Fragment() {
                         pass = passwordEditText.text.toString().trim()
                     )
                 )
-                emailEditText2.text.clear()
-                passwordEditText.text.clear()
                 call.enqueue(object : Callback<ResponseBody?> {
                     override fun onResponse(
                         call: Call<ResponseBody?>,
