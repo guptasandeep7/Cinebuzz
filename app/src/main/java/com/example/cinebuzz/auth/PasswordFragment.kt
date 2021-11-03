@@ -13,6 +13,7 @@ import com.example.cinebuzz.auth.SignupFragment.Companion.userName
 import com.example.cinebuzz.auth.VerifyFragment.Companion.forgot
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.google.android.material.textfield.TextInputEditText
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,8 +32,8 @@ class PasswordFragment : Fragment() {
             view.findViewById<TextView>(R.id.textView).setText("Reset Password")
         }
         val signBtn = view.findViewById<Button>(R.id.sign_btn)
-        val passwordEditText = view.findViewById<EditText>(R.id.password_edittext)
-        val confirmPassEditText = view.findViewById<EditText>(R.id.confirmpass_edittext)
+        val passwordEditText = view.findViewById<TextInputEditText>(R.id.password1)
+        val confirmPassEditText = view.findViewById<TextInputEditText>(R.id.password2)
         val passwordProgressbar = view.findViewById<ProgressBar>(R.id.password_progressBar)
 
         signBtn.setOnClickListener {
@@ -76,8 +77,8 @@ class PasswordFragment : Fragment() {
                     ) {
                         if (response.isSuccessful) {
 
-                            passwordEditText.text.clear()
-                            confirmPassEditText.text.clear()
+                            passwordEditText.text!!.clear()
+                            confirmPassEditText.text!!.clear()
                             passwordProgressbar.visibility = View.GONE
 
                             startActivity(Intent(activity, DashboardActivity::class.java))

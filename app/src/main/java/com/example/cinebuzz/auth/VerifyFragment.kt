@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.cinebuzz.R
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.google.android.material.textfield.TextInputEditText
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,7 +34,7 @@ class VerifyFragment : Fragment() {
 
         forgot="false"
         val next = view.findViewById<Button>(R.id.login_btn)
-        val emailEdit = view.findViewById<EditText>(R.id.emailEdittext3)
+        val emailEdit = view.findViewById<TextInputEditText>(R.id.email)
         val verifyProgressBar = view.findViewById<ProgressBar>(R.id.verify_progressBar)
         next.setOnClickListener{
             if (emailEdit.text.toString() == "") {
@@ -56,7 +56,7 @@ class VerifyFragment : Fragment() {
                         if (response.isSuccessful) {
 
                             SignupFragment.userEmail = emailEdit.text.toString()
-                            emailEdit.text.clear()
+                            emailEdit.text!!.clear()
                             verifyProgressBar.visibility = View.GONE
 
                             val fragmentManager = activity?.supportFragmentManager

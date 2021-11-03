@@ -10,6 +10,7 @@ import com.example.cinebuzz.R
 import com.example.cinebuzz.auth.VerifyFragment.Companion.forgot
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.google.android.material.textfield.TextInputEditText
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
@@ -29,6 +30,7 @@ class SignupFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        forgot="false"
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.signup_fragment, container, false)
 
@@ -36,8 +38,8 @@ class SignupFragment : Fragment() {
 
         val verifyEmail = view.findViewById<Button>(R.id.verifyEmail_btn)
         val backToLogin = view.findViewById<TextView>(R.id.back_to_login)
-        val nameEditText = view.findViewById<EditText>(R.id.name_edittext)
-        val emailEditText = view.findViewById<EditText>(R.id.email_edittext)
+        val nameEditText = view.findViewById<TextInputEditText>(R.id.name)
+        val emailEditText = view.findViewById<TextInputEditText>(R.id.email)
         val signupProgressbar = view.findViewById<ProgressBar>(R.id.signup_progressBar)
 
 
@@ -71,8 +73,8 @@ class SignupFragment : Fragment() {
 
                             userName = nameEditText.text.toString()
                             userEmail = emailEditText.text.toString()
-                            emailEditText.text.clear()
-                            nameEditText.text.clear()
+                            emailEditText.text!!.clear()
+                            nameEditText.text!!.clear()
 
                             val fragmentManager = activity?.supportFragmentManager
                             val fragmentTransaction = fragmentManager?.beginTransaction()
@@ -81,8 +83,8 @@ class SignupFragment : Fragment() {
                             fragmentTransaction?.commit()
 
                         } else {
-                            emailEditText.text.clear()
-                            nameEditText.text.clear()
+                            emailEditText.text!!.clear()
+                            nameEditText.text!!.clear()
                             emailEditText.error = "Email Id already exist!!!"
                             verifyEmail.isClickable = true
                             signupProgressbar.visibility = View.GONE

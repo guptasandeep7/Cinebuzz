@@ -19,8 +19,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.widget.Toast
-
-
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 
 class LoginFragment : Fragment(){
@@ -38,8 +38,8 @@ class LoginFragment : Fragment(){
         val forgot = view.findViewById<TextView>(R.id.forgot_textview)
         val signup = view.findViewById<TextView>(R.id.signup_textview)
         val login = view.findViewById<Button>(R.id.login_button)
-        val emailEditText2 = view.findViewById<EditText>(R.id.email_edittext2)
-        val passwordEditText = view.findViewById<EditText>(R.id.password_edittext2)
+        val emailEditText2 = view.findViewById<TextInputEditText>(R.id.editText)
+        val passwordEditText = view.findViewById<TextInputEditText>(R.id.password)
         val loginProgressbar = view.findViewById<ProgressBar>(R.id.login_progressBar)
 
 
