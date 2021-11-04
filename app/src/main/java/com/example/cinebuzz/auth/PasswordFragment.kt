@@ -43,9 +43,17 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
         signBtn.setOnClickListener {
 
             if (binding.password1.text.toString() == "" || confirmPassEditText.text.toString() == "") {
-                binding.password1.setHint("Please enter Password")
+                Toast.makeText(context, "Please enter Password", Toast.LENGTH_SHORT)
+                    .show()
 
-            } else if (binding.password1.text.toString() == confirmPassEditText.text.toString()) {
+            }
+            else if(validEmail() != null)
+            {
+                Toast.makeText(context, "Enter correct password", Toast.LENGTH_SHORT)
+                    .show()
+
+            }
+            else if (binding.password1.text.toString() == confirmPassEditText.text.toString()) {
                 signBtn.isClickable = false
                 passwordProgressbar.visibility = View.VISIBLE
 
@@ -108,7 +116,8 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
                     }
                 })
 
-            } else confirmPassEditText.setHint("Confirm Password doesn't match")
+            } else  Toast.makeText(context, "Confirm Password does not match", Toast.LENGTH_SHORT)
+                .show()
 
         }
         return view
