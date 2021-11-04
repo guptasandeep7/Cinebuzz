@@ -66,7 +66,7 @@ class LoginFragment : Fragment(){
             if (emailEditText2.text.toString() == "")
                 emailEditText2.error="Enter email id"
             else if(passwordEditText.text.toString() == "")
-                passwordEditText.error="Enter password !!!"
+                Toast.makeText(context, "Enter Password!!!", Toast.LENGTH_SHORT).show()
             else if (!(isValidString(emailEditText2.text.toString().trim()))) {
                 emailEditText2.error="Enter valid Email Id !!!"
             } else {
@@ -91,7 +91,7 @@ class LoginFragment : Fragment(){
                             activity?.finish()
 
                         } else if (response.code() == 301) {
-                            passwordEditText.error="Wrong Password !!!"
+                            Toast.makeText(context, "Wrong Password", Toast.LENGTH_SHORT).show()
                             login.isClickable = true
                             loginProgressbar.visibility = View.GONE
 
