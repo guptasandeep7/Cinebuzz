@@ -11,37 +11,41 @@ import com.example.cinebuzz.DashboardActivity
 import com.example.cinebuzz.R
 import com.example.cinebuzz.auth.SignupFragment.Companion.userName
 import com.example.cinebuzz.auth.VerifyFragment.Companion.forgot
+import com.example.cinebuzz.databinding.PasswordFragmentBinding
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PasswordFragment : Fragment() {
+class PasswordFragment : Fragment(R.layout.password_fragment) {
+    private var _binding: PasswordFragmentBinding?=null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.password_fragment, container, false)
+    ): View {
+        _binding = PasswordFragmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+        passwordcheck()
 
         if (forgot == "true") {
             view.findViewById<TextView>(R.id.textView).setText("Reset Password")
         }
         val signBtn = view.findViewById<Button>(R.id.sign_btn)
-        val passwordEditText = view.findViewById<TextInputEditText>(R.id.password1)
         val confirmPassEditText = view.findViewById<TextInputEditText>(R.id.password2)
         val passwordProgressbar = view.findViewById<ProgressBar>(R.id.password_progressBar)
 
         signBtn.setOnClickListener {
 
-            if (passwordEditText.text.toString() == "" || confirmPassEditText.text.toString() == "") {
-                passwordEditText.setHint("Please enter Password")
+            if (binding.password1.text.toString() == "" || confirmPassEditText.text.toString() == "") {
+                binding.password1.setHint("Please enter Password")
 
-            } else if (passwordEditText.text.toString() == confirmPassEditText.text.toString()) {
+            } else if (binding.password1.text.toString() == confirmPassEditText.text.toString()) {
                 signBtn.isClickable = false
                 passwordProgressbar.visibility = View.VISIBLE
 
@@ -52,7 +56,7 @@ class PasswordFragment : Fragment() {
                         request.resetPassword(
                             MyDataItem(
                                 email = SignupFragment.userEmail,
-                                pass = passwordEditText.text.toString(),
+                                pass = binding.password1.text.toString(),
                                 confirmpass = confirmPassEditText.text.toString(),
                             )
                         )
@@ -62,7 +66,7 @@ class PasswordFragment : Fragment() {
                         request.password(
                             MyDataItem(
                                 email = SignupFragment.userEmail,
-                                pass = passwordEditText.text.toString(),
+                                pass = binding.password1.text.toString(),
                                 confirmpass = confirmPassEditText.text.toString(),
                                 name = userName
                             )
@@ -77,7 +81,7 @@ class PasswordFragment : Fragment() {
                     ) {
                         if (response.isSuccessful) {
 
-                            passwordEditText.text!!.clear()
+                            binding.password1.text!!.clear()
                             confirmPassEditText.text!!.clear()
                             passwordProgressbar.visibility = View.GONE
 
@@ -110,5 +114,30 @@ class PasswordFragment : Fragment() {
         return view
     }
 
+    private fun validEmail(): String? {
+        val password = binding.password1.text.toString()
+        if (password.length < 8) {
+            return "Password must Contain 8 Characters"
 
+        }
+        if (!password.matches(".*[A-Z].*".toRegex()) && (!password.matches(".*[\$#%@&*/+_=?^!].*".toRegex()))) {
+            return "Must contain 1 Special character and 1 upper case character (\$#%@&*/+_=?^!)"
+        } else if (!password.matches(".*[a-z].*".toRegex())) {
+            return "Must contain 1 Lower case character"
+        } else if (!password.matches(".*[\$#%@&*/+_=?^!].*".toRegex())) {
+            return "Must contain 1 Special character (\$#%@&*/+_=?^!)"
+        } else if (!password.matches(".*[A-Z].*".toRegex())) {
+            return "Must contain 1 upper case character"
+        }
+        return null
+    }
+
+    private fun passwordcheck() {
+        binding.password1.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                binding.passwordEdittext.helperText = validEmail()
+            }
+
+        }
+    }
 }

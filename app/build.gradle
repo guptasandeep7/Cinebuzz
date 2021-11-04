@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -14,6 +15,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildFeatures{
+        viewBinding true
     }
 
     buildTypes {
@@ -52,5 +56,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     //okhttp
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation 'com.android.databinding:viewbinding:7.0.3'
 
 }

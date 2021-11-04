@@ -82,7 +82,8 @@ class SignupFragment : Fragment() {
                             signupProgressbar.visibility = View.GONE
                             fragmentTransaction?.commit()
 
-                        } else {
+                        }
+                        else {
                             emailEditText.text!!.clear()
                             nameEditText.text!!.clear()
                             emailEditText.error = "Email Id already exist!!!"

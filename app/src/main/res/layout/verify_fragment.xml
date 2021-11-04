@@ -48,6 +48,7 @@
         android:layout_marginEnd="24dp"
         app:startIconDrawable="@drawable/ic_vector__1_"
         android:drawablePadding="10dp"
+        app:startIconTint="#C6090112"
         android:textColorHint="#B5B3B3"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"

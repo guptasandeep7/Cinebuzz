@@ -49,6 +49,7 @@
         android:layout_marginEnd="24dp"
         android:textColorHint="#B5B3B3"
         app:startIconDrawable="@drawable/ic_mail_icon"
+        app:startIconTint="#CE0C070E"
         android:drawablePadding="10dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"
