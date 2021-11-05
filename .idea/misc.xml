@@ -3,12 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/login_fragment.xml" value="0.13615023474178403" />
-        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/otp_fragment.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/password_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/login_fragment.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/otp_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/password_fragment.xml" value="0.3050314465408805" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/play_movie.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/signup_fragment.xml" value="0.22" />
-        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/verify_fragment.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/verify_fragment.xml" value="0.1" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/border_curve.xml" value="0.2484375" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/button_border.xml" value="0.2484375" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/ic_mail_icon.xml" value="0.2484375" />
