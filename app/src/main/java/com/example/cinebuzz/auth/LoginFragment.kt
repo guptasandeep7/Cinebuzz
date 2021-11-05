@@ -46,6 +46,7 @@ class LoginFragment : Fragment(){
         forgot.setOnClickListener {
 
             val fragmentManager = activity?.supportFragmentManager
+            fragmentManager?.popBackStack()
             val fragmentTransaction = fragmentManager?.beginTransaction()
             fragmentTransaction?.replace(R.id.fragment_container, VerifyFragment())
             fragmentTransaction?.addToBackStack(null)
@@ -55,6 +56,7 @@ class LoginFragment : Fragment(){
 
         signup.setOnClickListener {
             val fragmentManager = activity?.supportFragmentManager
+            fragmentManager?.popBackStack()
             val fragmentTransaction = fragmentManager?.beginTransaction()
             fragmentTransaction?.replace(R.id.fragment_container, SignupFragment())
             fragmentTransaction?.addToBackStack(null)

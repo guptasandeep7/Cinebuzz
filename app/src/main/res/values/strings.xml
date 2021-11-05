@@ -4,8 +4,8 @@
     <string name="let_s_get_started">Let\'s get started</string>
     <string name="enter_your_name">Enter your name</string>
     <string name="already_have_an_account_log_in">Already have an account ? <font fgcolor="#BB86FC"> <b><u>Log In</u></b></font></string>
-    <string name="resend_otp_after_30_secs">
-        <u>Resend OTP after 30 secs</u></string>
+    <string name="resend_otp">
+        <u>Click to resend OTP </u></string>
     <string name="confirm_password">Confirm Password</string>
     <string name="create_your_password">Create your password</string>
     <string name="password">Password</string>

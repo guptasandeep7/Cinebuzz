@@ -1,6 +1,7 @@
 package com.example.cinebuzz
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.cinebuzz.auth.LoginFragment
 
 class MainActivity : AppCompatActivity() {
@@ -14,5 +15,4 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
     }
-
-    }
+}
