@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/id_home_fragment">
+
+    <fragment
+        android:id="@+id/id_home_fragment"
+        android:name="com.example.cinebuzz.dashboard.HomePage_fragment"
+        android:label="Home"
+        tools:layout="@layout/home_page">
+
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/id_search_fragment"
+        android:name="com.example.cinebuzz.dashboard.SearchPage_fragment"
+        android:label="Search"
+        tools:layout="@layout/search_page">
+
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/id_randomise_fragment"
+        android:name="com.example.cinebuzz.dashboard.RandomisePage_fragment"
+        android:label="randomise"
+        tools:layout="@layout/randomise_page">
+
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/id_profile_fragment"
+        android:name="com.example.cinebuzz.dashboard.ProfilePage_fragment"
+        android:label="Profile"
+        tools:layout="@layout/profile_page">
+
+
+    </fragment>
+
+
+
+</navigation>
