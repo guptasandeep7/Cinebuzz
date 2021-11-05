@@ -49,7 +49,7 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
             }
             else if(validEmail() != null)
             {
-                Toast.makeText(context, "Enter correct password", Toast.LENGTH_SHORT)
+                Toast.makeText(context, validEmail().toString(), Toast.LENGTH_SHORT)
                     .show()
 
             }
@@ -125,8 +125,8 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
 
     private fun validEmail(): String? {
         val password = binding.password1.text.toString()
-        if (password.length < 8) {
-            return "Password must Contain 8 Characters"
+        if (password.length < 6 || password.length >12) {
+            return "Password must be in range of 6 to 12 Characters"
 
         }
         if (!password.matches(".*[A-Z].*".toRegex()) && (!password.matches(".*[\$#%@&*/+_=?^!].*".toRegex()))) {
