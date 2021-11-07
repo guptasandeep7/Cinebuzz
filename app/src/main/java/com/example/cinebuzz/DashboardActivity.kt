@@ -1,30 +1,62 @@
 package com.example.cinebuzz
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.cinebuzz.auth.VerifyFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 
 class DashboardActivity : AppCompatActivity() {
 
 
-     private lateinit var bottomNav: BottomNavigationView
-     private lateinit var navController: NavController
+    private lateinit var bottomNav: BottomNavigationView
+    private lateinit var navController: NavController
+    lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,android.R.color.black)))
 
-      bottomNav=findViewById(R.id.bottomNav)
-        navController=findNavController(R.id.fragmentContainerView2)
-       bottomNav.setupWithNavController(navController)
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+        val navView = findViewById<NavigationView>(R.id.nav_view)
 
+        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        navView.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.about_us-> Toast.makeText(this,"about us",Toast.LENGTH_SHORT).show()
+                R.id.privacy_policy-> Toast.makeText(this,"privacy policy",Toast.LENGTH_SHORT).show()
+                R.id.feedback-> Toast.makeText(this,"feedback",Toast.LENGTH_SHORT).show()
+                R.id.change_password-> Toast.makeText(this,"change password",Toast.LENGTH_SHORT).show()
+                R.id.signout-> Toast.makeText(this,"sign out",Toast.LENGTH_SHORT).show()
+
+            }
+            true
+        }
+
+        bottomNav = findViewById(R.id.bottomNav)
+        navController = findNavController(R.id.fragmentContainerView2)
+        bottomNav.setupWithNavController(navController)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)) {
+            true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
