@@ -9,6 +9,7 @@
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/play_movie.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/signup_fragment.xml" value="0.22" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/verify_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/black_gradient.xml" value="0.2484375" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/border_curve.xml" value="0.2484375" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/button_border.xml" value="0.2484375" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/curve.xml" value="0.2484375" />
@@ -22,9 +23,11 @@
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/ic_vector__2_.xml" value="0.2484375" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/ic_vector__3_.xml" value="0.2484375" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/ic_vector__4_.xml" value="0.2484375" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/movies_curve.xml" value="0.2484375" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/profile_icon.xml" value="0.2484375" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/drawable/top_curve.xml" value="0.2484375" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/font/roboto.xml" value="0.2625" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout-land/randomise_page.xml" value="0.264" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/activity_email_verify.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/activity_login.xml" value="0.264" />
@@ -37,6 +40,8 @@
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/nav_header.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/otp_fragment.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/password_fragment.xml" value="0.245" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/random_movie.xml" value="0.2" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/randomise_page.xml" value="0.2" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/search_page.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/signup_fragment.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/Cinebuzz/app/src/main/res/layout/verify_fragment.xml" value="0.23229166666666667" />
@@ -51,5 +56,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.264" />
+      </ProjectState>
+    </option>
   </component>
 </project>

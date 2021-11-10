@@ -1,12 +1,11 @@
 package com.example.cinebuzz
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -24,7 +23,12 @@ class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,android.R.color.black)))
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+
+
 
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         val navView = findViewById<NavigationView>(R.id.nav_view)
@@ -33,6 +37,7 @@ class DashboardActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navView.setNavigationItemSelectedListener {
@@ -59,4 +64,5 @@ class DashboardActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 }
