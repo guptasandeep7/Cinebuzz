@@ -71,16 +71,16 @@ class HomePage_fragment :Fragment(){
         recyclerView3=view.findViewById(R.id.Horror)
         recyclerView4=view.findViewById(R.id.Comedy)
         recyclerView5=view.findViewById(R.id.Drama)
-        recyclerView1.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        recyclerView2.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        recyclerView3.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        recyclerView4.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        recyclerView5.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        recyclerView1.adapter = HomePageAdapter(context,movies)
-        recyclerView2.adapter=HomePageAdapter(context,movies)
-        recyclerView3.adapter=HomePageAdapter(context,movies)
-        recyclerView4.adapter=HomePageAdapter(context,movies)
-        recyclerView5.adapter=HomePageAdapter(context,movies)
+//        recyclerView1.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+//        recyclerView2.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+//        recyclerView3.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+//        recyclerView4.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+//        recyclerView5.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+//        recyclerView1.adapter = HomePageAdapter(context,movies)
+//        recyclerView2.adapter=HomePageAdapter(context,movies)
+//        recyclerView3.adapter=HomePageAdapter(context,movies)
+//        recyclerView4.adapter=HomePageAdapter(context,movies)
+//        recyclerView5.adapter=HomePageAdapter(context,movies)
 
         val request1 = ServiceBuilder.buildService()
         val call1 = request1.trending()
@@ -93,6 +93,9 @@ class HomePage_fragment :Fragment(){
                     for(movie in responseBody) {
                         movies.add(movie)
                     }
+                    adapter1= HomePageAdapter(activity,movies)
+                    recyclerView1.adapter=adapter1
+                    recyclerView1.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
                 }
                 else{
                     Toast.makeText(context,"un succeessfull ${response.message()}",Toast.LENGTH_SHORT).show()

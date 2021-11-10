@@ -15,7 +15,7 @@ import okhttp3.HttpUrl.Companion.toHttpUrl
 
 class HomePageAdapter(private val context: Context? ,private var HomePageMovies: List<Trending>) : RecyclerView.Adapter<HomePageAdapter.HomeViewHolder>() {
 
-    private var images = intArrayOf(R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background)
+//    private var images = intArrayOf(R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background)
      val movies : List<Trending> = HomePageMovies
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -24,8 +24,8 @@ class HomePageAdapter(private val context: Context? ,private var HomePageMovies:
     }
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
 
-//       val picture=HomePageMovies[position]
-        holder.movieImage.setImageResource(images[position])
+       val picture=HomePageMovies[position]
+//        holder.movieImage.setImageResource(images[position])
             Toast.makeText(context, " $position", Toast.LENGTH_SHORT).show()
 
 
@@ -44,12 +44,12 @@ class HomePageAdapter(private val context: Context? ,private var HomePageMovies:
 
          var movieImage= itemView.findViewById<ImageView>(R.id.movieImage)
 
-        fun bind(data:Trending)
-        {
-         val Url=data.url
-
-            Picasso.get().load(Url).into(movieImage)
-        }
+//        fun bind(data:Trending)
+//        {
+//         val Url=data.url
+//
+//            Picasso.get().load(Url).into(movieImage)
+//        }
     }
 
 }
