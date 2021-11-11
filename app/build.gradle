@@ -45,6 +45,7 @@ dependencies {
     implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'androidx.drawerlayout:drawerlayout:1.1.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:'
     implementation 'com.google.android.material:material:1.4.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

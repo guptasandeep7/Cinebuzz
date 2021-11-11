@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.squareup.picasso.Picasso
+import retrofit2.http.Url
 
 class HomePageAdapter(private val context: Context? ,private var HomePageMovies: List<MoviesDataItem>) : RecyclerView.Adapter<HomePageAdapter.HomeViewHolder>() {
 
@@ -24,9 +25,8 @@ class HomePageAdapter(private val context: Context? ,private var HomePageMovies:
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
 
        val picture=HomePageMovies[position]
-        holder.movieName.text=picture._id
+        holder.movieName.text=picture.name
 //        holder.movieImage.setImageResource(images[position])
-        Toast.makeText(context, " $position", Toast.LENGTH_SHORT).show()
         holder.bind(movies[position])
 
 
@@ -41,7 +41,7 @@ class HomePageAdapter(private val context: Context? ,private var HomePageMovies:
 
         fun bind(data:MoviesDataItem)
         {
-         val Url=data.url
+         val Url=data.posterurl
 
             Picasso.get().load(Url).into(movieImage)
         }
