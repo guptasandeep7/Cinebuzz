@@ -1,9 +1,12 @@
 package com.example.cinebuzz.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.cinebuzz.DashboardActivity
 import com.example.cinebuzz.R
+import com.example.cinebuzz.dashboard.home.TrendingPage
 import com.example.cinebuzz.recyclerview.HomePageAdapter
 import com.example.cinebuzz.retrofit.Latest
 import com.example.cinebuzz.retrofit.ServiceBuilder
@@ -49,7 +54,7 @@ class HomePage_fragment :Fragment(){
 
                     val responseBody=response.body()!!
                     for(movie in responseBody) {
-                        imageList.add(SlideModel(movie.url,ScaleTypes.FIT))
+                        imageList.add(SlideModel(movie.posterurl,ScaleTypes.FIT))
 
                     }
                     imageSlider.setImageList(imageList)
@@ -115,6 +120,11 @@ class HomePage_fragment :Fragment(){
 //        imageList.add(SlideModel("https://live.staticflickr.com/1980/29996141587_7886795726_b.jpg",ScaleTypes.FIT))
 //        imageSlider.setImageList(imageList)
 
+        val Arrow1=view.findViewById<ImageView>(R.id.Arrow1)
+        val trending=view.findViewById<TextView>(R.id.TrendingText)
+        Arrow1.setOnClickListener {
+            startActivity(Intent(activity, TrendingPage::class.java))
+        }
         return view
     }
 }

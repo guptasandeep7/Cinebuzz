@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
 //        val fragmentManager = supportFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
+//        val fragmentTranMainActivitysaction = fragmentManager.beginTransaction()
 //        fragmentTransaction.replace(R.id.fragment_container, LoginFragment())
 //        fragmentTransaction.commit()
 
