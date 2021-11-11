@@ -41,28 +41,28 @@
         android:id="@+id/Action"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ActionText" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Comedy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ComedyText" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Horror"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HorrorText" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Drama"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DramaText" />
 
@@ -87,7 +87,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="21dp"
         android:text="Action"
-        android:textSize="32dp"
+        android:textSize="24sp"
         android:letterSpacing="0.04"
         android:textColor="@color/text_shadow_white"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +99,7 @@
     android:layout_marginStart="24dp"
     android:layout_marginTop="21dp"
     android:text="Comedy"
-    android:textSize="32dp"
+    android:textSize="24sp"
     android:letterSpacing="0.04"
     android:textColor="@color/text_shadow_white"
     app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +111,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="21dp"
         android:text="Horror"
-        android:textSize="32dp"
+        android:textSize="24sp"
         android:letterSpacing="0.04"
         android:textColor="@color/text_shadow_white"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,7 +123,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="21dp"
         android:text="Drama"
-        android:textSize="32dp"
+        android:textSize="24sp"
         android:letterSpacing="0.04"
         android:textColor="@color/text_shadow_white"
         app:layout_constraintStart_toStartOf="parent"

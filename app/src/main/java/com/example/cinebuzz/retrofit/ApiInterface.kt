@@ -2,7 +2,6 @@ package com.example.cinebuzz.retrofit
 
 import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.http.*
 
 interface ApiInterface {
@@ -39,6 +38,6 @@ interface ApiInterface {
     fun latest():Call<List<Latest>>
 
     @GET("trending")
-    fun trending():Call<List<Trending>>
+    fun trending():Call<List<MoviesDataItem>>
 
 }

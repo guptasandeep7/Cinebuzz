@@ -15,21 +15,21 @@ import com.example.cinebuzz.R
 import com.example.cinebuzz.recyclerview.HomePageAdapter
 import com.example.cinebuzz.retrofit.Latest
 import com.example.cinebuzz.retrofit.ServiceBuilder
-import com.example.cinebuzz.retrofit.Trending
+import com.example.cinebuzz.retrofit.MoviesDataItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class HomePage_fragment :Fragment(){
 
-   private var movies= mutableListOf<Trending>()
+   private var movies= mutableListOf<MoviesDataItem>()
     private lateinit var recyclerView1: RecyclerView
     private lateinit var recyclerView2: RecyclerView
     private lateinit var recyclerView3: RecyclerView
     private lateinit var recyclerView4: RecyclerView
     private lateinit var recyclerView5: RecyclerView
 
-    private lateinit var adapter1:HomePageAdapter
+    private lateinit var adapter:HomePageAdapter
 
 
     override fun onCreateView(
@@ -84,8 +84,8 @@ class HomePage_fragment :Fragment(){
 
         val request1 = ServiceBuilder.buildService()
         val call1 = request1.trending()
-        call1.enqueue(object : Callback<List<Trending>?> {
-            override fun onResponse(call: Call<List<Trending>?>, response: Response<List<Trending>?>) {
+        call1.enqueue(object : Callback<List<MoviesDataItem>?> {
+            override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
                 if(response.isSuccessful) {
 
                     Toast.makeText(context,"succeessfull",Toast.LENGTH_SHORT).show()
@@ -93,8 +93,8 @@ class HomePage_fragment :Fragment(){
                     for(movie in responseBody) {
                         movies.add(movie)
                     }
-                    adapter1= HomePageAdapter(activity,movies)
-                    recyclerView1.adapter=adapter1
+                    adapter= HomePageAdapter(activity,movies)
+                    recyclerView1.adapter=adapter
                     recyclerView1.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
                 }
                 else{
@@ -103,7 +103,7 @@ class HomePage_fragment :Fragment(){
                 }
             }
 
-            override fun onFailure(call: Call<List<Trending>?>, t: Throwable) {
+            override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
                 Toast.makeText(context,"failed ${t.message}",Toast.LENGTH_SHORT).show()
             }
         })

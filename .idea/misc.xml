@@ -4,14 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/HP/.gradle/caches/transforms-3/1f7b7f8f11ecd55a5d3d120da118ebdb/transformed/jetified-ImageSlideshow-0.1.0/res/drawable/default_selected_dot.xml" value="0.2" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/drawable/black_gradient.xml" value="0.2" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/drawable/home_bottom_layout.xml" value="0.17037037037037037" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout-land/randomise_page.xml" value="0.15564373897707232" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/activity_dashboard.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/card_home_cell.xml" value="0.1" />
-        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/home_page.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/home_page.xml" value="0.12" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/home_rows.xml" value="0.25" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/login_fragment.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/otp_fragment.xml" value="0.1" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/password_fragment.xml" value="0.3050314465408805" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/play_movie.xml" value="0.18385416666666668" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/random_movie.xml" value="0.18385416666666668" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/randomise_page.xml" value="0.13903985507246377" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/signup_fragment.xml" value="0.22" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/verify_fragment.xml" value="0.1" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.18385416666666668" />
