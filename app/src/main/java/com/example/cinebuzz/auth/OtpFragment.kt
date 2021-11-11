@@ -21,6 +21,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class OtpFragment : Fragment() {
+    private lateinit var timerCountDown: CountDownTimer
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +36,7 @@ class OtpFragment : Fragment() {
         val otpProgressbar = view.findViewById<ProgressBar>(R.id.otp_progressBar)
         val timer = view.findViewById<TextView>(R.id.timer)
 
-        object : CountDownTimer(31000, 1000) {
+        timerCountDown = object : CountDownTimer(31000, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 timer.isEnabled=false
@@ -106,6 +108,7 @@ class OtpFragment : Fragment() {
                     ) {
                         if (response.isSuccessful) {
 
+                            timerCountDown?.cancel()
                             val fragmentManager = activity?.supportFragmentManager
                             val fragmentTransaction = fragmentManager?.beginTransaction()
                             fragmentTransaction?.replace(R.id.fragment_container, PasswordFragment())

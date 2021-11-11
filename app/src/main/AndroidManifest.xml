@@ -12,16 +12,23 @@
         android:theme="@style/Theme.Cinebuzz">
         <activity
             android:name=".DashboardActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".dashboard.RandomMovie"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            />
 
         <meta-data
             android:name="preloaded_fonts"
