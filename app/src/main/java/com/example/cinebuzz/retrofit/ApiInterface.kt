@@ -40,4 +40,6 @@ interface ApiInterface {
     @GET("trending")
     fun trending():Call<List<MoviesDataItem>>
 
+    @GET("history")
+    fun history():Call<List<SearchHistoryDataItem>>
 }

@@ -15,9 +15,9 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container, LoginFragment())
         fragmentTransaction.commit()
-//
+
 //        startActivity(Intent(this,DashboardActivity::class.java))
-//
+
 
     }
 }
