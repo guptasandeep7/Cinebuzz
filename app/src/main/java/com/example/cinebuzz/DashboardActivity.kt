@@ -28,8 +28,6 @@ class DashboardActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
 
-
-
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         val navView = findViewById<NavigationView>(R.id.nav_view)
 
@@ -41,12 +39,14 @@ class DashboardActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navView.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.about_us-> Toast.makeText(this,"about us",Toast.LENGTH_SHORT).show()
-                R.id.privacy_policy-> Toast.makeText(this,"privacy policy",Toast.LENGTH_SHORT).show()
-                R.id.feedback-> Toast.makeText(this,"feedback",Toast.LENGTH_SHORT).show()
-                R.id.change_password-> Toast.makeText(this,"change password",Toast.LENGTH_SHORT).show()
-                R.id.signout-> Toast.makeText(this,"sign out",Toast.LENGTH_SHORT).show()
+            when (it.itemId) {
+                R.id.about_us -> Toast.makeText(this, "about us", Toast.LENGTH_SHORT).show()
+                R.id.privacy_policy -> Toast.makeText(this, "privacy policy", Toast.LENGTH_SHORT)
+                    .show()
+                R.id.feedback -> Toast.makeText(this, "feedback", Toast.LENGTH_SHORT).show()
+                R.id.change_password -> Toast.makeText(this, "change password", Toast.LENGTH_SHORT)
+                    .show()
+                R.id.signout -> Toast.makeText(this, "sign out", Toast.LENGTH_SHORT).show()
 
             }
             true

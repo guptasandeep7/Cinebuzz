@@ -87,31 +87,33 @@ class HomePage_fragment :Fragment(){
 //        recyclerView4.adapter=HomePageAdapter(context,movies)
 //        recyclerView5.adapter=HomePageAdapter(context,movies)
 
-//        val request1 = ServiceBuilder.buildService()
-//        val call1 = request1.trending()
-//        call1.enqueue(object : Callback<List<MoviesDataItem>?> {
-//            override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
-//                if(response.isSuccessful) {
-//
-//                    Toast.makeText(context,"succeessfull",Toast.LENGTH_SHORT).show()
-//                    val responseBody=response.body()!!
-//                    for(movie in responseBody) {
-//                        movies.add(movie)
-//                    }
-//                    adapter= HomePageAdapter(activity,movies)
-//                    recyclerView1.adapter=adapter
-//                    recyclerView1.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
-//                }
-//                else{
-//                    Toast.makeText(context,"un succeessfull ${response.message()}",Toast.LENGTH_SHORT).show()
-//
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
-//                Toast.makeText(context,"failed ${t.message}",Toast.LENGTH_SHORT).show()
-//            }
-//        })
+
+       val request1 = ServiceBuilder.buildService()
+       val call1 = request1.trending()
+       call1.enqueue(object : Callback<List<MoviesDataItem>?> {
+           override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
+               if(response.isSuccessful) {
+
+                   Toast.makeText(context,"succeessfull",Toast.LENGTH_SHORT).show()
+                   val responseBody=response.body()!!
+                   for(movie in responseBody) {
+                       movies.add(movie)
+                   }
+                   adapter= HomePageAdapter(activity,movies)
+                   recyclerView1.adapter=adapter
+                   recyclerView1.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+               }
+               else{
+                   Toast.makeText(context,"un succeessfull ${response.message()}",Toast.LENGTH_SHORT).show()
+
+               }
+           }
+
+           override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
+               Toast.makeText(context,"failed ${t.message}",Toast.LENGTH_SHORT).show()
+           }
+       })
+
 
 
 //        imageList.add(SlideModel("https://images.immediate.co.uk/production/volatile/sites/3/2019/04/Avengers-Endgame-Banner-2-de7cf60.jpg?quality=90&resize=620,413",ScaleTypes.FIT))
