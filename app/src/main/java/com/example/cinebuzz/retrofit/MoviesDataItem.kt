@@ -1,3 +1,3 @@
 package com.example.cinebuzz.retrofit
 
-data class MoviesDataItem(val section:String, val _id:String, val url: String)
+data class MoviesDataItem(val name:String?, val _id:String?, val posterurl: String?)

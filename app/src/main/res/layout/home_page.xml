@@ -4,11 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+   >
 
 
     <com.denzcoskun.imageslider.ImageSlider
@@ -44,6 +53,7 @@
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ActionText" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Comedy"
         android:layout_width="match_parent"
@@ -72,11 +82,11 @@
         android:layout_height="match_parent"
         android:layout_marginStart="24dp"
         android:layout_marginTop="21dp"
-        android:text="Trending"
         android:fontFamily="@font/roboto"
-        android:textSize="24sp"
         android:letterSpacing="0.04"
+        android:text="Trending"
         android:textColor="@color/text_shadow_white"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageSlider" />
 
@@ -129,6 +139,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Horror" />
 
+    <ImageView
+        android:id="@+id/Arrow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/TrendingText"
+        app:layout_constraintEnd_toEndOf="@+id/TrendingText"
+        app:layout_constraintTop_toTopOf="@+id/TrendingText"
+        app:srcCompat="@drawable/ic_vector__12_" />
+    <ImageView
+        android:id="@+id/Arrow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ActionText"
+        app:layout_constraintEnd_toEndOf="@+id/ActionText"
+        app:layout_constraintTop_toTopOf="@+id/ActionText"
+        app:srcCompat="@drawable/ic_vector__12_" />
+    <ImageView
+        android:id="@+id/Arrow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ComedyText"
+        app:layout_constraintEnd_toEndOf="@+id/ComedyText"
+        app:layout_constraintTop_toTopOf="@+id/ComedyText"
+        app:srcCompat="@drawable/ic_vector__12_" />
+    <ImageView
+        android:id="@+id/Arrow4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/HorrorText"
+        app:layout_constraintEnd_toEndOf="@+id/HorrorText"
+        app:layout_constraintTop_toTopOf="@+id/HorrorText"
+        app:srcCompat="@drawable/ic_vector__12_" />
+    <ImageView
+        android:id="@+id/Arrow5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/DramaText"
+        app:layout_constraintEnd_toEndOf="@+id/DramaText"
+        app:layout_constraintTop_toTopOf="@+id/DramaText"
+        app:srcCompat="@drawable/ic_vector__12_" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
     </ScrollView>
