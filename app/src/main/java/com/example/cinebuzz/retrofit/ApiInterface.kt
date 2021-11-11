@@ -34,4 +34,10 @@ interface ApiInterface {
     @PUT("resetpass")
     fun resetPassword(@Body data: MyDataItem): Call<ResponseBody>
 
+    @GET("Premiere")
+    fun latest():Call<List<Latest>>
+
+    @GET("trending")
+    fun trending():Call<List<MoviesDataItem>>
+
 }
