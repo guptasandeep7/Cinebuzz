@@ -98,7 +98,7 @@ class HomePage_fragment :Fragment(){
                     recyclerView1.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
                 }
                 else{
-                    Toast.makeText(context,"un succeessfull ${response.message()}",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,"unsuccessful ${response.message()}",Toast.LENGTH_SHORT).show()
 
                 }
             }

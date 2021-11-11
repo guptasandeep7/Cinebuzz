@@ -11,13 +11,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-//        val fragmentManager = supportFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.fragment_container, LoginFragment())
-//        fragmentTransaction.commit()
-
-        startActivity(Intent(this,DashboardActivity::class.java))
-
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, LoginFragment())
+        fragmentTransaction.commit()
+//
+//        startActivity(Intent(this,DashboardActivity::class.java))
+//
 
     }
 }

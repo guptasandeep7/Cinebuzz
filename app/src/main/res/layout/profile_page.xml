@@ -57,7 +57,6 @@
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/purple"
         app:tabTextColor="@color/white" />
-
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager_UserProfile"
         android:layout_width="match_parent"
