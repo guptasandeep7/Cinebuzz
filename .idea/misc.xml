@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/HP/.gradle/caches/transforms-3/1f7b7f8f11ecd55a5d3d120da118ebdb/transformed/jetified-ImageSlideshow-0.1.0/res/drawable/default_selected_dot.xml" value="0.2" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/drawable/black_gradient.xml" value="0.2" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/drawable/border_curve.xml" value="0.17962962962962964" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/drawable/home_bottom_layout.xml" value="0.17037037037037037" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout-land/randomise_page.xml" value="0.15564373897707232" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/activity_dashboard.xml" value="0.18385416666666668" />
@@ -13,13 +14,15 @@
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/fragment_trenging_page.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/home_page.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/home_rows.xml" value="0.4466666666666667" />
-        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/login_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/movies.xml" value="0.22" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/login_fragment.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/movies.xml" value="0.19339622641509435" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/otp_fragment.xml" value="0.1" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/password_fragment.xml" value="0.3050314465408805" />
-        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/play_movie.xml" value="0.18385416666666668" />
-        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/random_movie.xml" value="0.18385416666666668" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/play_movie.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/random_movie.xml" value="0.1" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/randomise_page.xml" value="0.12" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/search_page.xml" value="0.2062937062937063" />
+        <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/search_rows.xml" value="0.2572614107883817" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/signup_fragment.xml" value="0.22" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/trending.xml" value="0.22" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/verify_fragment.xml" value="0.1" />
