@@ -2,7 +2,6 @@ package com.example.cinebuzz
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.example.cinebuzz.auth.LoginFragment
 import com.example.cinebuzz.dashboard.HomePage_fragment
 
