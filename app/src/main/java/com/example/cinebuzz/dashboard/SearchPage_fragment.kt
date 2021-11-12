@@ -30,6 +30,7 @@ class SearchPage_fragment :Fragment(){
     savedInstanceState: Bundle?
 ): View? {
 
+        val context = context
         val view=inflater.inflate(R.layout.search_page,container,false)
         recyclerView=view.findViewById(R.id.searchRecyclerView)
         val request1 = ServiceBuilder.buildService()
@@ -46,10 +47,10 @@ class SearchPage_fragment :Fragment(){
                     adapter= SearchPageAdapter(activity,history)
                     recyclerView.adapter=adapter
                     recyclerView.layoutManager=
-                        LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
+                        LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
                 }
                 else{
-                    Toast.makeText(context,"un succeessfull ${response.message()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,"unsuccessful ${response.message()}", Toast.LENGTH_SHORT).show()
 
                 }
             }

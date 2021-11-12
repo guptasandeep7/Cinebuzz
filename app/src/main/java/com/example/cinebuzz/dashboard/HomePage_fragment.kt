@@ -35,16 +35,13 @@ class HomePage_fragment :Fragment(){
 
     private lateinit var adapter:HomePageAdapter
 
+    override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View? {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
+        val context = context
         val view = inflater.inflate(R.layout.home_page, container, false)
         val imageSlider = view.findViewById<ImageSlider>(R.id.imageSlider)
         val imageList = ArrayList<SlideModel>()
+
         val request = ServiceBuilder.buildService()
         val call = request.latest()
         call.enqueue(object : Callback<List<Latest>?> {
@@ -93,8 +90,8 @@ class HomePage_fragment :Fragment(){
            override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
                if(response.isSuccessful) {
 
-                   Toast.makeText(context,"succeessfull",Toast.LENGTH_SHORT).show()
-                   val responseBody=response.body()!!
+                   Toast.makeText(context,"successful",Toast.LENGTH_SHORT).show()
+                   val responseBody = response.body()!!
                    for(movie in responseBody) {
                        movies.add(movie)
                    }
