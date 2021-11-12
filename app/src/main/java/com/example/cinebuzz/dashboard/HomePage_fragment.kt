@@ -14,13 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
-import com.example.cinebuzz.DashboardActivity
 import com.example.cinebuzz.R
 import com.example.cinebuzz.dashboard.home.TrendingPage
 import com.example.cinebuzz.recyclerview.HomePageAdapter
 import com.example.cinebuzz.retrofit.Latest
-import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.MoviesDataItem
+import com.example.cinebuzz.retrofit.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

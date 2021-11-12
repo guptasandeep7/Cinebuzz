@@ -20,6 +20,8 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     lateinit var toggle: ActionBarDrawerToggle
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)

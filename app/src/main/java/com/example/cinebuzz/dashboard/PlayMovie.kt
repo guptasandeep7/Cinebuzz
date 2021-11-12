@@ -1,27 +1,29 @@
-package com.example.cinebuzz.dashboard.profile
+package com.example.cinebuzz.dashboard
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
+import com.example.cinebuzz.dashboard.profile.ProfilePageAdapter
+import com.example.cinebuzz.dashboard.profile.ReviewDataItem
 import com.example.cinebuzz.retrofit.MoviesDataItem
 
-class HistoryFragment : Fragment() {
+class PlayMovie : AppCompatActivity() {
 
-    lateinit var historyRecylcer : RecyclerView
-    private var historyList= mutableListOf<MoviesDataItem>()
-    private lateinit var adapter: ProfilePageAdapter
+    private lateinit var reviewsRecylcer : RecyclerView
+    private var reviews= mutableListOf<ReviewDataItem>()
+    private lateinit var adapter: ReviewsAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_history, container, false)
-
-        historyRecylcer = view.findViewById(R.id.history_recyclerview)
+        reviewsRecylcer = findViewById(R.id.reviews_recyclerview)
 
 //        val request1 = ServiceBuilder.buildService()
 //        val call1 = request1.trending()
@@ -34,10 +36,10 @@ class HistoryFragment : Fragment() {
 //                    for(item in responseBody) {
 //                        historyList.add(item)
 //                    }
-        adapter= ProfilePageAdapter(historyList,2)
-        historyRecylcer.adapter=adapter
-        historyRecylcer.layoutManager=
-            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
+        adapter= ReviewsAdapter(reviews)
+        reviewsRecylcer.adapter=adapter
+        reviewsRecylcer.layoutManager=
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
 //                }
 //                else{
 //                    Toast.makeText(context,"unsuccessful ${response.message()}", Toast.LENGTH_SHORT).show()
@@ -51,7 +53,6 @@ class HistoryFragment : Fragment() {
 //        })
 
 
-        return view
     }
 
 
