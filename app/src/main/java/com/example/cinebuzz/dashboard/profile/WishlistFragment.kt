@@ -1,25 +1,21 @@
-package com.example.cinebuzz.dashboard
+package com.example.cinebuzz.dashboard.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
+import com.example.cinebuzz.dashboard.profile.ProfilePageAdapter
 import com.example.cinebuzz.retrofit.MoviesDataItem
-import com.example.cinebuzz.retrofit.ServiceBuilder
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class WishlistFragment : Fragment() {
 
     lateinit var wishlistRecylcer : RecyclerView
     private var wishlist= mutableListOf<MoviesDataItem>()
-    private lateinit var adapter:ProfilePageAdapter
+    private lateinit var adapter: ProfilePageAdapter
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

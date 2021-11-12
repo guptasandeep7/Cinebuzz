@@ -1,4 +1,4 @@
-package com.example.cinebuzz.dashboard
+package com.example.cinebuzz.dashboard.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,7 +14,7 @@ class HistoryFragment : Fragment() {
 
     lateinit var historyRecylcer : RecyclerView
     private var historyList= mutableListOf<MoviesDataItem>()
-    private lateinit var adapter:ProfilePageAdapter
+    private lateinit var adapter: ProfilePageAdapter
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

@@ -1,4 +1,4 @@
-package com.example.cinebuzz.dashboard
+package com.example.cinebuzz.dashboard.profile
 
 import android.view.LayoutInflater
 import android.view.View

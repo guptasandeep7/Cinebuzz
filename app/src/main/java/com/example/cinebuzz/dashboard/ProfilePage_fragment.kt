@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cinebuzz.R
+import com.example.cinebuzz.dashboard.profile.PageAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
