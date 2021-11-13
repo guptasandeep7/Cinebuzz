@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.cinebuzz.R
 import com.example.cinebuzz.retrofit.MoviesDataItem
+import com.squareup.picasso.Picasso
 
-class ProfilePageAdapter(private var wishlist: List<MoviesDataItem>, private val type: Int) :
+class ProfilePageAdapter(private val wishlist: ArrayList<MoviesDataItem>, private val type: Int) :
     RecyclerView.Adapter<ProfilePageAdapter.ProfileViewHolder>() {
 
 
@@ -22,6 +24,7 @@ class ProfilePageAdapter(private var wishlist: List<MoviesDataItem>, private val
 
     override fun onBindViewHolder(holder: ProfileViewHolder, position: Int) {
 
+        val item = wishlist[position]
 
         if (type == 1) {
             holder.wishlistBtn.visibility = View.VISIBLE
@@ -31,7 +34,6 @@ class ProfilePageAdapter(private var wishlist: List<MoviesDataItem>, private val
             holder.line.visibility = View.GONE
         }
 
-        val item = wishlist[position]
         holder.movieName.text = item.name
         holder.movieImage.load(item.posterurl) {
             crossfade(true)
@@ -47,12 +49,10 @@ class ProfilePageAdapter(private var wishlist: List<MoviesDataItem>, private val
 
     class ProfileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var movieImage = itemView.findViewById<ImageView>(R.id.movie_image)
-        var movieName = itemView.findViewById<TextView>(R.id.movie_name)
-        var wishlistBtn = itemView.findViewById<ImageButton>(R.id.wishlist_btn)
-        var line = itemView.findViewById<View>(R.id.line)
-
-
+        val movieImage = itemView.findViewById<ImageView>(R.id.profile_movie_image)
+        val movieName = itemView.findViewById<TextView>(R.id.profile_movie_name)
+        val wishlistBtn = itemView.findViewById<ImageButton>(R.id.wishlist_btn)
+        val line = itemView.findViewById<View>(R.id.profile_line)
     }
 
 }

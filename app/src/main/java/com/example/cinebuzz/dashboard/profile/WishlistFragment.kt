@@ -14,9 +14,7 @@ import com.example.cinebuzz.retrofit.MoviesDataItem
 class WishlistFragment : Fragment() {
 
     lateinit var wishlistRecylcer : RecyclerView
-    private var wishlist= mutableListOf<MoviesDataItem>()
-    private lateinit var adapter: ProfilePageAdapter
-
+    private var wishlist= ArrayList<MoviesDataItem>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -35,10 +33,19 @@ class WishlistFragment : Fragment() {
 //                    for(item in responseBody) {
 //                        wishlist.add(item)
 //                    }
-                    adapter= ProfilePageAdapter(wishlist,1)
-                    wishlistRecylcer.adapter=adapter
-                    wishlistRecylcer.layoutManager=
-                        LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
+                    wishlistRecylcer.layoutManager = LinearLayoutManager(context)
+
+                    wishlist.add(MoviesDataItem("Oblivian","1","https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/072/large-1466557422-feature.jpg?1466557422"))
+                    wishlist.add(MoviesDataItem("Oblivian","1","https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/072/large-1466557422-feature.jpg?1466557422"))
+                    wishlist.add(MoviesDataItem("Oblivian","1","https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/072/large-1466557422-feature.jpg?1466557422"))
+                    wishlist.add(MoviesDataItem("Oblivian","1","https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/072/large-1466557422-feature.jpg?1466557422"))
+                    wishlist.add(MoviesDataItem("Oblivian","1","https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/072/large-1466557422-feature.jpg?1466557422"))
+                    wishlist.add(MoviesDataItem("Oblivian","1","https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/072/large-1466557422-feature.jpg?1466557422"))
+                    wishlist.add(MoviesDataItem("Oblivian","1","https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/072/large-1466557422-feature.jpg?1466557422"))
+                    wishlist.add(MoviesDataItem("Oblivian","1","https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/072/large-1466557422-feature.jpg?1466557422"))
+                    wishlistRecylcer.adapter = ProfilePageAdapter(wishlist,1)
+
+
 //                }
 //                else{
 //                    Toast.makeText(context,"unsuccessful ${response.message()}", Toast.LENGTH_SHORT).show()
