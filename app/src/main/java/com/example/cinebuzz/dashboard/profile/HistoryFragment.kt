@@ -12,8 +12,8 @@ import com.example.cinebuzz.retrofit.MoviesDataItem
 
 class HistoryFragment : Fragment() {
 
-    lateinit var historyRecylcer : RecyclerView
-    private var historyList= mutableListOf<MoviesDataItem>()
+    private lateinit var historyRecylcer : RecyclerView
+    private var historyList= ArrayList<MoviesDataItem>()
     private lateinit var adapter: ProfilePageAdapter
 
 
@@ -34,10 +34,18 @@ class HistoryFragment : Fragment() {
 //                    for(item in responseBody) {
 //                        historyList.add(item)
 //                    }
-        adapter= ProfilePageAdapter(historyList,2)
-        historyRecylcer.adapter=adapter
-        historyRecylcer.layoutManager=
-            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
+        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
+        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
+        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
+        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
+        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
+        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
+        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
+        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
+
+        adapter = ProfilePageAdapter(historyList,2)
+        historyRecylcer.adapter = adapter
+        historyRecylcer.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
 //                }
 //                else{
 //                    Toast.makeText(context,"unsuccessful ${response.message()}", Toast.LENGTH_SHORT).show()
