@@ -39,7 +39,7 @@ class SearchPage_fragment :Fragment(){
             override fun onResponse(call: Call<List<SearchHistoryDataItem>?>, response: Response<List<SearchHistoryDataItem>?>) {
                 if(response.isSuccessful) {
 
-                    Toast.makeText(context,"succeessfull", Toast.LENGTH_SHORT).show()
+
                     val responseBody=response.body()!!
                     for(movie in responseBody) {
                         history.add(movie)
@@ -48,10 +48,6 @@ class SearchPage_fragment :Fragment(){
                     recyclerView.adapter=adapter
                     recyclerView.layoutManager=
                         LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
-                }
-                else{
-                    Toast.makeText(context,"unsuccessful ${response.message()}", Toast.LENGTH_SHORT).show()
-
                 }
             }
 
