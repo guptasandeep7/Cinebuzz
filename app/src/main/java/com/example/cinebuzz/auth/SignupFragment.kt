@@ -60,7 +60,7 @@ class SignupFragment : Fragment() {
                 val call = request.signup(
                     MyDataItem(
                         name = nameEditText.text.toString().trim(),
-                        email = emailEditText.text.toString().trim()
+                        email = emailEditText.text.toString().trim().lowercase()
                     )
                 )
 
@@ -72,7 +72,7 @@ class SignupFragment : Fragment() {
                         if (response.isSuccessful) {
 
                             userName = nameEditText.text.toString()
-                            userEmail = emailEditText.text.toString()
+                            userEmail = emailEditText.text.toString().lowercase()
                             emailEditText.text!!.clear()
                             nameEditText.text!!.clear()
 

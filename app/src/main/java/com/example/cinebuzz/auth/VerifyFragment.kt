@@ -46,7 +46,7 @@ class VerifyFragment : Fragment() {
                 verifyProgressBar.visibility = View.VISIBLE
                 val request = ServiceBuilder.buildService()
                 val call = request.verify(
-                    MyDataItem(email = emailEdit.text.toString().trim())
+                    MyDataItem(email = emailEdit.text.toString().trim().lowercase())
                 )
                 call.enqueue(object : Callback<ResponseBody?> {
                     override fun onResponse(
@@ -55,7 +55,7 @@ class VerifyFragment : Fragment() {
                     ) {
                         if (response.isSuccessful) {
 
-                            SignupFragment.userEmail = emailEdit.text.toString()
+                            SignupFragment.userEmail = emailEdit.text.toString().lowercase()
                             emailEdit.text!!.clear()
                             verifyProgressBar.visibility = View.GONE
 

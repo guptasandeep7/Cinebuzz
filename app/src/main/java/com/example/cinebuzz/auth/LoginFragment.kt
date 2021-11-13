@@ -1,26 +1,24 @@
 package com.example.cinebuzz.auth
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.cinebuzz.DashboardActivity
 import com.example.cinebuzz.R
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.google.android.material.textfield.TextInputEditText
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.widget.Toast
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 
 
 class LoginFragment : Fragment(){
@@ -77,7 +75,7 @@ class LoginFragment : Fragment(){
                 val request = ServiceBuilder.buildService()
                 val call = request.login(
                     MyDataItem(
-                        email = emailEditText2.text.toString().trim(),
+                        email = emailEditText2.text.toString().trim().lowercase(),
                         pass = passwordEditText.text.toString().trim()
                     )
                 )
