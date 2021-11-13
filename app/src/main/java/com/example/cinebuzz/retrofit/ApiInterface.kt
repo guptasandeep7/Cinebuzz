@@ -42,4 +42,16 @@ interface ApiInterface {
 
     @GET("history")
     fun history():Call<List<SearchHistoryDataItem>>
+
+    @GET("comedy")
+    fun  comedy():Call<List<MoviesDataItem>>
+
+    @GET("action")
+    fun  action():Call<List<MoviesDataItem>>
+
+    @GET("horror")
+    fun  horror():Call<List<MoviesDataItem>>
+
+    @GET("drama")
+    fun  drama():Call<List<MoviesDataItem>>
 }

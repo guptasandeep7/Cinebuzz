@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.cinebuzz.R
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.squareup.picasso.Picasso
@@ -26,22 +27,19 @@ class TrendingPageAdapter(private val context: Context?, private var HomePageMov
        val picture=HomePageMovies[position]
         holder.movieName.text=picture.name
 //        holder.movieImage.setImageResource(images[position])
-        holder.bind(movies[position])
+        holder.movieImage.load(picture.posterurl){
+            crossfade(true)
+            placeholder(R.drawable.ic_vector__11_)
+        }
     }
     override fun getItemCount(): Int {
-        return 12
+        return HomePageMovies.size
     }
     class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
          var movieImage= itemView.findViewById<ImageView>(R.id.movieImage2)
         var movieName =itemView.findViewById<TextView>(R.id.movieName2)
 
-        fun bind(data:MoviesDataItem)
-        {
-         val Url=data.posterurl
-
-            Picasso.get().load(Url).into(movieImage)
-        }
     }
 
 }

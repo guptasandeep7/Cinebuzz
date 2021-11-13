@@ -3,6 +3,7 @@ package com.example.cinebuzz.dashboard
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.OrientationEventListener
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -26,14 +27,23 @@ import retrofit2.Response
 
 class HomePage_fragment :Fragment(){
 
-   private var movies= mutableListOf<MoviesDataItem>()
+   private var movies1= mutableListOf<MoviesDataItem>()
+   private var movies2= mutableListOf<MoviesDataItem>()
+   private var movies3= mutableListOf<MoviesDataItem>()
+   private var movies4= mutableListOf<MoviesDataItem>()
+   private var movies5= mutableListOf<MoviesDataItem>()
+
     private lateinit var recyclerView1: RecyclerView
     private lateinit var recyclerView2: RecyclerView
     private lateinit var recyclerView3: RecyclerView
     private lateinit var recyclerView4: RecyclerView
     private lateinit var recyclerView5: RecyclerView
 
-    private lateinit var adapter:HomePageAdapter
+    private lateinit var adapter1:HomePageAdapter
+    private lateinit var adapter2:HomePageAdapter
+    private lateinit var adapter3:HomePageAdapter
+    private lateinit var adapter4:HomePageAdapter
+    private lateinit var adapter5:HomePageAdapter
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View? {
 
@@ -41,7 +51,6 @@ class HomePage_fragment :Fragment(){
         val view = inflater.inflate(R.layout.home_page, container, false)
         val imageSlider = view.findViewById<ImageSlider>(R.id.imageSlider)
         val imageList = ArrayList<SlideModel>()
-
         val request = ServiceBuilder.buildService()
         val call = request.latest()
         call.enqueue(object : Callback<List<Latest>?> {
@@ -55,10 +64,7 @@ class HomePage_fragment :Fragment(){
                     }
                     imageSlider.setImageList(imageList)
                 }
-                else{
-                    Toast.makeText(context,"un succeessfull ${response.message()}",Toast.LENGTH_SHORT).show()
 
-                }
             }
 
             override fun onFailure(call: Call<List<Latest>?>, t: Throwable) {
@@ -90,25 +96,110 @@ class HomePage_fragment :Fragment(){
            override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
                if(response.isSuccessful) {
 
-                   Toast.makeText(context,"successful",Toast.LENGTH_SHORT).show()
+
                    val responseBody = response.body()!!
                    for(movie in responseBody) {
-                       movies.add(movie)
+                       movies1.add(movie)
                    }
-                   adapter= HomePageAdapter(activity,movies)
-                   recyclerView1.adapter=adapter
+                   adapter1= HomePageAdapter(activity,movies1)
+                   recyclerView1.adapter=adapter1
                    recyclerView1.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
                }
-               else{
-                   Toast.makeText(context,"un succeessfull ${response.message()}",Toast.LENGTH_SHORT).show()
 
-               }
            }
 
            override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
                Toast.makeText(context,"failed ${t.message}",Toast.LENGTH_SHORT).show()
            }
        })
+        val request2 = ServiceBuilder.buildService()
+        val call2 = request2.action()
+        call2.enqueue(object : Callback<List<MoviesDataItem>?> {
+            override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
+                if(response.isSuccessful) {
+
+
+                    val responseBody = response.body()!!
+                    for(movie in responseBody) {
+                        movies2.add(movie)
+                    }
+                    adapter2= HomePageAdapter(activity,movies2)
+                    recyclerView2.adapter=adapter2
+                    recyclerView2.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+                }
+
+            }
+
+            override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
+                Toast.makeText(context,"failed ${t.message}",Toast.LENGTH_SHORT).show()
+            }
+        })
+        val request3 = ServiceBuilder.buildService()
+        val call3= request3.comedy()
+        call3.enqueue(object : Callback<List<MoviesDataItem>?> {
+            override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
+                if(response.isSuccessful) {
+
+
+                    val responseBody = response.body()!!
+                    for(movie in responseBody) {
+                        movies3.add(movie)
+                    }
+                    adapter3= HomePageAdapter(activity,movies3)
+                    recyclerView4.adapter=adapter3
+                    recyclerView4.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+                }
+
+            }
+
+            override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
+                Toast.makeText(context,"failed ${t.message}",Toast.LENGTH_SHORT).show()
+            }
+        })
+        val request4 = ServiceBuilder.buildService()
+        val call4 = request4.horror()
+        call4.enqueue(object : Callback<List<MoviesDataItem>?> {
+            override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
+                if(response.isSuccessful) {
+
+
+                    val responseBody = response.body()!!
+                    for(movie in responseBody) {
+                        movies4.add(movie)
+                    }
+                    adapter4= HomePageAdapter(activity,movies4)
+                    recyclerView3.adapter=adapter4
+                    recyclerView3.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+                }
+
+            }
+
+            override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
+                Toast.makeText(context,"failed ${t.message}",Toast.LENGTH_SHORT).show()
+            }
+        })
+        val request5 = ServiceBuilder.buildService()
+        val call5 = request5.drama()
+        call5.enqueue(object : Callback<List<MoviesDataItem>?> {
+            override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
+                if(response.isSuccessful) {
+
+
+                    val responseBody = response.body()!!
+                    for(movie in responseBody) {
+                        movies5.add(movie)
+                    }
+                    adapter5= HomePageAdapter(activity,movies5)
+                    recyclerView5.adapter=adapter5
+                    recyclerView5.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+                }
+
+            }
+
+            override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
+                Toast.makeText(context,"failed ${t.message}",Toast.LENGTH_SHORT).show()
+            }
+        })
 
 
 
@@ -119,9 +210,36 @@ class HomePage_fragment :Fragment(){
 //        imageSlider.setImageList(imageList)
 
         val Arrow1=view.findViewById<ImageView>(R.id.Arrow1)
-        val trending=view.findViewById<TextView>(R.id.TrendingText)
+        val Arrow2=view.findViewById<ImageView>(R.id.Arrow2)
+        val Arrow3=view.findViewById<ImageView>(R.id.Arrow3)
+        val Arrow4=view.findViewById<ImageView>(R.id.Arrow4)
+        val Arrow5=view.findViewById<ImageView>(R.id.Arrow5)
+
         Arrow1.setOnClickListener {
-            startActivity(Intent(activity, TrendingPage::class.java))
+            val intent = Intent(activity,TrendingPage::class.java)
+            intent.putExtra("Category","trending")
+            startActivity(intent)
+        }
+
+        Arrow2.setOnClickListener {
+            val intent = Intent(activity,TrendingPage::class.java)
+            intent.putExtra("Category","action")
+            startActivity(intent)
+        }
+        Arrow3.setOnClickListener {
+            val intent = Intent(activity,TrendingPage::class.java)
+            intent.putExtra("Category","comedy")
+            startActivity(intent)
+        }
+        Arrow4.setOnClickListener {
+            val intent = Intent(activity,TrendingPage::class.java)
+            intent.putExtra("Category","horror")
+            startActivity(intent)
+        }
+        Arrow5.setOnClickListener {
+            val intent = Intent(activity,TrendingPage::class.java)
+            intent.putExtra("Category","drama")
+            startActivity(intent)
         }
         return view
     }
