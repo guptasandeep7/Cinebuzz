@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,6 +18,7 @@ import com.example.cinebuzz.recyclerview.HomePageAdapter
 import com.example.cinebuzz.recyclerview.TrendingPageAdapter
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.facebook.shimmer.ShimmerFrameLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +27,7 @@ class TrendingPage : AppCompatActivity() {
 
     private var movies= mutableListOf<MoviesDataItem>()
     private lateinit var recyclerView: RecyclerView
+    private lateinit var Shimmer: ShimmerFrameLayout
     private var gridLayoutManager:GridLayoutManager?=null
     private lateinit var adapter: TrendingPageAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +37,7 @@ class TrendingPage : AppCompatActivity() {
         val trendingText=findViewById<TextView>(R.id.trend)
         var category = intent.getStringExtra("Category")
         recyclerView=findViewById(R.id.TrendingRecyclerView)
+        Shimmer=findViewById(R.id.trendingShimmer)
         gridLayoutManager= GridLayoutManager(applicationContext,2,LinearLayoutManager.VERTICAL,false)
         val request1 = ServiceBuilder.buildService()
         val call1 = when(category){
@@ -65,7 +69,8 @@ class TrendingPage : AppCompatActivity() {
         call1.enqueue(object : Callback<List<MoviesDataItem>?> {
             override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
                 if(response.isSuccessful) {
-
+                    Shimmer.stopShimmer()
+                    Shimmer.visibility= View.GONE
                     val responseBody=response.body()!!
                     for(movie in responseBody) {
                         movies.add(movie)

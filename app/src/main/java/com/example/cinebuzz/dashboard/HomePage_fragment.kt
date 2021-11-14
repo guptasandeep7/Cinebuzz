@@ -25,8 +25,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
-
-
+import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerFrameLayout
 
 
 class HomePage_fragment :Fragment(){
@@ -36,7 +36,12 @@ class HomePage_fragment :Fragment(){
    private var movies3= mutableListOf<MoviesDataItem>()
    private var movies4= mutableListOf<MoviesDataItem>()
    private var movies5= mutableListOf<MoviesDataItem>()
-
+private lateinit var Shimmer1:ShimmerFrameLayout
+private lateinit var Shimmer2:ShimmerFrameLayout
+private lateinit var Shimmer3:ShimmerFrameLayout
+private lateinit var Shimmer4:ShimmerFrameLayout
+private lateinit var Shimmer5:ShimmerFrameLayout
+private lateinit var Shimmer6:ShimmerFrameLayout
     private lateinit var recyclerView1: RecyclerView
     private lateinit var recyclerView2: RecyclerView
     private lateinit var recyclerView3: RecyclerView
@@ -53,6 +58,12 @@ class HomePage_fragment :Fragment(){
 
         val context = context
         val view = inflater.inflate(R.layout.home_page, container, false)
+        Shimmer1=view.findViewById(R.id.homeShimmer1)
+        Shimmer2=view.findViewById(R.id.homeShimmer2)
+        Shimmer3=view.findViewById(R.id.homeShimmer3)
+        Shimmer4=view.findViewById(R.id.homeShimmer4)
+        Shimmer5=view.findViewById(R.id.homeShimmer5)
+        Shimmer6=view.findViewById(R.id.Slidershimmer)
         val imageSlider = view.findViewById<ImageSlider>(R.id.imageSlider)
         val imageList = ArrayList<SlideModel>()
         val request = ServiceBuilder.buildService()
@@ -60,7 +71,8 @@ class HomePage_fragment :Fragment(){
         call.enqueue(object : Callback<List<Latest>?> {
             override fun onResponse(call: Call<List<Latest>?>, response: Response<List<Latest>?>) {
                 if(response.isSuccessful) {
-
+                    Shimmer6.stopShimmer()
+                    Shimmer6.visibility=View.GONE
                     val responseBody=response.body()!!
                     for(movie in responseBody) {
                         imageList.add(SlideModel(movie.posterurl,ScaleTypes.FIT))
@@ -106,7 +118,8 @@ class HomePage_fragment :Fragment(){
            override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
                if(response.isSuccessful) {
 
-
+                   Shimmer1.stopShimmer()
+                   Shimmer1.visibility=View.GONE
                    val responseBody = response.body()!!
                    for(movie in responseBody) {
                        movies1.add(movie)
@@ -139,7 +152,8 @@ class HomePage_fragment :Fragment(){
             override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
                 if(response.isSuccessful) {
 
-
+                    Shimmer2.stopShimmer()
+                    Shimmer2.visibility=View.GONE
                     val responseBody = response.body()!!
                     for(movie in responseBody) {
                         movies2.add(movie)
@@ -173,7 +187,8 @@ class HomePage_fragment :Fragment(){
             override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
                 if(response.isSuccessful) {
 
-
+                    Shimmer3.stopShimmer()
+                    Shimmer3.visibility=View.GONE
                     val responseBody = response.body()!!
                     for(movie in responseBody) {
                         movies3.add(movie)
@@ -205,7 +220,8 @@ class HomePage_fragment :Fragment(){
             override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
                 if(response.isSuccessful) {
 
-
+                    Shimmer4.stopShimmer()
+                    Shimmer4.visibility=View.GONE
                     val responseBody = response.body()!!
                     for(movie in responseBody) {
                         movies4.add(movie)
@@ -237,7 +253,8 @@ class HomePage_fragment :Fragment(){
             override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
                 if(response.isSuccessful) {
 
-
+                    Shimmer5.stopShimmer()
+                    Shimmer5.visibility=View.GONE
                     val responseBody = response.body()!!
                     for(movie in responseBody) {
                         movies5.add(movie)
