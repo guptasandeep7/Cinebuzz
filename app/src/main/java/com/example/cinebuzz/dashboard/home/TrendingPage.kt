@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
 import com.example.cinebuzz.auth.LoginFragment
 import com.example.cinebuzz.dashboard.HomePage_fragment
+import com.example.cinebuzz.dashboard.PlayMovie
 import com.example.cinebuzz.recyclerview.HomePageAdapter
 import com.example.cinebuzz.recyclerview.TrendingPageAdapter
 import com.example.cinebuzz.retrofit.MoviesDataItem
@@ -72,6 +73,13 @@ class TrendingPage : AppCompatActivity() {
                     adapter= TrendingPageAdapter(this@TrendingPage,movies)
                     recyclerView.adapter=adapter
                     recyclerView.layoutManager=gridLayoutManager
+                    adapter.setOnItemClickListener(object :TrendingPageAdapter.onItemClickListener{
+                        override fun onItemClick(position: Int) {
+
+                            val intent=Intent(this@TrendingPage, PlayMovie::class.java)
+                            startActivity(intent)
+                        }
+                    })
                 }
 
             }
@@ -89,7 +97,7 @@ class TrendingPage : AppCompatActivity() {
         super.onConfigurationChanged(newConfig)
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
         {
-            recyclerView.layoutManager=GridLayoutManager(applicationContext,3,LinearLayoutManager.VERTICAL,false)
+            recyclerView.layoutManager=GridLayoutManager(applicationContext,4,LinearLayoutManager.VERTICAL,false)
         }
         else if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT)
         {

@@ -24,6 +24,10 @@ import com.example.cinebuzz.retrofit.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.denzcoskun.imageslider.interfaces.ItemClickListener
+
+
+
 
 class HomePage_fragment :Fragment(){
 
@@ -63,6 +67,12 @@ class HomePage_fragment :Fragment(){
 
                     }
                     imageSlider.setImageList(imageList)
+                    imageSlider.setItemClickListener(object : ItemClickListener {
+                        override fun onItemSelected(position: Int) {
+                            val intent=Intent(context,PlayMovie::class.java)
+                            startActivity(intent)
+                        }
+                    })
                 }
 
             }
@@ -101,9 +111,20 @@ class HomePage_fragment :Fragment(){
                    for(movie in responseBody) {
                        movies1.add(movie)
                    }
+
                    adapter1= HomePageAdapter(activity,movies1)
                    recyclerView1.adapter=adapter1
                    recyclerView1.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+
+                   adapter1.setOnItemClickListener(object :HomePageAdapter.onItemClickListener{
+                       override fun onItemClick(position: Int) {
+
+                           //Toast.makeText(context,"you clicked$position",Toast.LENGTH_SHORT).show()
+
+                           val intent=Intent(context,PlayMovie::class.java)
+                           startActivity(intent)
+                       }
+                   })
                }
 
            }
@@ -126,12 +147,24 @@ class HomePage_fragment :Fragment(){
                     adapter2= HomePageAdapter(activity,movies2)
                     recyclerView2.adapter=adapter2
                     recyclerView2.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+
+                    adapter2.setOnItemClickListener(object :HomePageAdapter.onItemClickListener{
+                        override fun onItemClick(position: Int) {
+
+                            //Toast.makeText(context,"you clicked$position",Toast.LENGTH_SHORT).show()
+
+                           val intent=Intent(context,PlayMovie::class.java)
+                           startActivity(intent)
+                        }
+                    })
                 }
 
             }
 
             override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
                 Toast.makeText(context,"failed ${t.message}",Toast.LENGTH_SHORT).show()
+
+
             }
         })
         val request3 = ServiceBuilder.buildService()
@@ -148,6 +181,16 @@ class HomePage_fragment :Fragment(){
                     adapter3= HomePageAdapter(activity,movies3)
                     recyclerView4.adapter=adapter3
                     recyclerView4.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+
+                    adapter3.setOnItemClickListener(object :HomePageAdapter.onItemClickListener{
+                        override fun onItemClick(position: Int) {
+
+                            //Toast.makeText(context,"you clicked$position",Toast.LENGTH_SHORT).show()
+
+                           val intent=Intent(context,PlayMovie::class.java)
+                           startActivity(intent)
+                        }
+                    })
                 }
 
             }
@@ -170,6 +213,16 @@ class HomePage_fragment :Fragment(){
                     adapter4= HomePageAdapter(activity,movies4)
                     recyclerView3.adapter=adapter4
                     recyclerView3.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+
+                    adapter4.setOnItemClickListener(object :HomePageAdapter.onItemClickListener{
+                        override fun onItemClick(position: Int) {
+
+                            //Toast.makeText(context,"you clicked$position",Toast.LENGTH_SHORT).show()
+
+                           val intent=Intent(context,PlayMovie::class.java)
+                           startActivity(intent)
+                        }
+                    })
                 }
 
             }
@@ -192,6 +245,16 @@ class HomePage_fragment :Fragment(){
                     adapter5= HomePageAdapter(activity,movies5)
                     recyclerView5.adapter=adapter5
                     recyclerView5.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+
+                    adapter5.setOnItemClickListener(object :HomePageAdapter.onItemClickListener{
+                        override fun onItemClick(position: Int) {
+
+                            //Toast.makeText(context,"you clicked$position",Toast.LENGTH_SHORT).show()
+
+                           val intent=Intent(context,PlayMovie::class.java)
+                           startActivity(intent)
+                        }
+                    })
                 }
 
             }

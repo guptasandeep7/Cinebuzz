@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ServiceBuilder {
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://fd7d-2401-4900-4458-154b-5ded-69fa-eaf-950f.ngrok.io/")
+        .baseUrl("https://fc42-2401-4900-445b-bca7-69a5-8c66-fba7-3f0b.ngrok.io/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

@@ -10,7 +10,7 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        startActivity(Intent(this,MainActivity::class.java))
+        startActivity(Intent(this,DashboardActivity::class.java))
         finish();
 
 

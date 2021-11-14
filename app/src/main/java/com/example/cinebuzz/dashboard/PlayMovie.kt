@@ -21,9 +21,9 @@ class PlayMovie : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.play_movie)
 
-        reviewsRecylcer = findViewById(R.id.reviews_recyclerview)
+        //reviewsRecylcer = findViewById(R.id.reviews_recyclerview)
 
 //        val request1 = ServiceBuilder.buildService()
 //        val call1 = request1.trending()
@@ -36,10 +36,10 @@ class PlayMovie : AppCompatActivity() {
 //                    for(item in responseBody) {
 //                        historyList.add(item)
 //                    }
-        adapter= ReviewsAdapter(reviews)
-        reviewsRecylcer.adapter=adapter
-        reviewsRecylcer.layoutManager=
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+//        adapter= ReviewsAdapter(reviews)
+//        reviewsRecylcer.adapter=adapter
+//        reviewsRecylcer.layoutManager=
+//            LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
 //                }
 //                else{
 //                    Toast.makeText(context,"unsuccessful ${response.message()}", Toast.LENGTH_SHORT).show()
