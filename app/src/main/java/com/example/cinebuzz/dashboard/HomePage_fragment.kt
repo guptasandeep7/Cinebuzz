@@ -67,26 +67,54 @@ private lateinit var Shimmer6:ShimmerFrameLayout
         Shimmer6=view.findViewById(R.id.Slidershimmer)
         val imageSlider = view.findViewById<ImageSlider>(R.id.imageSlider)
         val imageList = ArrayList<SlideModel>()
+        var picture=ArrayList<Latest>()
         val request = ServiceBuilder.buildService()
         val call = request.latest()
         call.enqueue(object : Callback<List<Latest>?> {
             override fun onResponse(call: Call<List<Latest>?>, response: Response<List<Latest>?>) {
                 if(response.isSuccessful) {
+
                     Shimmer6.stopShimmer()
                     Shimmer6.visibility=View.GONE
                     val responseBody=response.body()!!
                     for(movie in responseBody) {
                         imageList.add(SlideModel(movie.posterurl,ScaleTypes.FIT))
-
+                        picture.add(movie)
                     }
                     imageSlider.setImageList(imageList)
+
                     imageSlider.setItemClickListener(object : ItemClickListener {
+
                         override fun onItemSelected(position: Int) {
                             val intent=Intent(context,PlayMovie::class.java)
-                            for (picture in responseBody) {
-                                intent.putExtra("MOVIEID", picture._id)
+//                            intent.putExtra("MOVIEID", response._id)
+//                                       startActivity(intent)
+
+                                when(position) {
+                                   0 -> {
+                                       intent.putExtra("MOVIEID", picture[0]._id)
+                                       startActivity(intent)
+                                   }
+                                    1 -> {
+                                        intent.putExtra("MOVIEID", picture[1]._id)
+                                        startActivity(intent)
+                                    }
+                                    2 -> {
+                                        intent.putExtra("MOVIEID", picture[2]._id)
+                                        startActivity(intent)
+                                    }
+                                    3 -> {
+                                        intent.putExtra("MOVIEID", picture[3]._id)
+                                        startActivity(intent)
+                                    }
+                                    4 -> {
+                                        intent.putExtra("MOVIEID", picture[4]._id)
+                                        startActivity(intent)
+                                    }
+
+
                             }
-                            startActivity(intent)
+
                         }
                     })
                 }
@@ -139,7 +167,7 @@ private lateinit var Shimmer6:ShimmerFrameLayout
                            //Toast.makeText(context,"you clicked$position",Toast.LENGTH_SHORT).show()
 
                            val intent=Intent(context,PlayMovie::class.java)
-                           intent.putExtra("MOVIEID",adapter4.movies[position]._id)
+                           intent.putExtra("MOVIEID",adapter1.movies[position]._id)
                            startActivity(intent)
                        }
                    })
@@ -173,7 +201,7 @@ private lateinit var Shimmer6:ShimmerFrameLayout
                             //Toast.makeText(context,"you clicked$position",Toast.LENGTH_SHORT).show()
 
                            val intent=Intent(context,PlayMovie::class.java)
-                            intent.putExtra("MOVIEID",adapter4.movies[position]._id)
+                            intent.putExtra("MOVIEID",adapter2.movies[position]._id)
                            startActivity(intent)
                         }
                     })
@@ -209,7 +237,7 @@ private lateinit var Shimmer6:ShimmerFrameLayout
                             //Toast.makeText(context,"you clicked$position",Toast.LENGTH_SHORT).show()
 
                            val intent=Intent(context,PlayMovie::class.java)
-                            intent.putExtra("MOVIEID",adapter4.movies[position]._id)
+                            intent.putExtra("MOVIEID",adapter3.movies[position]._id)
                            startActivity(intent)
                         }
                     })
@@ -277,7 +305,7 @@ private lateinit var Shimmer6:ShimmerFrameLayout
                             //Toast.makeText(context,"you clicked$position",Toast.LENGTH_SHORT).show()
 
                            val intent=Intent(context,PlayMovie::class.java)
-                            intent.putExtra("MOVIEID",adapter4.movies[position]._id)
+                            intent.putExtra("MOVIEID",adapter5.movies[position]._id)
                            startActivity(intent)
                         }
                     })
