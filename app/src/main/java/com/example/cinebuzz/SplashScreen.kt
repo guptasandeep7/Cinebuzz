@@ -1,5 +1,6 @@
 package com.example.cinebuzz
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -10,9 +11,17 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
+import com.example.cinebuzz.dashboard.PlayMovie
 import com.example.cinebuzz.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import android.net.NetworkInfo
+
+import android.net.ConnectivityManager
+import java.io.IOException
+import java.net.InetSocketAddress
+import java.net.Socket
+
 
 class SplashScreen : AppCompatActivity() {
     companion object {
@@ -22,7 +31,6 @@ class SplashScreen : AppCompatActivity() {
         lateinit var TOKEN: String
         private var binding: ActivityMainBinding? = null
         lateinit var dataStore: DataStore<Preferences>
-
         suspend fun logInState(value: Boolean) {
             val dataStoreKey = preferencesKey<Boolean>("LOGIN")
             dataStore.edit { UserDetails ->
@@ -55,21 +63,49 @@ class SplashScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
+        val view= binding!!.root
+        setContentView(view)
         dataStore = applicationContext?.createDataStore(name = "UserDetails")!!
         lifecycleScope.launch {
             if (isLogedIn() == true) {
                 USERNAME = getUserDetails("USERNAME")!!
                 USEREMAIL = getUserDetails("USEREMAIL")!!
                 TOKEN = getUserDetails("TOKEN")!!
-                startActivity(Intent(applicationContext, DashboardActivity::class.java))
-                finish();
-
-            } else {
-                startActivity(Intent(applicationContext, MainActivity::class.java))
-                finish();
+                val intent=Intent(this@SplashScreen, DashboardActivity::class.java)
+                startActivity(intent)
+                onStop()
+                finish()
+            }
+            else {
+                val intent=Intent(this@SplashScreen,MainActivity::class.java)
+                startActivity(intent)
+                onStop()
+                finish()
             }
         }
+
+//        fun hasInternetConnection(): Single<Boolean> {
+//            return Single.fromCallable {
+//                try {
+//                    // Connect to Google DNS to check for connection
+//                    val timeoutMs = 1500
+//                    val socket = Socket()
+//                    val socketAddress = InetSocketAddress("8.8.8.8", 53)
+//
+//                    socket.connect(socketAddress, timeoutMs)
+//                    socket.close()
+//
+//                    true
+//                } catch (e: IOException) {
+//                    false
+//                }
+//            }
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//        }
+//
+//        hasInternetConnection().subscribe { hasInternet -> /* do something */}
+//
     }
 }

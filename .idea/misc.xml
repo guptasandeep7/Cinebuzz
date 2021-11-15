@@ -19,13 +19,8 @@
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/login_fragment.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/movies_slider.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/offline_page.xml" value="0.18385416666666668" />
-        
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/privacy_policy.xml" value="0.18206521739130435" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/profile_shimmer.xml" value="0.18385416666666668" />
-
-       
-
-
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/random_movie.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/randomise_page.xml" value="0.13903985507246377" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/review_item.xml" value="0.4078341013824885" />
@@ -33,7 +28,6 @@
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/search_rows.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/search_shimmer_rows.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/signup_fragment.xml" value="0.22" />
-
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/verify_fragment.xml" value="0.1" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/layout/wishlist_shimmer.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/HP/Desktop/Cinebuzz/app/src/main/res/menu/nav_header_menu.xml" value="0.18385416666666668" />
@@ -89,7 +83,7 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
