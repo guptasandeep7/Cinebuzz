@@ -54,4 +54,7 @@ interface ApiInterface {
 
     @GET("drama")
     fun  drama():Call<List<MoviesDataItem>>
+
+    @POST("search")
+    fun search(@Body data:MoviesDataItem): Call<List<MoviesDataItem>>
 }
