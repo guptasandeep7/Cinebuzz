@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
@@ -12,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
 import com.example.cinebuzz.auth.LoginFragment
 import com.example.cinebuzz.dashboard.HomePage_fragment
+import com.example.cinebuzz.dashboard.PlayMovie
 import com.example.cinebuzz.recyclerview.HomePageAdapter
 import com.example.cinebuzz.recyclerview.TrendingPageAdapter
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.facebook.shimmer.ShimmerFrameLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +27,7 @@ class TrendingPage : AppCompatActivity() {
 
     private var movies= mutableListOf<MoviesDataItem>()
     private lateinit var recyclerView: RecyclerView
+    private lateinit var Shimmer: ShimmerFrameLayout
     private var gridLayoutManager:GridLayoutManager?=null
     private lateinit var adapter: TrendingPageAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +37,7 @@ class TrendingPage : AppCompatActivity() {
         val trendingText=findViewById<TextView>(R.id.trend)
         var category = intent.getStringExtra("Category")
         recyclerView=findViewById(R.id.TrendingRecyclerView)
+        Shimmer=findViewById(R.id.trendingShimmer)
         gridLayoutManager= GridLayoutManager(applicationContext,2,LinearLayoutManager.VERTICAL,false)
         val request1 = ServiceBuilder.buildService()
         val call1 = when(category){
@@ -64,7 +69,8 @@ class TrendingPage : AppCompatActivity() {
         call1.enqueue(object : Callback<List<MoviesDataItem>?> {
             override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
                 if(response.isSuccessful) {
-
+                    Shimmer.stopShimmer()
+                    Shimmer.visibility= View.GONE
                     val responseBody=response.body()!!
                     for(movie in responseBody) {
                         movies.add(movie)
@@ -72,6 +78,13 @@ class TrendingPage : AppCompatActivity() {
                     adapter= TrendingPageAdapter(this@TrendingPage,movies)
                     recyclerView.adapter=adapter
                     recyclerView.layoutManager=gridLayoutManager
+                    adapter.setOnItemClickListener(object :TrendingPageAdapter.onItemClickListener{
+                        override fun onItemClick(position: Int) {
+
+                            val intent=Intent(this@TrendingPage, PlayMovie::class.java)
+                            startActivity(intent)
+                        }
+                    })
                 }
 
             }
@@ -89,7 +102,7 @@ class TrendingPage : AppCompatActivity() {
         super.onConfigurationChanged(newConfig)
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
         {
-            recyclerView.layoutManager=GridLayoutManager(applicationContext,3,LinearLayoutManager.VERTICAL,false)
+            recyclerView.layoutManager=GridLayoutManager(applicationContext,4,LinearLayoutManager.VERTICAL,false)
         }
         else if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT)
         {

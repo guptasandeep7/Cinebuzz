@@ -13,11 +13,19 @@ import com.example.cinebuzz.retrofit.MoviesDataItem
 
 class TrendingPageAdapter(private val context: Context?, private var HomePageMovies: List<MoviesDataItem>) : RecyclerView.Adapter<TrendingPageAdapter.HomeViewHolder>() {
 
+  private var mlistner: onItemClickListener? = null
      val movies : List<MoviesDataItem> = HomePageMovies
+    interface onItemClickListener{
+
+        fun onItemClick(position: Int)
+    }
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mlistner=listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
        val view=LayoutInflater.from(parent.context).inflate(R.layout.movies,parent,false)
-        return HomeViewHolder(view)
+        return HomeViewHolder(view,mlistner)
     }
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
 
@@ -32,10 +40,15 @@ class TrendingPageAdapter(private val context: Context?, private var HomePageMov
     override fun getItemCount(): Int {
         return HomePageMovies.size
     }
-    class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class HomeViewHolder(itemView: View,listener: onItemClickListener?) : RecyclerView.ViewHolder(itemView) {
 
          var movieImage= itemView.findViewById<ImageView>(R.id.movieImage2)
         var movieName =itemView.findViewById<TextView>(R.id.movieName2)
+        init {
+            itemView.setOnClickListener {
+                listener?.onItemClick(adapterPosition)
+            }
+        }
 
     }
 

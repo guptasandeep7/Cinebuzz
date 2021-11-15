@@ -47,4 +47,8 @@ interface ApiInterface {
 
     @POST("random")
     fun random(@Body genre:MoviesDataItem):Call<MoviesDataItem>
+
+    @POST("search")
+    fun search(@Body data:MoviesDataItem): Call<List<MoviesDataItem>>
+
 }
