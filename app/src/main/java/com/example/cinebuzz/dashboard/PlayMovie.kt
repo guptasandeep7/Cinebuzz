@@ -23,7 +23,8 @@ class PlayMovie : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.play_movie)
 
-        //reviewsRecylcer = findViewById(R.id.reviews_recyclerview)
+        val id = intent.getStringExtra("MOVIEID")
+        reviewsRecylcer = findViewById(R.id.reviews_recyclerview)
 
 //        val request1 = ServiceBuilder.buildService()
 //        val call1 = request1.trending()
