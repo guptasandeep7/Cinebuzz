@@ -82,6 +82,7 @@ class TrendingPage : AppCompatActivity() {
                         override fun onItemClick(position: Int) {
 
                             val intent=Intent(this@TrendingPage, PlayMovie::class.java)
+                            intent.putExtra("MOVIEID",adapter.movies[position]._id)
                             startActivity(intent)
                         }
                     })

@@ -12,6 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.cinebuzz.dashboard.PlayMovie
+import com.example.cinebuzz.dashboard.drawer.Feedback
+import com.example.cinebuzz.dashboard.drawer.PrivacyPolicy
 import com.example.cinebuzz.SplashScreen.Companion.logInState
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -47,9 +50,14 @@ class DashboardActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.about_us -> Toast.makeText(this, "about us", Toast.LENGTH_SHORT).show()
-                R.id.privacy_policy -> Toast.makeText(this, "privacy policy", Toast.LENGTH_SHORT)
-                    .show()
-                R.id.feedback -> Toast.makeText(this, "feedback", Toast.LENGTH_SHORT).show()
+                R.id.privacy_policy -> {
+                    val intent= Intent(this, PrivacyPolicy::class.java)
+                    startActivity(intent)
+                }
+                R.id.feedback -> {
+                    val intent= Intent(this, Feedback::class.java)
+                    startActivity(intent)
+                }
                 R.id.change_password -> Toast.makeText(this, "change password", Toast.LENGTH_SHORT)
                     .show()
                 R.id.signout ->{
