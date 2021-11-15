@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.cinebuzz.DashboardActivity
 import com.example.cinebuzz.R
+import com.example.cinebuzz.SplashScreen
 import com.example.cinebuzz.auth.SignupFragment.Companion.userName
 import com.example.cinebuzz.auth.VerifyFragment.Companion.forgot
 import com.example.cinebuzz.databinding.PasswordFragmentBinding
@@ -16,6 +18,7 @@ import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -60,7 +63,6 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
                 val request = ServiceBuilder.buildService()
                 val call = when (forgot) {
                     "true" -> {
-
                         request.resetPassword(
                             MyDataItem(
                                 email = SignupFragment.userEmail,
@@ -68,7 +70,6 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
                                 confirmpass = confirmPassEditText.text.toString(),
                             )
                         )
-
                     }
                     else -> {
                         request.password(
@@ -82,13 +83,22 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
                     }
                 }
 
-                call.enqueue(object : Callback<ResponseBody?> {
+                call.enqueue(object : Callback<MyDataItem?> {
                     override fun onResponse(
-                        call: Call<ResponseBody?>,
-                        response: Response<ResponseBody?>
+                        call: Call<MyDataItem?>,
+                        response: Response<MyDataItem?>
                     ) {
                         if (response.isSuccessful) {
-
+                            val userData = response.body()
+                            lifecycleScope.launch {
+                                SplashScreen.logInState(true)
+                                SplashScreen.TOKEN = userData?.token.toString()
+                                SplashScreen.USERNAME = userData?.name.toString()
+                                SplashScreen.USEREMAIL = userData?.email.toString()
+                                SplashScreen.saveUserDetails("USERNAME", SplashScreen.USERNAME)
+                                SplashScreen.saveUserDetails("USEREMAIL", SplashScreen.USEREMAIL)
+                                SplashScreen.saveUserDetails("TOKEN", SplashScreen.TOKEN)
+                            }
                             binding.password1.text!!.clear()
                             confirmPassEditText.text!!.clear()
                             passwordProgressbar.visibility = View.GONE
@@ -107,7 +117,7 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
 
                     }
 
-                    override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                    override fun onFailure(call: Call<MyDataItem?>, t: Throwable) {
 
                         Toast.makeText(context, "Failed ${t.message}", Toast.LENGTH_SHORT).show()
                         signBtn.isClickable = true

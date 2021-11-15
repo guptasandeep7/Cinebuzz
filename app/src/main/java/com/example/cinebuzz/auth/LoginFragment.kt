@@ -10,18 +10,24 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.cinebuzz.DashboardActivity
 import com.example.cinebuzz.R
+import com.example.cinebuzz.SplashScreen.Companion.TOKEN
+import com.example.cinebuzz.SplashScreen.Companion.USEREMAIL
+import com.example.cinebuzz.SplashScreen.Companion.USERNAME
+import com.example.cinebuzz.SplashScreen.Companion.logInState
+import com.example.cinebuzz.SplashScreen.Companion.saveUserDetails
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.google.android.material.textfield.TextInputEditText
-import okhttp3.ResponseBody
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class LoginFragment : Fragment(){
+class LoginFragment : Fragment() {
 
     private fun isValidString(str: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
@@ -42,14 +48,12 @@ class LoginFragment : Fragment(){
 
 
         forgot.setOnClickListener {
-
             val fragmentManager = activity?.supportFragmentManager
             fragmentManager?.popBackStack()
             val fragmentTransaction = fragmentManager?.beginTransaction()
             fragmentTransaction?.replace(R.id.fragment_container, VerifyFragment())
             fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
-
         }
 
         signup.setOnClickListener {
@@ -61,14 +65,14 @@ class LoginFragment : Fragment(){
             fragmentTransaction?.commit()
         }
 
-        login.setOnClickListener{
+        login.setOnClickListener {
 
             if (emailEditText2.text.toString() == "")
-                emailEditText2.error="Enter email id"
-            else if(passwordEditText.text.toString() == "")
+                emailEditText2.error = "Enter email id"
+            else if (passwordEditText.text.toString() == "")
                 Toast.makeText(context, "Enter Password!!!", Toast.LENGTH_SHORT).show()
             else if (!(isValidString(emailEditText2.text.toString().trim()))) {
-                emailEditText2.error="Enter valid Email Id !!!"
+                emailEditText2.error = "Enter valid Email Id !!!"
             } else {
                 login.isClickable = false
                 loginProgressbar.visibility = View.VISIBLE
@@ -79,13 +83,22 @@ class LoginFragment : Fragment(){
                         pass = passwordEditText.text.toString().trim()
                     )
                 )
-                call.enqueue(object : Callback<ResponseBody?> {
+                call.enqueue(object : Callback<MyDataItem?> {
                     override fun onResponse(
-                        call: Call<ResponseBody?>,
-                        response: Response<ResponseBody?>
+                        call: Call<MyDataItem?>,
+                        response: Response<MyDataItem?>
                     ) {
                         if (response.isSuccessful) {
-
+                            val userData = response.body()
+                            lifecycleScope.launch {
+                                logInState(true)
+                                TOKEN = userData?.token.toString()
+                                USERNAME = userData?.name.toString()
+                                USEREMAIL = userData?.email.toString()
+                                saveUserDetails("USERNAME", USERNAME)
+                                saveUserDetails("USEREMAIL", USEREMAIL)
+                                saveUserDetails("TOKEN", TOKEN)
+                            }
                             loginProgressbar.visibility = View.GONE
                             startActivity(Intent(activity, DashboardActivity::class.java))
                             activity?.finish()
@@ -96,14 +109,14 @@ class LoginFragment : Fragment(){
                             loginProgressbar.visibility = View.GONE
 
                         } else if (response.code() == 401) {
-                            emailEditText2.error="Email Id is not registered !!!"
+                            emailEditText2.error = "Email Id is not registered !!!"
                             login.isClickable = true
                             loginProgressbar.visibility = View.GONE
                         }
 
                     }
 
-                    override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                    override fun onFailure(call: Call<MyDataItem?>, t: Throwable) {
                         Toast.makeText(context, "Failed ${t.message}", Toast.LENGTH_SHORT).show()
                         login.isClickable = true
                         loginProgressbar.visibility = View.GONE
