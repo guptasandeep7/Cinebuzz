@@ -8,14 +8,17 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.cinebuzz.dashboard.PlayMovie
 import com.example.cinebuzz.dashboard.drawer.Feedback
 import com.example.cinebuzz.dashboard.drawer.PrivacyPolicy
+import com.example.cinebuzz.SplashScreen.Companion.logInState
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.launch
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -57,7 +60,11 @@ class DashboardActivity : AppCompatActivity() {
                 }
                 R.id.change_password -> Toast.makeText(this, "change password", Toast.LENGTH_SHORT)
                     .show()
-                R.id.signout -> Toast.makeText(this, "sign out", Toast.LENGTH_SHORT).show()
+                R.id.signout ->{
+                    lifecycleScope.launch {  logInState(false) }
+                    startActivity(Intent(this,MainActivity::class.java))
+                    finish()
+                }
 
             }
             true

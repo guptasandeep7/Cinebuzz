@@ -6,21 +6,11 @@ import retrofit2.http.*
 
 interface ApiInterface {
 
-//    @GET("login")
-//    fun getData(@Query("api_key")api_key:String): Call<MyDataItem>
-
-    //post/login  -> email , pass            -> welcome  ,  incorrect email/pass
-    //post/signup  -> name , email        -> otp send
-    //post/otp    -> email , enterotp      ->  otp verified  , verification failed
-    //put/password  -> email , pass      -> password must be same! , password set
-
-
     @POST("signup")
     fun signup(@Body data: MyDataItem): Call<ResponseBody>
 
-
     @POST("login")
-    fun login(@Body value:MyDataItem): Call<ResponseBody>
+    fun login(@Body value:MyDataItem): Call<MyDataItem>
 
     @POST("forgot")
     fun verify(@Body email:MyDataItem): Call<ResponseBody>
@@ -29,10 +19,10 @@ interface ApiInterface {
     fun otp(@Body data: MyDataItem): Call<ResponseBody>
 
     @PUT("password")
-    fun password(@Body data: MyDataItem): Call<ResponseBody>
+    fun password(@Body data: MyDataItem): Call<MyDataItem>
 
     @PUT("resetpass")
-    fun resetPassword(@Body data: MyDataItem): Call<ResponseBody>
+    fun resetPassword(@Body data: MyDataItem): Call<MyDataItem>
 
     @GET("Premiere")
     fun latest():Call<List<Latest>>
@@ -55,6 +45,10 @@ interface ApiInterface {
     @GET("drama")
     fun  drama():Call<List<MoviesDataItem>>
 
+    @POST("random")
+    fun random(@Body genre:MoviesDataItem):Call<MoviesDataItem>
+
     @POST("search")
     fun search(@Body data:MoviesDataItem): Call<List<MoviesDataItem>>
+
 }

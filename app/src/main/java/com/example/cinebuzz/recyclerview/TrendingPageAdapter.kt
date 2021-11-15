@@ -6,16 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.cinebuzz.R
 import com.example.cinebuzz.retrofit.MoviesDataItem
-import com.squareup.picasso.Picasso
 
 class TrendingPageAdapter(private val context: Context?, private var HomePageMovies: List<MoviesDataItem>) : RecyclerView.Adapter<TrendingPageAdapter.HomeViewHolder>() {
-    private var mlistner: onItemClickListener? = null
-//    private var images = intArrayOf(R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background)
+
+  private var mlistner: onItemClickListener? = null
      val movies : List<MoviesDataItem> = HomePageMovies
     interface onItemClickListener{
 
