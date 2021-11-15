@@ -30,12 +30,12 @@ class RandomisePage_fragment :Fragment(), View.OnClickListener{
 
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.action->intent("action")
-            R.id.drama->intent("drama")
-            R.id.comedy->intent("comedy")
-            R.id.horror->intent("horror")
-            R.id.scifi->intent("scifi")
-            R.id.other->intent("other")
+            R.id.action->intent("Action")
+            R.id.drama->intent("Drama")
+            R.id.comedy->intent("Comedy")
+            R.id.horror->intent("Horrer")
+            R.id.scifi->intent("Sci-Fi")
+            R.id.other->intent("Other")
         }
     }
 }
