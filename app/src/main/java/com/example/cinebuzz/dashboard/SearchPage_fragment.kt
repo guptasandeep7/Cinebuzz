@@ -1,10 +1,8 @@
 package com.example.cinebuzz.dashboard
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import coil.util.CoilUtils.clear
 import com.example.cinebuzz.R
-import com.example.cinebuzz.recyclerview.HomePageAdapter
 import com.example.cinebuzz.recyclerview.SearchPageAdapter
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.SearchHistoryDataItem
@@ -25,14 +21,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchPage_fragment :Fragment() {
+class SearchPage_fragment : Fragment() {
 
     private var history = ArrayList<SearchHistoryDataItem>()
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SearchPageAdapter
-    lateinit var searchEditText:TextInputEditText
+    lateinit var searchEditText: TextInputEditText
     private lateinit var Shimmer: ShimmerFrameLayout
-    val movies = ArrayList<MoviesDataItem>()
+    var movies = ArrayList<MoviesDataItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,22 +40,17 @@ class SearchPage_fragment :Fragment() {
         val view = inflater.inflate(R.layout.search_page, container, false)
         recyclerView = view.findViewById(R.id.searchRecyclerView)
 
-         searchEditText = view.findViewById(R.id.searchEditText)
-        Shimmer=view.findViewById(R.id.SearchShimmer)
+        searchEditText = view.findViewById(R.id.searchEditText)
+        Shimmer = view.findViewById(R.id.SearchShimmer)
         searchEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                if(s?.length!! >0){
-                   SearchText(s.toString())
-               }
+                if (s?.length!! > 0) {
+                    SearchText(s.toString())
+                }
             }
 
-            override fun afterTextChanged(s: Editable?) {
-            }
+            override fun afterTextChanged(s: Editable?) {}
         })
 
 //        val request1 = ServiceBuilder.buildService()
@@ -88,7 +79,7 @@ class SearchPage_fragment :Fragment() {
         return view
     }
 
-    fun SearchText(s:String) {
+    fun SearchText(s: String) {
 
         movies.clear()
         val movies = ArrayList<MoviesDataItem>()
@@ -100,7 +91,7 @@ class SearchPage_fragment :Fragment() {
         )
         recyclerView.adapter = null
         Shimmer.stopShimmer()
-        Shimmer.visibility=View.VISIBLE
+        Shimmer.visibility = View.VISIBLE
 
         call.enqueue(
             object : Callback<List<MoviesDataItem>?> {
@@ -110,33 +101,19 @@ class SearchPage_fragment :Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         Shimmer.stopShimmer()
-                        Shimmer.visibility=View.GONE
-                        val responeBody:List<MoviesDataItem> = response.body()!!
-                        for(movie in responeBody)
-                        {
+                        Shimmer.visibility = View.GONE
+                        val responseBody: List<MoviesDataItem> = response.body()!!
+                        for (movie in responseBody)
                             movies.add(movie)
-                        }
-                        adapter= SearchPageAdapter(activity,movies)
-                        recyclerView.adapter=adapter
-
-                        recyclerView.layoutManager=LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
-                        adapter.setOnItemClickListener(object : SearchPageAdapter.onItemClickListener{
-                            override fun onItemClick(position: Int) {
-
-                                //Toast.makeText(context,"you clicked$position",Toast.LENGTH_SHORT).show()
-
-                                val intent= Intent(context,PlayMovie::class.java)
-//                                intent.putExtra("MOVIEID", adapter.movies[position])
-                                startActivity(intent)
-                            }
-                        })
-                    }
-                    else{
-                        Toast.makeText(context,"Movie not found",Toast.LENGTH_SHORT).show()
-                    }
+                        adapter = SearchPageAdapter(activity, movies)
+                        recyclerView.adapter = adapter
+                        recyclerView.layoutManager =
+                            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                    } else Toast.makeText(context, "Movie not found", Toast.LENGTH_SHORT).show()
                 }
+
                 override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
-                    Toast.makeText(context,"failed ${t.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
     }

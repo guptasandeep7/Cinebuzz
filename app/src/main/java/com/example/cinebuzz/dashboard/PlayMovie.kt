@@ -1,9 +1,7 @@
 package com.example.cinebuzz.dashboard
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -12,13 +10,12 @@ import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import com.example.cinebuzz.dashboard.profile.ReviewDataItem
 import com.example.cinebuzz.retrofit.MoviesDataItem
-import com.example.cinebuzz.retrofit.Play
+import com.example.cinebuzz.Play
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.net.URLEncoder
 
 class PlayMovie : AppCompatActivity() {
 
@@ -63,7 +60,7 @@ class PlayMovie : AppCompatActivity() {
                         movieId = responseBody._id!!
                         getrating()
                         playBtn.setOnClickListener{
-                            val intent = Intent(applicationContext,Play::class.java)
+                            val intent = Intent(applicationContext, Play::class.java)
                             intent.putExtra("VIDEOURL",responseBody.video.toString())
                             startActivity(intent)
                         }

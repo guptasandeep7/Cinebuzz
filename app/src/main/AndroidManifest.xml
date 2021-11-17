@@ -41,11 +41,11 @@
         <activity android:name=".dashboard.PlayMovie" />
         <activity android:name=".dashboard.drawer.Feedback" />
         <activity android:name=".dashboard.drawer.PrivacyPolicy" />
-        <activity android:name=".retrofit.Play"
-            android:screenOrientation="landscape"
+        <activity android:name=".Play"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             />
         <activity android:name=".model.OfflinePage" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

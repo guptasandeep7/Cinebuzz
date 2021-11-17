@@ -68,13 +68,11 @@ class SplashScreen : AppCompatActivity() {
                 USERID = getUserDetails("USERID")!!
                 val intent=Intent(this@SplashScreen, OfflinePage::class.java)
                 startActivity(intent)
-                onStop()
                 finish()
             }
             else {
                 val intent=Intent(this@SplashScreen,OfflinePage::class.java)
                 startActivity(intent)
-                onStop()
                 finish()
             }
         }

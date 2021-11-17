@@ -6,9 +6,11 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="345dp"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/grey_font"
         app:cardCornerRadius="4dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,15 +1,12 @@
-package com.example.cinebuzz.retrofit
+package com.example.cinebuzz
 
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.ui.StyledPlayerControlView
-import java.net.URLEncoder
 
 class Play : AppCompatActivity(){
 

@@ -24,19 +24,14 @@ class OfflinePage : AppCompatActivity() {
                         {
                             val intent=Intent(this@OfflinePage, DashboardActivity::class.java)
                             startActivity(intent)
-                            onStop()
                             finish()
                         }
                         else{
                             val intent=Intent(this@OfflinePage, MainActivity::class.java)
                             startActivity(intent)
-                            onStop()
                             finish()
                         }
                     }
-                    val intent = Intent(this, DashboardActivity::class.java)
-                    finish()
-                    startActivity(intent)
                 }
 
             })
@@ -65,9 +60,7 @@ private fun checkNetworkConnection() {
                     finish()
                 }
             }
-            val intent = Intent(this, DashboardActivity::class.java)
-            finish()
-            startActivity(intent)
+
         }
 
     })

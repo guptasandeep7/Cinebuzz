@@ -81,7 +81,6 @@ class HomePage_fragment : Fragment() {
                     val responseBody = response.body()!!
                     for (movie in responseBody) {
                         imageList.add(SlideModel(SplashScreen.BASEURL+movie.poster.toString(), ScaleTypes.FIT))
-                        Toast.makeText(context,SplashScreen.BASEURL +movie.poster.toString(),Toast.LENGTH_SHORT).show()
                         picture.add(movie)
                     }
                     imageSlider.setImageList(imageList)

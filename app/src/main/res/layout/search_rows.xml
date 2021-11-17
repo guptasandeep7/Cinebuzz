@@ -23,11 +23,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <View
         android:id="@+id/line"
-        android:layout_width="359dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
+        android:layout_marginStart="26dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="26dp"
         android:alpha="0.3"
         android:background="#F8CDFF"
         app:layout_constraintEnd_toEndOf="parent"

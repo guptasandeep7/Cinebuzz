@@ -16,6 +16,7 @@ import com.example.cinebuzz.dashboard.PlayMovie
 import com.example.cinebuzz.dashboard.drawer.Feedback
 import com.example.cinebuzz.dashboard.drawer.PrivacyPolicy
 import com.example.cinebuzz.SplashScreen.Companion.logInState
+import com.example.cinebuzz.auth.LoginFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.launch
@@ -62,7 +63,7 @@ class DashboardActivity : AppCompatActivity() {
                     .show()
                 R.id.signout ->{
                     lifecycleScope.launch {  logInState(false) }
-                    startActivity(Intent(this,SplashScreen::class.java))
+                    startActivity(Intent(this,MainActivity::class.java))
                     finish()
                 }
 
