@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import coil.load
 import com.example.cinebuzz.R
+import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import retrofit2.Call
@@ -60,7 +61,7 @@ class RandomMovie : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()!!
-                    movieImage.load(responseBody.posterurl) {
+                    movieImage.load(BASEURL+responseBody.poster) {
                         placeholder(R.drawable.randomise_icon)
                         crossfade(true)
                     }

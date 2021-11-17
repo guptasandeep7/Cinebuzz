@@ -15,6 +15,7 @@ import com.example.cinebuzz.DashboardActivity
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen.Companion.TOKEN
 import com.example.cinebuzz.SplashScreen.Companion.USEREMAIL
+import com.example.cinebuzz.SplashScreen.Companion.USERID
 import com.example.cinebuzz.SplashScreen.Companion.USERNAME
 import com.example.cinebuzz.SplashScreen.Companion.logInState
 import com.example.cinebuzz.SplashScreen.Companion.saveUserDetails
@@ -95,9 +96,11 @@ class LoginFragment : Fragment() {
                                 TOKEN = userData?.token.toString()
                                 USERNAME = userData?.name.toString()
                                 USEREMAIL = userData?.email.toString()
+                                USERID = userData?.userid.toString()
                                 saveUserDetails("USERNAME", USERNAME)
                                 saveUserDetails("USEREMAIL", USEREMAIL)
                                 saveUserDetails("TOKEN", TOKEN)
+                                saveUserDetails("USERID", USERID)
                             }
                             loginProgressbar.visibility = View.GONE
                             startActivity(Intent(activity, DashboardActivity::class.java))

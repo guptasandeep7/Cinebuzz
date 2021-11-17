@@ -32,6 +32,8 @@ class SearchPage_fragment :Fragment() {
     private lateinit var adapter: SearchPageAdapter
     lateinit var searchEditText:TextInputEditText
     private lateinit var Shimmer: ShimmerFrameLayout
+    val movies = ArrayList<MoviesDataItem>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -88,6 +90,7 @@ class SearchPage_fragment :Fragment() {
 
     fun SearchText(s:String) {
 
+        movies.clear()
         val movies = ArrayList<MoviesDataItem>()
         val request = ServiceBuilder.buildService()
         val call = request.search(
@@ -123,6 +126,7 @@ class SearchPage_fragment :Fragment() {
                                 //Toast.makeText(context,"you clicked$position",Toast.LENGTH_SHORT).show()
 
                                 val intent= Intent(context,PlayMovie::class.java)
+//                                intent.putExtra("MOVIEID", adapter.movies[position])
                                 startActivity(intent)
                             }
                         })
