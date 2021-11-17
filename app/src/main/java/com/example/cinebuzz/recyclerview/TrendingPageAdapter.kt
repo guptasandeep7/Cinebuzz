@@ -9,7 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.cinebuzz.R
+import com.example.cinebuzz.SplashScreen
 import com.example.cinebuzz.retrofit.MoviesDataItem
+import java.net.URLEncoder
 
 class TrendingPageAdapter(private val context: Context?, private var HomePageMovies: List<MoviesDataItem>) : RecyclerView.Adapter<TrendingPageAdapter.HomeViewHolder>() {
 
@@ -31,8 +33,7 @@ class TrendingPageAdapter(private val context: Context?, private var HomePageMov
 
        val picture=HomePageMovies[position]
         holder.movieName.text=picture.name
-//        holder.movieImage.setImageResource(images[position])
-        holder.movieImage.load(picture.posterurl){
+        holder.movieImage.load(SplashScreen.BASEURL +picture.poster){
             crossfade(true)
             placeholder(R.drawable.ic_vector__11_)
         }

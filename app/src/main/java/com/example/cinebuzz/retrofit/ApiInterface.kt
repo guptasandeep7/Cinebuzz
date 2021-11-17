@@ -54,4 +54,7 @@ interface ApiInterface {
     @POST("movie")
     fun movie(@Body data:MoviesDataItem): Call<MoviesDataItem>
 
+    @POST("movie/rating")
+    fun rating(@Body Movieid:String):Call<ResponseBody>
+
 }

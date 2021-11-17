@@ -62,7 +62,7 @@ class DashboardActivity : AppCompatActivity() {
                     .show()
                 R.id.signout ->{
                     lifecycleScope.launch {  logInState(false) }
-                    startActivity(Intent(this,MainActivity::class.java))
+                    startActivity(Intent(this,SplashScreen::class.java))
                     finish()
                 }
 

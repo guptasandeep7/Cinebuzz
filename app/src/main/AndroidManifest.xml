@@ -41,6 +41,9 @@
         <activity android:name=".dashboard.PlayMovie" />
         <activity android:name=".dashboard.drawer.Feedback" />
         <activity android:name=".dashboard.drawer.PrivacyPolicy" />
+        <activity android:name=".retrofit.Play"
+            android:screenOrientation="landscape"
+            />
 
         <meta-data
             android:name="preloaded_fonts"

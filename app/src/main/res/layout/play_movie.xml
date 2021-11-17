@@ -34,12 +34,11 @@
 
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/movie_rating"
         style="@android:style/Widget.Holo.Light.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-
         android:layout_marginTop="6dp"
         android:indeterminate="false"
         android:isIndicator="true"
@@ -82,28 +81,28 @@
         android:layout_marginStart="65dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+        app:layout_constraintTop_toBottomOf="@+id/movie_rating"
         app:srcCompat="@drawable/ic_frame" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="58dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-        app:srcCompat="@drawable/ic_component_33" />
+        <ImageView
+            android:id="@+id/playImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView6"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/movie_rating"
+            app:srcCompat="@drawable/ic_component_33" />
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="58dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-        app:srcCompat="@drawable/ic_frame_43" />
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="65dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_rating"
+            app:srcCompat="@drawable/ic_frame_43" />
 
     <TextView
         android:id="@+id/textView10"
@@ -117,7 +116,7 @@
         android:text="the Avengers, American comic strip superhero team whose frequently changing roster often included some of the most popular characters in the Marvel Comics universe."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/playImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

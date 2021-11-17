@@ -1,25 +1,24 @@
 package com.example.cinebuzz.dashboard
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.cinebuzz.R
-import com.example.cinebuzz.dashboard.profile.ProfilePageAdapter
+import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import com.example.cinebuzz.dashboard.profile.ReviewDataItem
 import com.example.cinebuzz.retrofit.MoviesDataItem
+import com.example.cinebuzz.retrofit.Play
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.net.URLEncoder
 
 class PlayMovie : AppCompatActivity() {
 
@@ -28,6 +27,8 @@ class PlayMovie : AppCompatActivity() {
     private lateinit var adapter: ReviewsAdapter
     lateinit var movieImage: ImageView
     lateinit var movieName: TextView
+    lateinit var rating:RatingBar
+    lateinit var movieId:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.play_movie)
@@ -36,6 +37,11 @@ class PlayMovie : AppCompatActivity() {
         reviewsRecylcer = findViewById(R.id.reviews_recyclerview)
         movieImage = findViewById(R.id.imageView3)
         movieName = findViewById(R.id.textView8)
+        rating = findViewById(R.id.movie_rating)
+        val playBtn = findViewById<ImageView>(R.id.playImage)
+
+
+
             val request1 = ServiceBuilder.buildService()
             val call1 = request1.movie(
                 MoviesDataItem(
@@ -49,11 +55,18 @@ class PlayMovie : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         val responseBody = response.body()!!
-                        movieImage.load(responseBody.posterurl) {
+                        movieImage.load(BASEURL+responseBody.poster.toString()){
                             placeholder(R.drawable.randomise_icon)
                             crossfade(true)
                         }
                         movieName.text = responseBody.name
+                        movieId = responseBody._id!!
+                        getrating()
+                        playBtn.setOnClickListener{
+                            val intent = Intent(applicationContext,Play::class.java)
+                            intent.putExtra("VIDEOURL",responseBody.video.toString())
+                            startActivity(intent)
+                        }
                     } else {
                         Toast.makeText(applicationContext, "No movie found", Toast.LENGTH_SHORT).show()
                     }
@@ -91,6 +104,30 @@ class PlayMovie : AppCompatActivity() {
 //            }
 //        })
 
+        fun getrating(){
+            val request = ServiceBuilder.buildService()
+            val call = request.rating(movieId)
+            call.enqueue(object : Callback<ResponseBody?> {
+                override fun onResponse(
+                    call: Call<ResponseBody?>,
+                    response: Response<ResponseBody?>
+                ) {
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()?:0
+                        Toast.makeText(this@PlayMovie,responseBody.toString(),Toast.LENGTH_SHORT).show()
+                        rating.rating = responseBody as Float
 
+                    }
+                    else{
+                        Toast.makeText(this@PlayMovie,"no rating",Toast.LENGTH_SHORT).show()
+
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                    Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
     }
 

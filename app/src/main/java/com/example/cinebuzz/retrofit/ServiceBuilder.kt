@@ -1,12 +1,13 @@
 package com.example.cinebuzz.retrofit
 
+import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceBuilder {
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://cine---buzz.herokuapp.com/")
+        .baseUrl(BASEURL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

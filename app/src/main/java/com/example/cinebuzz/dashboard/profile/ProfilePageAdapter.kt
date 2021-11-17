@@ -6,12 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.cinebuzz.R
+import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import com.example.cinebuzz.retrofit.MoviesDataItem
-import com.squareup.picasso.Picasso
 
 class ProfilePageAdapter(private val wishlist: ArrayList<MoviesDataItem>, private val type: Int) :
     RecyclerView.Adapter<ProfilePageAdapter.ProfileViewHolder>() {
@@ -35,7 +34,7 @@ class ProfilePageAdapter(private val wishlist: ArrayList<MoviesDataItem>, privat
         }
 
         holder.movieName.text = item.name
-        holder.movieImage.load(item.posterurl) {
+        holder.movieImage.load(BASEURL+item.poster) {
             crossfade(true)
             placeholder(R.drawable.randomise_icon)
         }

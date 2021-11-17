@@ -1,9 +1,7 @@
 package com.example.cinebuzz
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -11,22 +9,16 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
-import com.example.cinebuzz.dashboard.PlayMovie
 import com.example.cinebuzz.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import android.net.NetworkInfo
-
-import android.net.ConnectivityManager
-import java.io.IOException
-import java.net.InetSocketAddress
-import java.net.Socket
-
 
 class SplashScreen : AppCompatActivity() {
     companion object {
+        val BASEURL = "https://59b4-2401-4900-416c-b367-4467-f9ae-1155-ffb7.ngrok.io/"
         lateinit var USERNAME: String
         lateinit var USEREMAIL: String
+        lateinit var USERID:String
         lateinit var DPURL: String
         lateinit var TOKEN: String
         private var binding: ActivityMainBinding? = null
@@ -72,6 +64,7 @@ class SplashScreen : AppCompatActivity() {
                 USERNAME = getUserDetails("USERNAME")!!
                 USEREMAIL = getUserDetails("USEREMAIL")!!
                 TOKEN = getUserDetails("TOKEN")!!
+                USERID = getUserDetails("USERID")!!
                 val intent=Intent(this@SplashScreen, DashboardActivity::class.java)
                 startActivity(intent)
                 onStop()
