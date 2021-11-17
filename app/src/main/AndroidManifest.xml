@@ -44,6 +44,7 @@
         <activity android:name=".retrofit.Play"
             android:screenOrientation="landscape"
             />
+        <activity android:name=".model.OfflinePage" />
 
         <meta-data
             android:name="preloaded_fonts"

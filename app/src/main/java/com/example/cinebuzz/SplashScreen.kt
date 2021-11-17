@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class SplashScreen : AppCompatActivity() {
     companion object {
-        val BASEURL = "https://59b4-2401-4900-416c-b367-4467-f9ae-1155-ffb7.ngrok.io/"
+        val BASEURL = "https://cine---buzz.herokuapp.com/"
         lateinit var USERNAME: String
         lateinit var USEREMAIL: String
         lateinit var USERID:String
