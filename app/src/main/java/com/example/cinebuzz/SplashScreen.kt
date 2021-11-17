@@ -10,6 +10,7 @@ import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
 import com.example.cinebuzz.databinding.ActivityMainBinding
+import com.example.cinebuzz.model.OfflinePage
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -65,13 +66,13 @@ class SplashScreen : AppCompatActivity() {
                 USEREMAIL = getUserDetails("USEREMAIL")!!
                 TOKEN = getUserDetails("TOKEN")!!
                 USERID = getUserDetails("USERID")!!
-                val intent=Intent(this@SplashScreen, DashboardActivity::class.java)
+                val intent=Intent(this@SplashScreen, OfflinePage::class.java)
                 startActivity(intent)
                 onStop()
                 finish()
             }
             else {
-                val intent=Intent(this@SplashScreen,MainActivity::class.java)
+                val intent=Intent(this@SplashScreen,OfflinePage::class.java)
                 startActivity(intent)
                 onStop()
                 finish()

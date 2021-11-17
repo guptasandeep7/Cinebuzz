@@ -54,6 +54,7 @@
         android:fontFamily="@font/roboto"
         android:textSize="24sp"
         android:backgroundTint="#BA68C8"
+        android:foreground="?attr/selectableItemBackground"
         android:background="@drawable/border_curve"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
