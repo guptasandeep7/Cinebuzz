@@ -57,4 +57,7 @@ interface ApiInterface {
     @POST("movie/rating")
     fun rating(@Body Movieid:String):Call<ResponseBody>
 
+    @PUT("wishlist")
+    fun wishlist(@Body data: MoviesDataItem): Call<MoviesDataItem>
+
 }
