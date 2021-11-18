@@ -5,21 +5,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.cinebuzz.DashboardActivity
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen
+import com.example.cinebuzz.auth.SignupFragment.Companion.userEmail
 import com.example.cinebuzz.auth.SignupFragment.Companion.userName
 import com.example.cinebuzz.auth.VerifyFragment.Companion.forgot
 import com.example.cinebuzz.databinding.PasswordFragmentBinding
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,7 +67,7 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
                     "true" -> {
                         request.resetPassword(
                             MyDataItem(
-                                email = SignupFragment.userEmail,
+                                email = userEmail,
                                 pass = binding.password1.text.toString(),
                                 confirmpass = confirmPassEditText.text.toString(),
                             )
@@ -74,7 +76,7 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
                     else -> {
                         request.password(
                             MyDataItem(
-                                email = SignupFragment.userEmail,
+                                email = userEmail,
                                 pass = binding.password1.text.toString(),
                                 confirmpass = confirmPassEditText.text.toString(),
                                 name = userName

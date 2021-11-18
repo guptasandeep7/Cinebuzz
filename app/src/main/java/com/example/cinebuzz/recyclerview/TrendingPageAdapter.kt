@@ -11,7 +11,6 @@ import coil.load
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen
 import com.example.cinebuzz.retrofit.MoviesDataItem
-import java.net.URLEncoder
 
 class TrendingPageAdapter(private val context: Context?, private var HomePageMovies: List<MoviesDataItem>) : RecyclerView.Adapter<TrendingPageAdapter.HomeViewHolder>() {
 

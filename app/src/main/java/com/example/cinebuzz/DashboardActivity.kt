@@ -12,11 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.cinebuzz.dashboard.PlayMovie
+import com.example.cinebuzz.SplashScreen.Companion.logInState
 import com.example.cinebuzz.dashboard.drawer.Feedback
 import com.example.cinebuzz.dashboard.drawer.PrivacyPolicy
-import com.example.cinebuzz.SplashScreen.Companion.logInState
-import com.example.cinebuzz.auth.LoginFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.launch

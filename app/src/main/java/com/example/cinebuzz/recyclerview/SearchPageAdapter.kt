@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
 import com.example.cinebuzz.dashboard.PlayMovie
 import com.example.cinebuzz.retrofit.MoviesDataItem
-import com.example.cinebuzz.retrofit.SearchHistoryDataItem
 
 class SearchPageAdapter(private val context: Context?, private var Search: ArrayList<MoviesDataItem>) : RecyclerView.Adapter<SearchPageAdapter.HomeViewHolder>() {
 

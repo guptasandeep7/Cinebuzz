@@ -57,7 +57,12 @@ interface ApiInterface {
     @POST("movie/rating")
     fun rating(@Body Movieid:String):Call<ResponseBody>
 
-    @PUT("wishlist")
-    fun wishlist(@Body data: MoviesDataItem): Call<MoviesDataItem>
+    @PUT("movie/wishlist")
+    fun wishlist(@Body data:WishlistDataItem): Call<ResponseBody>
 
+    @POST("movie/wishlist")
+    fun wishlist1(@Body data: WishlistDataItem): Call<ResponseBody>
+
+    @POST("wishlist")
+    fun wishlist2(@Body data: WishlistDataItem): Call<ArrayList<String>>
 }

@@ -96,7 +96,7 @@
             app:layout_constraintTop_toBottomOf="@+id/reviewtext" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/wishlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toStartOf="@+id/imageView6"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/wishlist"
             app:layout_constraintTop_toBottomOf="@+id/movie_rating"
             app:srcCompat="@drawable/ic_component_33" />
 
@@ -126,7 +126,7 @@
             app:srcCompat="@drawable/ic_frame_43" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/movie_plot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -150,7 +150,7 @@
             android:textSize="24sp"
             android:fontFamily="@font/roboto"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/movie_plot" />
 
         <RatingBar
             android:id="@+id/ratingBar2"
@@ -220,6 +220,7 @@
             android:layout_marginEnd="24dp"
             android:background="@drawable/border_curve"
             android:text="Submit"
+            android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/playEdittext" />
 

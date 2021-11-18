@@ -11,7 +11,6 @@ import coil.load
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen
 import com.example.cinebuzz.retrofit.MoviesDataItem
-import java.net.URLEncoder
 
 class HomePageAdapter(
     private val context: Context?,
