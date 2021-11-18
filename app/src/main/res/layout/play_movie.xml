@@ -9,6 +9,25 @@
     android:layout_height="wrap_content"
     android:background="@color/black">
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/playshimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <include layout="@layout/slider_shimmer_rows" />
+
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="411dp"
@@ -16,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/avenger1" />
+        />
 
     <TextView
         android:id="@+id/textView8"

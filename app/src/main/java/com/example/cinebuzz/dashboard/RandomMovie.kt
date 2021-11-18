@@ -14,6 +14,7 @@ import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.facebook.shimmer.ShimmerFrameLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,7 +25,7 @@ class RandomMovie : AppCompatActivity() {
     lateinit var movieName: TextView
     lateinit var nextBtn: Button
     lateinit var category: String
-
+    private lateinit var Shimmer: ShimmerFrameLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.random_movie)
@@ -41,6 +42,7 @@ class RandomMovie : AppCompatActivity() {
         movieImage = findViewById(R.id.movie_image)
         movieName = findViewById(R.id.movie_name)
         nextBtn = findViewById(R.id.button)
+        Shimmer =findViewById(R.id.randomshimmer)
         category = intent.getStringExtra("Category")!!
 
         findMovie()
@@ -60,6 +62,8 @@ class RandomMovie : AppCompatActivity() {
                 response: Response<MoviesDataItem?>
             ) {
                 if (response.isSuccessful) {
+                    Shimmer.stopShimmer()
+                    Shimmer.visibility = View.GONE
                     val responseBody = response.body()!!
                     movieImage.load(BASEURL+responseBody.poster) {
                         placeholder(R.drawable.randomise_icon)

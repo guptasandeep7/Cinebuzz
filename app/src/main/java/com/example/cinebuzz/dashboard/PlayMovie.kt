@@ -2,6 +2,7 @@ package com.example.cinebuzz.dashboard
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import com.example.cinebuzz.dashboard.profile.ReviewDataItem
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.Play
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.facebook.shimmer.ShimmerFrameLayout
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,6 +22,7 @@ import retrofit2.Response
 class PlayMovie : AppCompatActivity() {
 
     private lateinit var reviewsRecylcer : RecyclerView
+    private lateinit var Shimmer: ShimmerFrameLayout
     private var reviews= mutableListOf<ReviewDataItem>()
     private lateinit var adapter: ReviewsAdapter
     lateinit var movieImage: ImageView
@@ -34,6 +37,7 @@ class PlayMovie : AppCompatActivity() {
         reviewsRecylcer = findViewById(R.id.reviews_recyclerview)
         movieImage = findViewById(R.id.imageView3)
         movieName = findViewById(R.id.textView8)
+        Shimmer =findViewById(R.id.playshimmer)
         rating = findViewById(R.id.movie_rating)
         val playBtn = findViewById<ImageView>(R.id.playImage)
 
@@ -51,6 +55,8 @@ class PlayMovie : AppCompatActivity() {
                     response: Response<MoviesDataItem?>
                 ) {
                     if (response.isSuccessful) {
+                        Shimmer.stopShimmer()
+                        Shimmer.visibility = View.GONE
                         val responseBody = response.body()!!
                         movieImage.load(BASEURL+responseBody.poster.toString()){
                             placeholder(R.drawable.randomise_icon)
