@@ -17,9 +17,15 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class ProfilePage_fragment : Fragment() {
 
+    companion object {
+        lateinit var clearAll: TextView
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val viewPager = view.findViewById<ViewPager2>(R.id.viewpager_UserProfile)
         val tabLayout = view.findViewById<TabLayout>(R.id.tab_UserProfile)
+
+        clearAll = view.findViewById<TextView>(R.id.clearAll)
 
         val pageAdapter = PageAdapter(this)
         viewPager.adapter = pageAdapter
@@ -43,6 +49,7 @@ class ProfilePage_fragment : Fragment() {
         val userImage = view.findViewById<ShapeableImageView>(R.id.user_image)
         val userName = view.findViewById<TextView>(R.id.user_name)
         val userEmail = view.findViewById<TextView>(R.id.user_email)
+
 
         userName.text = USERNAME
         userEmail.text = USEREMAIL

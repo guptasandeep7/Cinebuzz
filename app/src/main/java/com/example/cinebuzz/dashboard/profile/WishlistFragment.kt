@@ -1,6 +1,5 @@
 package com.example.cinebuzz.dashboard.profile
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen.Companion.USERID
+import com.example.cinebuzz.dashboard.ProfilePage_fragment.Companion.clearAll
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.WishlistDataItem
@@ -31,9 +31,10 @@ class WishlistFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_wishlist, container, false)
 
+        clearAll.visibility = View.GONE
         val context = context
         wishlistRecylcer = view.findViewById(R.id.wishlist_recyclerview)
-        Shimmer=view.findViewById(R.id.whislistShimmer)
+        Shimmer = view.findViewById(R.id.whislistShimmer)
         val request1 = ServiceBuilder.buildService()
         val call1 = request1.wishlistAll(
             WishlistDataItem(userid = USERID)
@@ -62,6 +63,7 @@ class WishlistFragment : Fragment() {
 
                 }
             }
+
             override fun onFailure(call: Call<ArrayList<String>?>, t: Throwable) {
                 Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
             }
@@ -83,14 +85,21 @@ class WishlistFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()!!
-                    movieList.add(MoviesDataItem(name = responseBody.name, poster = responseBody.poster))
+                    movieList.add(
+                        MoviesDataItem(
+                            name = responseBody.name,
+                            poster = responseBody.poster
+                        )
+                    )
                     adapter = ProfilePageAdapter(movieList, 1)
                     wishlistRecylcer.adapter = adapter
-                    wishlistRecylcer.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                    wishlistRecylcer.layoutManager =
+                        LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
                 } else {
                     Toast.makeText(context, "No movie found", Toast.LENGTH_SHORT).show()
                 }
             }
+
             override fun onFailure(call: Call<MoviesDataItem?>, t: Throwable) {
                 Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
             }
