@@ -1,5 +1,6 @@
 package com.example.cinebuzz.dashboard.profile
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,12 +27,13 @@ class WishlistFragment : Fragment() {
     private lateinit var adapter: ProfilePageAdapter
     private lateinit var Shimmer: ShimmerFrameLayout
     lateinit var wishListButton:ImageButton
+    lateinit var contex: Context
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_wishlist, container, false)
-        val context = context
+        contex = requireContext()
         wishlistRecylcer = view.findViewById(R.id.wishlist_recyclerview)
         Shimmer = view.findViewById(R.id.whislistShimmer)
         wishListButton=view.findViewById(R.id.wishlist_btn)
@@ -55,7 +57,7 @@ class WishlistFragment : Fragment() {
 
                 } else {
                     Toast.makeText(
-                        context,
+                        contex,
                         "unsuccessful ${response.message()}",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -64,7 +66,7 @@ class WishlistFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ArrayList<String>?>, t: Throwable) {
-                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(contex, "failed ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -96,12 +98,11 @@ class WishlistFragment : Fragment() {
                     wishlistRecylcer.layoutManager =
                         LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
                 } else {
-                    Toast.makeText(context, "No movie found", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(contex, "No movie found", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<MoviesDataItem?>, t: Throwable) {
-                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }

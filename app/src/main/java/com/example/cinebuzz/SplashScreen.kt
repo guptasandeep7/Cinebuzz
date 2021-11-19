@@ -1,6 +1,7 @@
 package com.example.cinebuzz
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
@@ -9,6 +10,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
+import com.example.cinebuzz.dashboard.PlayMovie
 import com.example.cinebuzz.databinding.ActivityMainBinding
 import com.example.cinebuzz.model.OfflinePage
 import kotlinx.coroutines.flow.first
@@ -72,10 +74,12 @@ class SplashScreen : AppCompatActivity() {
             }
             else {
                 TOKEN ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvbGNoaWdlZWtAZ21haWwuY29tIiwiaWF0IjoxNjM3MzUxMDQ4LCJleHAiOjE2Mzc0Mzc0NDh9.v1fuXxizIYD4cwzca_hZCS9CSVObUMbzqror4hQ6YUY"
+
                 val intent=Intent(this@SplashScreen,OfflinePage::class.java)
                 startActivity(intent)
                 finish()
             }
         }
+
     }
 }
