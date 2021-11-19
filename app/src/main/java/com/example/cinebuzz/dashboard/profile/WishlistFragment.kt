@@ -51,10 +51,6 @@ class WishlistFragment : Fragment() {
                     for (item in responseBody) {
                         profile_wishlist(item)
                     }
-                    adapter = ProfilePageAdapter(movieList, 1)
-                    wishlistRecylcer.adapter = adapter
-                    wishlistRecylcer.layoutManager =
-                        LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
 
                 } else {
@@ -87,8 +83,10 @@ class WishlistFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()!!
-                    Toast.makeText(context, responseBody.toString(), Toast.LENGTH_SHORT).show()
-                    movieList.add(responseBody)
+                    movieList.add(MoviesDataItem(name = responseBody.name, poster = responseBody.poster))
+                    adapter = ProfilePageAdapter(movieList, 1)
+                    wishlistRecylcer.adapter = adapter
+                    wishlistRecylcer.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
                 } else {
                     Toast.makeText(context, "No movie found", Toast.LENGTH_SHORT).show()
                 }
