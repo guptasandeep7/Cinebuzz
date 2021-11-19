@@ -69,7 +69,7 @@ class LoginFragment : Fragment() {
         login.setOnClickListener {
 
             if (emailEditText2.text.toString() == "")
-                emailEditText2.error = "Enter email id"
+                emailEditText2.error = "Enter email movieId"
             else if (passwordEditText.text.toString() == "")
                 Toast.makeText(context, "Enter Password!!!", Toast.LENGTH_SHORT).show()
             else if (!(isValidString(emailEditText2.text.toString().trim()))) {
@@ -96,7 +96,7 @@ class LoginFragment : Fragment() {
                                 TOKEN = userData?.token.toString()
                                 USERNAME = userData?.name.toString()
                                 USEREMAIL = userData?.email.toString()
-                                USERID = userData?.userid.toString()
+                                USERID = userData?.id.toString()
                                 saveUserDetails("USERNAME", USERNAME)
                                 saveUserDetails("USEREMAIL", USEREMAIL)
                                 saveUserDetails("TOKEN", TOKEN)

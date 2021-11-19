@@ -52,7 +52,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-
     <RatingBar
         android:id="@+id/movie_rating"
         style="@android:style/Widget.Holo.Light.RatingBar.Indicator"
@@ -66,7 +65,7 @@
         android:numStars="5"
         android:progressBackgroundTint="#8A8A8A"
         android:progressTint="#EAB52F"
-        android:rating="4"
+        android:rating="0"
         android:secondaryProgressTint="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
