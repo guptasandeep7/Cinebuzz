@@ -1,66 +1,110 @@
 package com.example.cinebuzz.dashboard.profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
+import com.example.cinebuzz.SplashScreen
+import com.example.cinebuzz.dashboard.ProfilePage_fragment.Companion.clearAll
 import com.example.cinebuzz.retrofit.MoviesDataItem
+import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.example.cinebuzz.retrofit.WishlistDataItem
+import com.facebook.shimmer.ShimmerFrameLayout
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HistoryFragment : Fragment() {
 
-    private lateinit var historyRecylcer : RecyclerView
-    private var historyList= ArrayList<MoviesDataItem>()
+    private lateinit var historyRecylcer: RecyclerView
+    private var historyList = ArrayList<MoviesDataItem>()
     private lateinit var adapter: ProfilePageAdapter
+    private lateinit var Shimmer: ShimmerFrameLayout
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_history, container, false)
 
+        clearAll.visibility = View.VISIBLE
         historyRecylcer = view.findViewById(R.id.history_recyclerview)
+        Shimmer = view.findViewById(R.id.historyShimmer)
+        val request1 = ServiceBuilder.buildService()
+        val call1 = request1.showHistory(
+            WishlistDataItem(userid = SplashScreen.USERID)
+        )
+        call1.enqueue(object : Callback<ArrayList<String>?> {
+            override fun onResponse(
+                call: Call<ArrayList<String>?>,
+                response: Response<ArrayList<String>?>
+            ) {
+                if (response.isSuccessful) {
+                    Shimmer.stopShimmer()
+                    Shimmer.visibility = View.GONE
+                    Toast.makeText(context, "successful", Toast.LENGTH_SHORT).show()
+                    val responseBody = response.body()!!
+                    for (item in responseBody) {
+                        profile_history(item)
+                    }
 
-//        val request1 = ServiceBuilder.buildService()
-//        val call1 = request1.trending()
-//        call1.enqueue(object : Callback<List<MoviesDataItem>?> {
-//            override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
-//                if(response.isSuccessful) {
-//
-//                    Toast.makeText(context,"successful", Toast.LENGTH_SHORT).show()
-//                    val responseBody=response.body()!!
-//                    for(item in responseBody) {
-//                        historyList.add(item)
-//                    }
-        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
-        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
-        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
-        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
-        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
-        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
-        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
-        historyList.add(MoviesDataItem("War","1","https://firebasestorage.googleapis.com/v0/b/mypost-b9540.appspot.com/o/imagesOfPost%2Fimage%3A49660?alt=media&token=8644db24-765b-4e6c-9a6e-4fb7fb9f2cda"))
+                } else {
+                    Toast.makeText(
+                        context,
+                        "unsuccessful ${response.message()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-        adapter = ProfilePageAdapter(historyList,2)
-        historyRecylcer.adapter = adapter
-        historyRecylcer.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
-//                }
-//                else{
-//                    Toast.makeText(context,"unsuccessful ${response.message()}", Toast.LENGTH_SHORT).show()
-//
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
-//                Toast.makeText(context,"failed ${t.message}", Toast.LENGTH_SHORT).show()
-//            }
-//        })
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<String>?>, t: Throwable) {
+                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
 
 
         return view
     }
 
+    fun profile_history(id: String) {
+        val request1 = ServiceBuilder.buildService()
+        val call1 = request1.movie(
+            MoviesDataItem(
+                _id = id
+            )
+        )
+        call1.enqueue(object : Callback<MoviesDataItem?> {
+            override fun onResponse(
+                call: Call<MoviesDataItem?>,
+                response: Response<MoviesDataItem?>
+            ) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()!!
+                    historyList.add(
+                        MoviesDataItem(
+                            name = responseBody.name,
+                            poster = responseBody.poster
+                        )
+                    )
+                    adapter = ProfilePageAdapter(historyList, 2)
+                    historyRecylcer.adapter = adapter
+                    historyRecylcer.layoutManager =
+                        LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                } else {
+                    Toast.makeText(context, "No movie found", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<MoviesDataItem?>, t: Throwable) {
+                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 
 }
