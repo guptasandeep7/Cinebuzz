@@ -66,7 +66,7 @@
             android:screenOrientation="sensorLandscape"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name=".model.OfflinePage" />
-
+        <activity android:name=".dashboard.drawer.ChangePassword" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

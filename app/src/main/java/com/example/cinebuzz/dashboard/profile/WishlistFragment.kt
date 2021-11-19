@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,8 +26,8 @@ class WishlistFragment : Fragment() {
     private val movieList = ArrayList<MoviesDataItem>()
     private lateinit var adapter: ProfilePageAdapter
     private lateinit var Shimmer: ShimmerFrameLayout
+    lateinit var wishListButton:ImageButton
     lateinit var contex: Context
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +36,7 @@ class WishlistFragment : Fragment() {
         contex = requireContext()
         wishlistRecylcer = view.findViewById(R.id.wishlist_recyclerview)
         Shimmer = view.findViewById(R.id.whislistShimmer)
+        wishListButton=view.findViewById(R.id.wishlist_btn)
         val request1 = ServiceBuilder.buildService()
         val call1 = request1.wishlistAll(
             WishlistDataItem(userid = USERID)
@@ -67,6 +69,7 @@ class WishlistFragment : Fragment() {
                 Toast.makeText(contex, "failed ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+
         return view
     }
 

@@ -73,7 +73,8 @@ class SplashScreen : AppCompatActivity() {
                 finish()
             }
             else {
-                TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvbGNoaWdlZWtAZ21haWwuY29tIiwiaWF0IjoxNjM3MzUxMDQ4LCJleHAiOjE2Mzc0Mzc0NDh9.v1fuXxizIYD4cwzca_hZCS9CSVObUMbzqror4hQ6YUY"
+                TOKEN ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvbGNoaWdlZWtAZ21haWwuY29tIiwiaWF0IjoxNjM3MzUxMDQ4LCJleHAiOjE2Mzc0Mzc0NDh9.v1fuXxizIYD4cwzca_hZCS9CSVObUMbzqror4hQ6YUY"
+
                 val intent=Intent(this@SplashScreen,OfflinePage::class.java)
                 startActivity(intent)
                 finish()

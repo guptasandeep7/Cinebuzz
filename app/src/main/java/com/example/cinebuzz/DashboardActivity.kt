@@ -13,6 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.cinebuzz.SplashScreen.Companion.logInState
+import com.example.cinebuzz.dashboard.drawer.ChangePassword
 import com.example.cinebuzz.dashboard.drawer.Feedback
 import com.example.cinebuzz.dashboard.drawer.PrivacyPolicy
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -57,8 +58,10 @@ class DashboardActivity : AppCompatActivity() {
                     val intent= Intent(this, Feedback::class.java)
                     startActivity(intent)
                 }
-                R.id.change_password -> Toast.makeText(this, "change password", Toast.LENGTH_SHORT)
-                    .show()
+                R.id.change_password ->{
+                    val intent= Intent(this, ChangePassword::class.java)
+                    startActivity(intent)
+                }
                 R.id.signout ->{
                     lifecycleScope.launch {  logInState(false) }
                     startActivity(Intent(this,MainActivity::class.java))
