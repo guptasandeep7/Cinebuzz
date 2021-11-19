@@ -65,4 +65,10 @@ interface ApiInterface {
 
     @POST("wishlist")
     fun wishlistAll(@Body data: WishlistDataItem): Call<ArrayList<String>>
+
+    @POST("movie/history")
+    fun history(@Body data: WishlistDataItem):Call<String>
+
+    @POST("history")
+    fun showHistory(@Body data: WishlistDataItem): Call<ArrayList<String>>
 }
