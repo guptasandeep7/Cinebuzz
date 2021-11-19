@@ -9,6 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/clearAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/roboto"
+            android:letterSpacing="0.04"
+            android:text="@string/clearall"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/historyShimmer"
             android:layout_width="wrap_content"
@@ -39,6 +51,7 @@
 
                 <include layout="@layout/profile_shimmer" />
 
+
             </LinearLayout>
 
 
@@ -47,10 +60,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/history_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clearAll"
             tools:listitem="@layout/profile_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

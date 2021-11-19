@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen.Companion.USERID
-import com.example.cinebuzz.dashboard.ProfilePage_fragment.Companion.clearAll
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.WishlistDataItem
@@ -30,8 +29,6 @@ class WishlistFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_wishlist, container, false)
-
-        clearAll.visibility = View.GONE
         val context = context
         wishlistRecylcer = view.findViewById(R.id.wishlist_recyclerview)
         Shimmer = view.findViewById(R.id.whislistShimmer)
@@ -47,7 +44,6 @@ class WishlistFragment : Fragment() {
                 if (response.isSuccessful) {
                     Shimmer.stopShimmer()
                     Shimmer.visibility = View.GONE
-                    Toast.makeText(context, "successful", Toast.LENGTH_SHORT).show()
                     val responseBody = response.body()!!
                     for (item in responseBody) {
                         profile_wishlist(item)

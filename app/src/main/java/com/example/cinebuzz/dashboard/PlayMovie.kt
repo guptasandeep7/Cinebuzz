@@ -33,7 +33,6 @@ class PlayMovie : AppCompatActivity() {
     lateinit var movieId: String
     lateinit var wishlist: ImageView
     lateinit var plot: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.play_movie)
@@ -128,16 +127,12 @@ class PlayMovie : AppCompatActivity() {
 
         }
 
-
 //  show wishlist
-
-
 //        val request1 = ServiceBuilder.buildService()
 //        val call1 = request1.trending()
 //        call1.enqueue(object : Callback<List<MoviesDataItem>?> {
 //            override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
 //                if(response.isSuccessful) {
-//
 //                    Toast.makeText(context,"successful", Toast.LENGTH_SHORT).show()
 //                    val responseBody=response.body()!!
 //                    for(item in responseBody) {
@@ -150,10 +145,8 @@ class PlayMovie : AppCompatActivity() {
 //                }
 //                else{
 //                    Toast.makeText(context,"unsuccessful ${response.message()}", Toast.LENGTH_SHORT).show()
-//
 //                }
 //            }
-//
 //            override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
 //                Toast.makeText(context,"failed ${t.message}", Toast.LENGTH_SHORT).show()
 //            }
@@ -236,15 +229,6 @@ class PlayMovie : AppCompatActivity() {
         )
         call4.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(this@PlayMovie, "successful", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(
-                        this@PlayMovie,
-                        "unsuccessful ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
