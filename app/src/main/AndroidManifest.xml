@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.cinebuzz">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,22 +15,19 @@
         android:theme="@style/Theme.Cinebuzz">
         <activity
             android:name=".DashboardActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".dashboard.home.TrendingPage"
             android:exported="true"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            />
+            android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".MainActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            >
-        </activity>
-        <activity android:name=".dashboard.RandomMovie"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            />
-        <activity android:name=".SplashScreen"
+            android:configChanges="orientation|screenSize|keyboardHidden"></activity>
+        <activity
+            android:name=".dashboard.RandomMovie"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity
+            android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -37,16 +35,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".dashboard.PlayMovie"
+        <activity
+            android:name=".dashboard.PlayMovie"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            />
+            android:exported="true">
+            <tools:validation testUrl="https://cine---buzz.herokuapp.com/movieid" />
+
+                        <intent-filter>
+                            <action android:name="android.intent.action.SEND" />
+                            <category android:name="android.intent.category.DEFAULT" />
+                            <data android:mimeType="text/plain" />
+                        </intent-filter>
+            <intent-filter android:autoVerify="true"
+                tools:targetApi="m">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="cine---buzz.herokuapp.com"
+                    android:pathPrefix="/movieid" />
+            </intent-filter>
+        </activity>
         <activity android:name=".dashboard.drawer.Feedback" />
         <activity android:name=".dashboard.drawer.PrivacyPolicy" />
-        <activity android:name=".Play"
+        <activity
+            android:name=".Play"
             android:screenOrientation="sensorLandscape"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            />
+            android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name=".model.OfflinePage" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
