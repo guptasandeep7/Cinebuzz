@@ -26,7 +26,6 @@ class WishlistFragment : Fragment() {
     private val movieList = ArrayList<MoviesDataItem>()
     private lateinit var adapter: ProfilePageAdapter
     private lateinit var Shimmer: ShimmerFrameLayout
-    lateinit var wishListButton:ImageButton
     lateinit var contex: Context
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +35,6 @@ class WishlistFragment : Fragment() {
         contex = requireContext()
         wishlistRecylcer = view.findViewById(R.id.wishlist_recyclerview)
         Shimmer = view.findViewById(R.id.whislistShimmer)
-        wishListButton=view.findViewById(R.id.wishlist_btn)
         val request1 = ServiceBuilder.buildService()
         val call1 = request1.wishlistAll(
             WishlistDataItem(userid = USERID)
