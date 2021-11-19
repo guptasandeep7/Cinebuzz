@@ -71,4 +71,10 @@ interface ApiInterface {
 
     @POST("history")
     fun showHistory(@Body data: WishlistDataItem): Call<ArrayList<String>>
+
+    @POST("count")
+    fun movieCount(@Body data: WishlistDataItem):Call<String>
+
+    @POST("delete/history")
+    fun deleteHistory(@Body data: WishlistDataItem):Call<String>
 }
