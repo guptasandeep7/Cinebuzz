@@ -1,5 +1,6 @@
 package com.example.cinebuzz.dashboard.profile
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,13 +31,12 @@ class WishlistFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_wishlist, container, false)
 
+        val context = context
         wishlistRecylcer = view.findViewById(R.id.wishlist_recyclerview)
         Shimmer=view.findViewById(R.id.whislistShimmer)
         val request1 = ServiceBuilder.buildService()
-        val call1 = request1.wishlist2(
-            WishlistDataItem(
-                userid = USERID
-            )
+        val call1 = request1.wishlistAll(
+            WishlistDataItem(userid = USERID)
         )
         call1.enqueue(object : Callback<ArrayList<String>?> {
             override fun onResponse(
@@ -46,15 +46,11 @@ class WishlistFragment : Fragment() {
                 if (response.isSuccessful) {
                     Shimmer.stopShimmer()
                     Shimmer.visibility = View.GONE
-                    Toast.makeText(context, "succeessfull", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "successful", Toast.LENGTH_SHORT).show()
                     val responseBody = response.body()!!
                     for (item in responseBody) {
                         profile_wishlist(item)
                     }
-                    adapter = ProfilePageAdapter(movieList, 1)
-                    wishlistRecylcer.adapter = adapter
-                    wishlistRecylcer.layoutManager =
-                        LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
 
                 } else {
@@ -70,8 +66,6 @@ class WishlistFragment : Fragment() {
                 Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
-
-
         return view
     }
 
@@ -88,16 +82,15 @@ class WishlistFragment : Fragment() {
                 response: Response<MoviesDataItem?>
             ) {
                 if (response.isSuccessful) {
-
                     val responseBody = response.body()!!
-
-                    movieList.add(responseBody)
-
+                    movieList.add(MoviesDataItem(name = responseBody.name, poster = responseBody.poster))
+                    adapter = ProfilePageAdapter(movieList, 1)
+                    wishlistRecylcer.adapter = adapter
+                    wishlistRecylcer.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
                 } else {
                     Toast.makeText(context, "No movie found", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<MoviesDataItem?>, t: Throwable) {
                 Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
             }

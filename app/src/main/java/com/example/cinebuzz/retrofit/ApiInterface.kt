@@ -55,14 +55,14 @@ interface ApiInterface {
     fun movie(@Body data:MoviesDataItem): Call<MoviesDataItem>
 
     @POST("movie/rating")
-    fun rating(@Body Movieid:String):Call<ResponseBody>
+    fun rating(@Body data:WishlistDataItem):Call<String>
 
     @PUT("movie/wishlist")
-    fun wishlist(@Body data:WishlistDataItem): Call<ResponseBody>
+    fun wishlistToggle(@Body data:WishlistDataItem): Call<ResponseBody>
 
     @POST("movie/wishlist")
-    fun wishlist1(@Body data: WishlistDataItem): Call<ResponseBody>
+    fun wishlistCheck(@Body data: WishlistDataItem): Call<String>
 
     @POST("wishlist")
-    fun wishlist2(@Body data: WishlistDataItem): Call<ArrayList<String>>
+    fun wishlistAll(@Body data: WishlistDataItem): Call<ArrayList<String>>
 }

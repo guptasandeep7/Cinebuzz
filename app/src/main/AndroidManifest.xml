@@ -15,7 +15,6 @@
         <activity
             android:name=".DashboardActivity"
             android:exported="false"
-            android:configChanges="orientation|screenSize|keyboardHidden"
             />
         <activity
             android:name=".dashboard.home.TrendingPage"
@@ -38,7 +37,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".dashboard.PlayMovie" />
+        <activity android:name=".dashboard.PlayMovie"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            />
         <activity android:name=".dashboard.drawer.Feedback" />
         <activity android:name=".dashboard.drawer.PrivacyPolicy" />
         <activity android:name=".Play"

@@ -97,7 +97,7 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
                                 SplashScreen.TOKEN = userData?.token.toString()
                                 SplashScreen.USERNAME = userData?.name.toString()
                                 SplashScreen.USEREMAIL = userData?.email.toString()
-                                SplashScreen.USERID = userData?.userid.toString()
+                                SplashScreen.USERID = userData?.id.toString()
                                 SplashScreen.saveUserDetails("USERNAME", SplashScreen.USERNAME)
                                 SplashScreen.saveUserDetails("USEREMAIL", SplashScreen.USEREMAIL)
                                 SplashScreen.saveUserDetails("TOKEN", SplashScreen.TOKEN)

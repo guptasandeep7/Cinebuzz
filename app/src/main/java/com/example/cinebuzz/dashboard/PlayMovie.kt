@@ -7,12 +7,12 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.cinebuzz.Play
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen.Companion.BASEURL
+import com.example.cinebuzz.SplashScreen.Companion.USERID
 import com.example.cinebuzz.dashboard.profile.ReviewDataItem
 import com.example.cinebuzz.retrofit.MoviesDataItem
-import com.example.cinebuzz.Play
-import com.example.cinebuzz.SplashScreen.Companion.USERID
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.WishlistDataItem
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -25,42 +25,40 @@ class PlayMovie : AppCompatActivity() {
 
     private lateinit var reviewsRecylcer: RecyclerView
     private lateinit var Shimmer: ShimmerFrameLayout
-    private var reviews = mutableListOf<ReviewDataItem>()
+    private lateinit var reviews: ArrayList<ReviewDataItem>
     private lateinit var adapter: ReviewsAdapter
     lateinit var movieImage: ImageView
     lateinit var movieName: TextView
     lateinit var rating: RatingBar
     lateinit var movieId: String
-
-    companion object {
-        lateinit var id: String
-    }
+    lateinit var wishlist:ImageView
+    lateinit var plot:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.play_movie)
-
-        id = intent.getStringExtra("MOVIEID").toString()
+        
+        movieId = intent.getStringExtra("MOVIEID").toString()
         reviewsRecylcer = findViewById(R.id.reviews_recyclerview)
         movieImage = findViewById(R.id.imageView3)
         movieName = findViewById(R.id.textView8)
         Shimmer = findViewById(R.id.playshimmer)
-        val plot = findViewById<TextView>(R.id.movie_plot)
+        plot = findViewById<TextView>(R.id.movie_plot)
         rating = findViewById(R.id.movie_rating)
-        val wishlist = findViewById<ImageView>(R.id.wishlist)
+        wishlist = findViewById<ImageView>(R.id.wishlist)
         val playBtn = findViewById<ImageView>(R.id.playImage)
 
-
+//movie Details
         val request1 = ServiceBuilder.buildService()
         val call1 = request1.movie(
-            MoviesDataItem(
-                _id = id
-            )
+                MoviesDataItem(
+                        _id = movieId
+                )
         )
         call1.enqueue(object : Callback<MoviesDataItem?> {
             override fun onResponse(
-                call: Call<MoviesDataItem?>,
-                response: Response<MoviesDataItem?>
+                    call: Call<MoviesDataItem?>,
+                    response: Response<MoviesDataItem?>
             ) {
                 if (response.isSuccessful) {
                     Shimmer.stopShimmer()
@@ -71,17 +69,16 @@ class PlayMovie : AppCompatActivity() {
                         crossfade(true)
                     }
                     movieName.text = responseBody.name
-                    plot.text=responseBody.plot
-
-                    movieId = responseBody._id!!
-                    getrating()
+                    plot.text = responseBody.plot
+                    showWishlist()
+                    getRating()
                     playBtn.setOnClickListener {
                         val intent = Intent(applicationContext, Play::class.java)
                         intent.putExtra("VIDEOURL", responseBody.video.toString())
                         startActivity(intent)
                     }
                 } else {
-                    Toast.makeText(applicationContext, "No movie found", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "No movie found" + response.code(), Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -90,59 +87,27 @@ class PlayMovie : AppCompatActivity() {
             }
         })
 
-        val request2 = ServiceBuilder.buildService()
-        val call2 = request2.wishlist1(
-            WishlistDataItem(
-                Movieid = id,
-            userid= USERID
-            )
-        )
-        call2.enqueue(object : Callback<ResponseBody?> {
-            override fun onResponse(
-                call: Call<ResponseBody?>,
-                response: Response<ResponseBody?>
-            ) {
-                if (response.isSuccessful) {
-                    if (response.body().toString() == "1") {
-                        playBtn.setImageResource(R.drawable.ic_frame__1_)
+// wishlistToggle
 
-                    } else if (response.body().toString() == "0") {
-                        playBtn.setImageResource(R.drawable.ic_frame)
-                    }
-                }
-                 else {
-                    Toast.makeText(this@PlayMovie, response.message(), Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                Toast.makeText(this@PlayMovie, "failed ${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
-        wishlist.setOnClickListener {
-
-            val request3 = ServiceBuilder.buildService()
-            val call3 = request3.wishlist(
-                WishlistDataItem(
-                    Movieid = id,
-                    userid = USERID
-                )
-            )
-            call3.enqueue(object : Callback<ResponseBody?> {
+        wishlist.setOnClickListener{
+            val request2 = ServiceBuilder.buildService()
+            val call2 = request2.wishlistToggle(WishlistDataItem(Movieid = movieId, userid = USERID))
+            call2.enqueue(object : Callback<ResponseBody?> {
                 override fun onResponse(
-                    call: Call<ResponseBody?>,
-                    response: Response<ResponseBody?>
+                        call: Call<ResponseBody?>,
+                        response: Response<ResponseBody?>
                 ) {
-                    if (response.isSuccessful) {
-                        playBtn.setImageResource(R.drawable.ic_frame__1_)
-
-                    } else if (response.code() == 301) {
-                        playBtn.setImageResource(R.drawable.ic_frame)
-
-                    } else {
-                        Toast.makeText(this@PlayMovie, "not added to wishlist", Toast.LENGTH_SHORT)
-                            .show()
+                    when {
+                        response.isSuccessful -> {
+                            wishlist.setImageResource(R.drawable.ic_frame__1_)
+                        }
+                        response.code()==301 -> {
+                            wishlist.setImageResource(R.drawable.ic_frame)
+                        }
+                        else -> {
+                            Toast.makeText(this@PlayMovie, response.body().toString(), Toast.LENGTH_SHORT)
+                                    .show()
+                        }
                     }
                 }
 
@@ -151,6 +116,10 @@ class PlayMovie : AppCompatActivity() {
                 }
             })
         }
+
+//  show wishlist
+
+
 //        val request1 = ServiceBuilder.buildService()
 //        val call1 = request1.trending()
 //        call1.enqueue(object : Callback<List<MoviesDataItem>?> {
@@ -178,33 +147,64 @@ class PlayMovie : AppCompatActivity() {
 //            }
 //        })
     }
-        fun getrating() {
-            val request = ServiceBuilder.buildService()
-            val call = request.rating(movieId)
-            call.enqueue(object : Callback<ResponseBody?> {
+
+    fun showWishlist(){
+            val request3 = ServiceBuilder.buildService()
+            val call3 = request3.wishlistCheck(
+                    WishlistDataItem(
+                            Movieid = movieId,
+                            userid = USERID
+                    )
+            )
+            call3.enqueue(object : Callback<String?> {
                 override fun onResponse(
-                    call: Call<ResponseBody?>,
-                    response: Response<ResponseBody?>
+                        call: Call<String?>,
+                        response: Response<String?>
                 ) {
                     if (response.isSuccessful) {
-                        val responseBody = response.body() ?: 0
-                        Toast.makeText(this@PlayMovie, responseBody.toString(), Toast.LENGTH_SHORT)
-                            .show()
-                        rating.rating = responseBody as Float
-
-                    } else {
-                        Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
-
+                        when(response.body().toString()){
+                            "1"->wishlist.setImageResource(R.drawable.ic_frame__1_)
+                            "0"->wishlist.setImageResource(R.drawable.ic_frame)
+                            else-> Toast.makeText(this@PlayMovie, response.body().toString(), Toast.LENGTH_SHORT).show()                        }
+                    }
+                    else {
+                        Toast.makeText(this@PlayMovie, "not added to wishlist", Toast.LENGTH_SHORT).show()
                     }
                 }
-
-                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                    Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
-                        .show()
+                override fun onFailure(call: Call<String?>, t: Throwable) {
+                    Toast.makeText(this@PlayMovie, "failed ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
-        }
+    }
 
+    fun getRating() {
+        val request = ServiceBuilder.buildService()
+        val call = request.rating(WishlistDataItem(Movieid = movieId))
+        call.enqueue(object : Callback<String?> {
+            override fun onResponse(
+                    call: Call<String?>,
+                    response: Response<String?>
+            ) {
+                if (response.isSuccessful) {
+                    if(response.body()==null){
+                        rating.rating = 0F
+                    }
+                    else{
+                        rating.rating = response.body()!!.toFloat()
+                    }
+
+                } else {
+                    Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<String?>, t: Throwable) {
+                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
+                        .show()
+            }
+        })
+    }
 
 
 }
