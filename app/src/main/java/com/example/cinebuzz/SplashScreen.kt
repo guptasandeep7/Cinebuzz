@@ -71,33 +71,11 @@ class SplashScreen : AppCompatActivity() {
                 finish()
             }
             else {
+                TOKEN ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvbGNoaWdlZWtAZ21haWwuY29tIiwiaWF0IjoxNjM3MzUxMDQ4LCJleHAiOjE2Mzc0Mzc0NDh9.v1fuXxizIYD4cwzca_hZCS9CSVObUMbzqror4hQ6YUY"
                 val intent=Intent(this@SplashScreen,OfflinePage::class.java)
                 startActivity(intent)
                 finish()
             }
         }
-
-//        fun hasInternetConnection(): Single<Boolean> {
-//            return Single.fromCallable {
-//                try {
-//                    // Connect to Google DNS to check for connection
-//                    val timeoutMs = 1500
-//                    val socket = Socket()
-//                    val socketAddress = InetSocketAddress("8.8.8.8", 53)
-//
-//                    socket.connect(socketAddress, timeoutMs)
-//                    socket.close()
-//
-//                    true
-//                } catch (e: IOException) {
-//                    false
-//                }
-//            }
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//        }
-//
-//        hasInternetConnection().subscribe { hasInternet -> /* do something */}
-//
     }
 }

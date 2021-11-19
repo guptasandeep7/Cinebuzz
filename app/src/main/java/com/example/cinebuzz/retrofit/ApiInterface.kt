@@ -81,4 +81,6 @@ interface ApiInterface {
     @POST("delete/history")
     fun deleteHistory(@Body data: WishlistDataItem):Call<String>
 
+    @POST("changepass")
+    fun changePassword(@Body data: MyDataItem): Call<String>
 }
