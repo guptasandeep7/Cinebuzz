@@ -9,7 +9,6 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -30,12 +29,10 @@ class ProfilePageAdapter(private val context: Context?,private val wishlist: Arr
         val item = wishlist[position]
 
         if (type == 1) {
-            Toast.makeText(context,"$position",Toast.LENGTH_SHORT).show()
             holder.wishlistBtn.visibility = View.VISIBLE
             holder.line.visibility = View.VISIBLE
         }
         else {
-            Toast.makeText(context,"$position",Toast.LENGTH_SHORT).show()
             holder.wishlistBtn.visibility = View.GONE
             holder.line.visibility = View.GONE
         }
@@ -47,7 +44,7 @@ class ProfilePageAdapter(private val context: Context?,private val wishlist: Arr
         }
         holder.cardView.setOnClickListener{
             val intent = Intent(context, PlayMovie::class.java)
-            intent.putExtra("MOVIEID", item._id.toString())
+            intent.putExtra("MOVIEID", wishlist[position]._id.toString())
             context?.startActivity(intent)
         }
 

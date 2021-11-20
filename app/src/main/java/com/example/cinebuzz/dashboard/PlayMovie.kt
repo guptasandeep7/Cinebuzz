@@ -24,6 +24,7 @@ import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.example.cinebuzz.retrofit.WishlistDataItem
+import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -99,12 +100,9 @@ class PlayMovie : AppCompatActivity() {
             if (isLogedIn() == true) {
                 USERNAME = getUserDetails("USERNAME")!!
                 USEREMAIL = getUserDetails("USEREMAIL")!!
-                TOKEN = getUserDetails("TOKEN")
-                    ?: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvbGNoaWdlZWtAZ21haWwuY29tIiwiaWF0IjoxNjM3MzUxMDQ4LCJleHAiOjE2Mzc0Mzc0NDh9.v1fuXxizIYD4cwzca_hZCS9CSVObUMbzqror4hQ6YUY"
+                TOKEN = getUserDetails("TOKEN")!!
                 USERID = getUserDetails("USERID")!!
             } else {
-                TOKEN =
-                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvbGNoaWdlZWtAZ21haWwuY29tIiwiaWF0IjoxNjM3MzUxMDQ4LCJleHAiOjE2Mzc0Mzc0NDh9.v1fuXxizIYD4cwzca_hZCS9CSVObUMbzqror4hQ6YUY"
                 val intent = Intent(this@PlayMovie, MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -208,30 +206,6 @@ class PlayMovie : AppCompatActivity() {
 
         }
 
-//  show wishlist
-//        val request1 = ServiceBuilder2.buildService()
-//        val call1 = request1.trending()
-//        call1.enqueue(object : Callback<List<MoviesDataItem>?> {
-//            override fun onResponse(call: Call<List<MoviesDataItem>?>, response: Response<List<MoviesDataItem>?>) {
-//                if(response.isSuccessful) {
-//                    Toast.makeText(context,"successful", Toast.LENGTH_SHORT).show()
-//                    val responseBody=response.body()!!
-//                    for(item in responseBody) {
-//                        historyList.add(item)
-//                    }
-//        adapter= ReviewsAdapter(reviews)
-//        reviewsRecylcer.adapter=adapter
-//        reviewsRecylcer.layoutManager=
-//            LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-//                }
-//                else{
-//                    Toast.makeText(context,"unsuccessful ${response.message()}", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//            override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
-//                Toast.makeText(context,"failed ${t.message}", Toast.LENGTH_SHORT).show()
-//            }
-//        })
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -272,13 +246,14 @@ class PlayMovie : AppCompatActivity() {
                 response: Response<ResponseBody?>
             ) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@PlayMovie, ratingBar2.rating.toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(this@PlayMovie, "Thanks for rating !!!", Toast.LENGTH_SHORT)
                         .show()
 
-                } else {
-                    Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
-
                 }
+//                else {
+//                    Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
+//
+//                }
             }
 
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
@@ -310,10 +285,11 @@ class PlayMovie : AppCompatActivity() {
                     reviewsRecylcer.adapter = adapter
                     reviewsRecylcer.layoutManager =
                         LinearLayoutManager(this@PlayMovie, LinearLayoutManager.VERTICAL, false)
-                } else {
-                    Toast.makeText(this@PlayMovie, "no review", Toast.LENGTH_SHORT).show()
-
                 }
+//                else {
+//                    Toast.makeText(this@PlayMovie, "no review", Toast.LENGTH_SHORT).show()
+//
+//                }
             }
 
             override fun onFailure(call: Call<ReviewDataItem?>, t: Throwable) {
@@ -337,10 +313,11 @@ class PlayMovie : AppCompatActivity() {
                         userDetails(item.userid!!, item.review!!)
                     }
 
-                } else {
-                    Toast.makeText(this@PlayMovie, "no review", Toast.LENGTH_SHORT).show()
-
                 }
+//                else {
+//                    Toast.makeText(this@PlayMovie, "no review", Toast.LENGTH_SHORT).show()
+//
+//                }
             }
 
             override fun onFailure(call: Call<ArrayList<WishlistDataItem>?>, t: Throwable) {
@@ -364,14 +341,15 @@ class PlayMovie : AppCompatActivity() {
                 call: Call<ResponseBody?>,
                 response: Response<ResponseBody?>
             ) {
-                if (response.isSuccessful) {
-                    Toast.makeText(this@PlayMovie, ratingBar2.rating.toString(), Toast.LENGTH_SHORT)
-                        .show()
-
-                } else {
-                    Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
-
-                }
+//                if (response.isSuccessful) {
+//                    Toast.makeText(this@PlayMovie, "Thanks for review", Toast.LENGTH_SHORT)
+//                        .show()
+//
+//                }
+//                else {
+//                    Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
+//
+//                }
             }
 
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
@@ -382,7 +360,6 @@ class PlayMovie : AppCompatActivity() {
     }
 
     fun showMovie() {
-        //movie Details
         val request1 = ServiceBuilder2.buildService()
         val call1 = request1.movie(
             MoviesDataItem(
@@ -480,10 +457,11 @@ class PlayMovie : AppCompatActivity() {
                         rating.rating = response.body()!!.toFloat()
                     }
 
-                } else {
-                    Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
-
                 }
+//                else {
+//                    Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
+//
+//                }
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
@@ -494,9 +472,6 @@ class PlayMovie : AppCompatActivity() {
     }
 
     fun addToHistory() {
-        Toast.makeText(this@PlayMovie, movieId, Toast.LENGTH_SHORT).show()
-        Toast.makeText(this@PlayMovie, USERID, Toast.LENGTH_SHORT).show()
-
         val request4 = ServiceBuilder.buildService()
         val call4 = request4.history(
             WishlistDataItem(
@@ -505,9 +480,7 @@ class PlayMovie : AppCompatActivity() {
             )
         )
         call4.enqueue(object : Callback<String?> {
-            override fun onResponse(call: Call<String?>, response: Response<String?>) {
-            }
-
+            override fun onResponse(call: Call<String?>, response: Response<String?>) {}
             override fun onFailure(call: Call<String?>, t: Throwable) {
                 Toast.makeText(this@PlayMovie, "failed ${t.message}", Toast.LENGTH_SHORT).show()
             }

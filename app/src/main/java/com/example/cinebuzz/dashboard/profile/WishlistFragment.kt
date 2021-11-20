@@ -50,15 +50,12 @@ class WishlistFragment : Fragment() {
                     for (item in responseBody) {
                         profile_wishlist(item)
                     }
-
-
                 } else {
                     Toast.makeText(
                         contex,
                         "unsuccessful ${response.message()}",
                         Toast.LENGTH_SHORT
                     ).show()
-
                 }
             }
 
@@ -87,7 +84,8 @@ class WishlistFragment : Fragment() {
                     movieList.add(
                         MoviesDataItem(
                             name = responseBody.name,
-                            poster = responseBody.poster
+                            poster = responseBody.poster,
+                            _id = responseBody._id
                         )
                     )
                     adapter = ProfilePageAdapter(activity,movieList, 1)
