@@ -11,10 +11,10 @@ object ServiceBuilder {
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASEURL)
         .addConverterFactory(GsonConverterFactory.create())
-        .client(OkHttpClient.Builder().addInterceptor { chain ->
-            val request = chain.request().newBuilder().addHeader("Authorization", "Bearer ${TOKEN}").build()
-            chain.proceed(request)
-        }.build())
+//        .client(OkHttpClient.Builder().addInterceptor { chain ->
+//            val request = chain.request().newBuilder().addHeader("Authorization", "Bearer ${TOKEN}").build()
+//            chain.proceed(request)
+//        }.build())
         .build()
 
     fun buildService():ApiInterface{
