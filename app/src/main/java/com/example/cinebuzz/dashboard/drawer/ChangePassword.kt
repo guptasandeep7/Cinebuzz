@@ -73,6 +73,8 @@ class ChangePassword : AppCompatActivity() {
                     }else if(response.code()==301)
                     {
                         Toast.makeText(this@ChangePassword,"Old Password is incorrect", Toast.LENGTH_SHORT).show()
+                        done.isClickable = true
+                        passwordProgressbar.visibility = View.GONE
                     }
                     else {
                         Toast.makeText(this@ChangePassword, response.code().toString(), Toast.LENGTH_SHORT).show()

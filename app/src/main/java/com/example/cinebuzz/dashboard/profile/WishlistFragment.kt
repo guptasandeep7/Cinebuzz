@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -91,7 +90,7 @@ class WishlistFragment : Fragment() {
                             poster = responseBody.poster
                         )
                     )
-                    adapter = ProfilePageAdapter(movieList, 1)
+                    adapter = ProfilePageAdapter(activity,movieList, 1)
                     wishlistRecylcer.adapter = adapter
                     wishlistRecylcer.layoutManager =
                         LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)

@@ -96,4 +96,8 @@ interface ApiInterface {
 
     @POST("userDetails")
     fun userDetails(@Body data: WishlistDataItem):Call<ReviewDataItem>
+  
+    @POST("feedback")
+    fun feedback(@Body data: MyDataItem): Call<String>
+
 }
