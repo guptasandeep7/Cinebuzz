@@ -19,7 +19,6 @@ import com.example.cinebuzz.auth.SignupFragment.Companion.userName
 import com.example.cinebuzz.auth.VerifyFragment.Companion.forgot
 import com.example.cinebuzz.databinding.PasswordFragmentBinding
 import com.example.cinebuzz.retrofit.MyDataItem
-import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch

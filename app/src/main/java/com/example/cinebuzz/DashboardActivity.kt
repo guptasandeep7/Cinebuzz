@@ -3,6 +3,7 @@ package com.example.cinebuzz
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -39,15 +40,17 @@ class DashboardActivity : AppCompatActivity() {
 
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         val navView = findViewById<NavigationView>(R.id.nav_view)
-
+        val hearderView=navView.getHeaderView(0)
+        val drawerName=hearderView.findViewById<TextView>(R.id.drawerName)
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         navView.setNavigationItemSelectedListener {
+
+            drawerName.text=SplashScreen.USERNAME
             when (it.itemId) {
                 R.id.about_us -> Toast.makeText(this, "about us", Toast.LENGTH_SHORT).show()
                 R.id.privacy_policy -> {

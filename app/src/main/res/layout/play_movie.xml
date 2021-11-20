@@ -204,7 +204,6 @@
                 android:inputType="text"
                 android:letterSpacing="0.04"
                 android:lines="1"
-                android:maxLength="12"
                 android:paddingStart="11dp"
                 android:paddingEnd="11dp"
                 android:textSize="16sp" />
