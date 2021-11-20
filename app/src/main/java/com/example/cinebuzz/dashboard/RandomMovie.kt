@@ -49,7 +49,6 @@ class RandomMovie : AppCompatActivity() {
         Shimmer = findViewById(R.id.randomshimmer)
         cardView = findViewById(R.id.cardView)
         ratingBar = findViewById(R.id.ratingBar)
-//        progressBar = findViewById(R.id.progressBar)
         category = intent.getStringExtra("Category")!!
 
         findMovie()

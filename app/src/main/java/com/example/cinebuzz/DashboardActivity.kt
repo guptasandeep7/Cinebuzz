@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.cinebuzz.SplashScreen.Companion.logInState
+import com.example.cinebuzz.dashboard.drawer.AboutUs
 import com.example.cinebuzz.dashboard.drawer.ChangePassword
 import com.example.cinebuzz.dashboard.drawer.Feedback
 import com.example.cinebuzz.dashboard.drawer.PrivacyPolicy
@@ -52,7 +53,10 @@ class DashboardActivity : AppCompatActivity() {
 
             drawerName.text=SplashScreen.USERNAME
             when (it.itemId) {
-                R.id.about_us -> Toast.makeText(this, "about us", Toast.LENGTH_SHORT).show()
+                R.id.about_us -> {
+                    val intent= Intent(this, AboutUs::class.java)
+                    startActivity(intent)
+                }
                 R.id.privacy_policy -> {
                     val intent= Intent(this, PrivacyPolicy::class.java)
                     startActivity(intent)

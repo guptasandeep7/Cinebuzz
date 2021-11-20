@@ -24,7 +24,6 @@ import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.example.cinebuzz.retrofit.WishlistDataItem
-import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -91,6 +90,8 @@ class PlayMovie : AppCompatActivity() {
     lateinit var playEditText: TextInputLayout
     lateinit var review: TextInputEditText
     lateinit var submit: Button
+    val reviewList = ArrayList<ReviewDataItem>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.play_movie)
@@ -264,7 +265,6 @@ class PlayMovie : AppCompatActivity() {
     }
 
     fun userDetails(userId: String, reviewText: String) {
-        val review = ArrayList<ReviewDataItem>()
         val request = ServiceBuilder2.buildService()
         val call = request.userDetails(WishlistDataItem(userid = userId))
         call.enqueue(object : Callback<ReviewDataItem?> {
@@ -274,14 +274,14 @@ class PlayMovie : AppCompatActivity() {
             ) {
                 if (response.isSuccessful && response.body()!=null) {
                     val responseBody = response.body()!!
-                    review.add(
+                    reviewList.add(
                         ReviewDataItem(
                             name = responseBody.name,
                             dpUrl = responseBody.dpUrl ?: "Nan",
                             reviewText = reviewText
                         )
                     )
-                    adapter = ReviewsAdapter(review)
+                    adapter = ReviewsAdapter(reviewList)
                     reviewsRecylcer.adapter = adapter
                     reviewsRecylcer.layoutManager =
                         LinearLayoutManager(this@PlayMovie, LinearLayoutManager.VERTICAL, false)
@@ -300,7 +300,6 @@ class PlayMovie : AppCompatActivity() {
     }
 
     fun showReview() {
-        val review: ArrayList<ReviewDataItem>
         val request = ServiceBuilder2.buildService()
         val call = request.showReview(WishlistDataItem(Movieid = movieId))
         call.enqueue(object : Callback<ArrayList<WishlistDataItem>?> {

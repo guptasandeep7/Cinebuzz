@@ -35,4 +35,5 @@
     <string name="clearall"><u>ClearAll</u></string>
     <string name="submit">Submit</string>
     <string name="rate_this_movie"><u>Rate this movie</u></string>
+    <string name="about">"Sandeep (Android Developer) \n\nJyotsna (Android Developer) \n\nMohit (Node Developer) \n\nAnanya (UI/UX Designer) "</string>
 </resources>
