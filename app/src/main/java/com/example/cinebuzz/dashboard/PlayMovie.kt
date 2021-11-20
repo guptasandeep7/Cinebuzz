@@ -150,7 +150,7 @@ class PlayMovie : AppCompatActivity() {
                                 this@PlayMovie,
                                 response.body().toString(),
                                 Toast.LENGTH_SHORT
-                            )
+                            ).show()
                         }
                     }
                 }
