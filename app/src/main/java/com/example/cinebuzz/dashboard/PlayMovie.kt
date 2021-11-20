@@ -6,28 +6,27 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.cinebuzz.MainActivity
 import com.example.cinebuzz.Play
 import com.example.cinebuzz.R
-import com.example.cinebuzz.SplashScreen
-import com.example.cinebuzz.SplashScreen.Companion.BASEURL
-import com.example.cinebuzz.SplashScreen.Companion.USERID
 import com.example.cinebuzz.dashboard.profile.ReviewDataItem
-import com.example.cinebuzz.databinding.ActivityMainBinding
-import com.example.cinebuzz.model.OfflinePage
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.example.cinebuzz.retrofit.WishlistDataItem
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
@@ -40,7 +39,7 @@ class PlayMovie : AppCompatActivity() {
         val BASEURL = "https://cine---buzz.herokuapp.com/"
         lateinit var USERNAME: String
         lateinit var USEREMAIL: String
-        lateinit var USERID:String
+        lateinit var USERID: String
         lateinit var DPURL: String
         lateinit var TOKEN: String
         lateinit var dataStore: DataStore<Preferences>
@@ -72,6 +71,7 @@ class PlayMovie : AppCompatActivity() {
         }
 
     }
+
     private lateinit var reviewsRecylcer: RecyclerView
     private lateinit var Shimmer: ShimmerFrameLayout
     private lateinit var reviews: ArrayList<ReviewDataItem>
@@ -84,6 +84,12 @@ class PlayMovie : AppCompatActivity() {
     lateinit var plot: TextView
     lateinit var shareBtn: ImageView
     lateinit var playBtn: ImageView
+    lateinit var rateThisMovie: TextView
+    lateinit var ratingBar2: RatingBar
+    lateinit var writeReview: TextView
+    lateinit var playEditText: TextInputLayout
+    lateinit var review: TextInputEditText
+    lateinit var submit: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.play_movie)
@@ -93,12 +99,13 @@ class PlayMovie : AppCompatActivity() {
             if (isLogedIn() == true) {
                 USERNAME = getUserDetails("USERNAME")!!
                 USEREMAIL = getUserDetails("USEREMAIL")!!
-                TOKEN = getUserDetails("TOKEN")?:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvbGNoaWdlZWtAZ21haWwuY29tIiwiaWF0IjoxNjM3MzUxMDQ4LCJleHAiOjE2Mzc0Mzc0NDh9.v1fuXxizIYD4cwzca_hZCS9CSVObUMbzqror4hQ6YUY"
-                USERID =getUserDetails("USERID")!!
-            }
-            else{
-                TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvbGNoaWdlZWtAZ21haWwuY29tIiwiaWF0IjoxNjM3MzUxMDQ4LCJleHAiOjE2Mzc0Mzc0NDh9.v1fuXxizIYD4cwzca_hZCS9CSVObUMbzqror4hQ6YUY"
-                val intent=Intent(this@PlayMovie, MainActivity::class.java)
+                TOKEN = getUserDetails("TOKEN")
+                    ?: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvbGNoaWdlZWtAZ21haWwuY29tIiwiaWF0IjoxNjM3MzUxMDQ4LCJleHAiOjE2Mzc0Mzc0NDh9.v1fuXxizIYD4cwzca_hZCS9CSVObUMbzqror4hQ6YUY"
+                USERID = getUserDetails("USERID")!!
+            } else {
+                TOKEN =
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvbGNoaWdlZWtAZ21haWwuY29tIiwiaWF0IjoxNjM3MzUxMDQ4LCJleHAiOjE2Mzc0Mzc0NDh9.v1fuXxizIYD4cwzca_hZCS9CSVObUMbzqror4hQ6YUY"
+                val intent = Intent(this@PlayMovie, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -113,6 +120,13 @@ class PlayMovie : AppCompatActivity() {
         wishlist = findViewById(R.id.wishlist)
         shareBtn = findViewById(R.id.share_btn)
         playBtn = findViewById(R.id.playImage)
+        rateThisMovie = findViewById(R.id.rate_this_movie)
+        ratingBar2 = findViewById(R.id.ratingBar2)
+        writeReview = findViewById(R.id.textView9)
+        playEditText = findViewById(R.id.playEdittext)
+        review = findViewById(R.id.review)
+        submit = findViewById(R.id.submit)
+
 
         handleIntent(intent)
         shareBtn.setOnClickListener {
@@ -127,7 +141,38 @@ class PlayMovie : AppCompatActivity() {
         }
 
 
+        rateThisMovie.setOnClickListener {
+            if (ratingBar2.isVisible) {
+                ratingBar2.visibility = View.GONE
+                writeReview.visibility = View.GONE
+                playEditText.visibility = View.GONE
+                review.visibility = View.GONE
+                submit.visibility = View.GONE
+            } else {
+                ratingBar2.visibility = View.VISIBLE
+                writeReview.visibility = View.VISIBLE
+                playEditText.visibility = View.VISIBLE
+                review.visibility = View.VISIBLE
+                submit.visibility = View.VISIBLE
+            }
+        }
 // wishlistToggle
+
+        submit.setOnClickListener {
+            if (ratingBar2.rating != 0F) {
+                sendRating()
+                if (review.text.toString().isNotEmpty())
+                    sendReview()
+                ratingBar2.visibility = View.GONE
+                writeReview.visibility = View.GONE
+                playEditText.visibility = View.GONE
+                review.visibility = View.GONE
+                submit.visibility = View.GONE
+            } else {
+                review.error = "Please rate the movie"
+            }
+
+        }
 
         wishlist.setOnClickListener {
             val request2 = ServiceBuilder2.buildService()
@@ -212,6 +257,130 @@ class PlayMovie : AppCompatActivity() {
         showMovie()
     }
 
+    fun sendRating() {
+        val request = ServiceBuilder2.buildService()
+        val call = request.sendRating(
+            WishlistDataItem(
+                Movieid = movieId,
+                userid = USERID,
+                rating = ratingBar2.rating.toString()
+            )
+        )
+        call.enqueue(object : Callback<ResponseBody?> {
+            override fun onResponse(
+                call: Call<ResponseBody?>,
+                response: Response<ResponseBody?>
+            ) {
+                if (response.isSuccessful) {
+                    Toast.makeText(this@PlayMovie, ratingBar2.rating.toString(), Toast.LENGTH_SHORT)
+                        .show()
+
+                } else {
+                    Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+    }
+
+    fun userDetails(userId: String, reviewText: String) {
+        val review = ArrayList<ReviewDataItem>()
+        val request = ServiceBuilder2.buildService()
+        val call = request.userDetails(WishlistDataItem(userid = userId))
+        call.enqueue(object : Callback<ReviewDataItem?> {
+            override fun onResponse(
+                call: Call<ReviewDataItem?>,
+                response: Response<ReviewDataItem?>
+            ) {
+                if (response.isSuccessful && response.body()!=null) {
+                    val responseBody = response.body()!!
+                    review.add(
+                        ReviewDataItem(
+                            name = responseBody.name,
+                            dpUrl = responseBody.dpUrl ?: "Nan",
+                            reviewText = reviewText
+                        )
+                    )
+                    adapter = ReviewsAdapter(review)
+                    reviewsRecylcer.adapter = adapter
+                    reviewsRecylcer.layoutManager =
+                        LinearLayoutManager(this@PlayMovie, LinearLayoutManager.VERTICAL, false)
+                } else {
+                    Toast.makeText(this@PlayMovie, "no review", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<ReviewDataItem?>, t: Throwable) {
+                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+    }
+
+    fun showReview() {
+        val review: ArrayList<ReviewDataItem>
+        val request = ServiceBuilder2.buildService()
+        val call = request.showReview(WishlistDataItem(Movieid = movieId))
+        call.enqueue(object : Callback<ArrayList<WishlistDataItem>?> {
+            override fun onResponse(
+                call: Call<ArrayList<WishlistDataItem>?>,
+                response: Response<ArrayList<WishlistDataItem>?>
+            ) {
+                if (response.isSuccessful) {
+                    for (item in response.body()!!) {
+                        userDetails(item.userid!!, item.review!!)
+                    }
+
+                } else {
+                    Toast.makeText(this@PlayMovie, "no review", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<WishlistDataItem>?>, t: Throwable) {
+                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+    }
+
+    fun sendReview() {
+        val request = ServiceBuilder2.buildService()
+        val call = request.sendReview(
+            WishlistDataItem(
+                Movieid = movieId,
+                userid = USERID,
+                review = review.text.toString()
+            )
+        )
+        call.enqueue(object : Callback<ResponseBody?> {
+            override fun onResponse(
+                call: Call<ResponseBody?>,
+                response: Response<ResponseBody?>
+            ) {
+                if (response.isSuccessful) {
+                    Toast.makeText(this@PlayMovie, ratingBar2.rating.toString(), Toast.LENGTH_SHORT)
+                        .show()
+
+                } else {
+                    Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+    }
+
     fun showMovie() {
         //movie Details
         val request1 = ServiceBuilder2.buildService()
@@ -237,6 +406,7 @@ class PlayMovie : AppCompatActivity() {
                     plot.text = responseBody.plot
                     showWishlist()
                     getRating()
+                    showReview()
                     playBtn.setOnClickListener {
                         addToHistory()
                         val intent = Intent(applicationContext, Play::class.java)

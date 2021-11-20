@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -82,13 +82,14 @@
             android:textColor="@color/white"
             android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3" />
+            app:layout_constraintTop_toBottomOf="@+id/submit" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reviews_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
+            android:paddingBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -138,13 +139,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playImage" />
 
+
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/rate_this_movie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:text="Rate this movie"
+            android:text="@string/rate_this_movie"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:fontFamily="@font/roboto"
@@ -156,18 +158,13 @@
             style="@android:style/Widget.Holo.Light.RatingBar.Indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="6dp"
-            android:indeterminate="false"
-            android:isIndicator="true"
-            android:max="5"
-            android:numStars="5"
-            android:progressBackgroundTint="#8A8A8A"
             android:progressTint="#EAB52F"
-            android:rating="0"
-            android:secondaryProgressTint="@android:color/transparent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:isIndicator="false"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/rate_this_movie"
+             />
 
         <TextView
             android:id="@+id/textView9"
@@ -196,13 +193,13 @@
             app:layout_constraintTop_toBottomOf="@+id/textView9">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password1"
+                android:id="@+id/review"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/border_curve"
                 android:backgroundTint="#FBE1FF"
                 android:hint="Type Something...."
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:letterSpacing="0.04"
                 android:lines="1"
                 android:maxLength="12"
@@ -212,13 +209,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button3"
-            android:layout_width="81dp"
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:background="@drawable/border_curve"
-            android:text="Submit"
+            android:text="@string/submit"
             android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/playEdittext" />

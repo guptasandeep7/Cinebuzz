@@ -1,5 +1,6 @@
 package com.example.cinebuzz.retrofit
 
+import com.example.cinebuzz.dashboard.profile.ReviewDataItem
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -84,6 +85,19 @@ interface ApiInterface {
     @POST("changepass")
     fun changePassword(@Body data: MyDataItem): Call<String>
 
+    @PUT("movie/rating")
+    fun sendRating(@Body data: WishlistDataItem):Call<ResponseBody>
+
+    @POST("movie/review")
+    fun showReview(@Body data: WishlistDataItem):Call<ArrayList<WishlistDataItem>>
+
+    @PUT("movie/review")
+    fun sendReview(@Body data: WishlistDataItem):Call<ResponseBody>
+
+    @POST("userDetails")
+    fun userDetails(@Body data: WishlistDataItem):Call<ReviewDataItem>
+  
     @POST("feedback")
     fun feedback(@Body data: MyDataItem): Call<String>
+
 }

@@ -9,7 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.cinebuzz.R
+import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import com.example.cinebuzz.dashboard.profile.ReviewDataItem
+import com.google.android.exoplayer2.source.dash.manifest.BaseUrl
+import okio.blackholeSink
 
 class ReviewsAdapter(private var reviews: List<ReviewDataItem>) :
     RecyclerView.Adapter<ReviewsAdapter.ReviewViewHolder>() {
@@ -24,11 +27,16 @@ class ReviewsAdapter(private var reviews: List<ReviewDataItem>) :
 
         val item = reviews[position]
         holder.reviewName.text = item.name
-        holder.reviewDp.load(item.dpUrl) {
-            crossfade(true)
-            placeholder(R.drawable.ic_undraw_profile_pic_ic5t_2)
+        if (item.dpUrl=="Nan"){
+            holder.reviewDp.setImageResource(R.drawable.ic_undraw_profile_pic_ic5t_2)
         }
-        holder.reviewRating.rating = item.rating
+        else{
+            holder.reviewDp.load(BASEURL +item.dpUrl) {
+                crossfade(true)
+                placeholder(R.drawable.ic_undraw_profile_pic_ic5t_2)
+            }
+        }
+
         holder.reviewText.text = item.reviewText
 
 
@@ -42,7 +50,6 @@ class ReviewsAdapter(private var reviews: List<ReviewDataItem>) :
 
         var reviewDp = itemView.findViewById<ImageView>(R.id.review_dp)
         var reviewName = itemView.findViewById<TextView>(R.id.review_name)
-        var reviewRating = itemView.findViewById<RatingBar>(R.id.review_rating)
         var reviewText = itemView.findViewById<TextView>(R.id.review_text)
 
 
