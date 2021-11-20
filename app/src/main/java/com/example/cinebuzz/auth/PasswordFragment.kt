@@ -20,6 +20,7 @@ import com.example.cinebuzz.auth.VerifyFragment.Companion.forgot
 import com.example.cinebuzz.databinding.PasswordFragmentBinding
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -62,7 +63,7 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
                 signBtn.isClickable = false
                 passwordProgressbar.visibility = View.VISIBLE
 
-                val request = ServiceBuilder.buildService()
+                val request = ServiceBuilder2.buildService()
                 val call = when (forgot) {
                     "true" -> {
                         request.resetPassword(

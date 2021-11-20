@@ -14,7 +14,7 @@ import com.example.cinebuzz.R
 import com.example.cinebuzz.auth.SignupFragment.Companion.userEmail
 import com.example.cinebuzz.auth.SignupFragment.Companion.userName
 import com.example.cinebuzz.retrofit.MyDataItem
-import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.google.android.material.textfield.TextInputEditText
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -40,20 +40,20 @@ class OtpFragment : Fragment() {
         timerCountDown = object : CountDownTimer(31000, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
-                timer.isEnabled=false
-                timer.text="Resend OTP in " + millisUntilFinished / 1000 + " sec"
+                timer.isEnabled = false
+                timer.text = "Resend OTP in " + millisUntilFinished / 1000 + " sec"
             }
 
             override fun onFinish() {
-                timer.text=getString(R.string.resend_otp)
-                timer.isEnabled=true
+                timer.text = getString(R.string.resend_otp)
+                timer.isEnabled = true
             }
         }.start()
 
-        timer.setOnClickListener{
+        timer.setOnClickListener {
             otpProgressbar.visibility = View.VISIBLE
 
-            val request = ServiceBuilder.buildService()
+            val request = ServiceBuilder2.buildService()
             val call = request.signup(
                 MyDataItem(
                     name = userName,
@@ -68,11 +68,11 @@ class OtpFragment : Fragment() {
                 ) {
                     otpProgressbar.visibility = View.GONE
 
-                    if(response.isSuccessful){
-                        Toast.makeText(context,"OTP resend successfully",Toast.LENGTH_SHORT).show()
-                    }
-                    else{
-                        Toast.makeText(context,"Failed to sent OTP",Toast.LENGTH_SHORT).show()
+                    if (response.isSuccessful) {
+                        Toast.makeText(context, "OTP resend successfully", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        Toast.makeText(context, "Failed to sent OTP", Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -88,13 +88,13 @@ class OtpFragment : Fragment() {
 
 
             if (otpEditText.text.toString() == "") {
-                otpEditText.error="Please enter OTP"
+                otpEditText.error = "Please enter OTP"
 
             } else {
                 verify.isClickable = false
                 otpProgressbar.visibility = View.VISIBLE
 
-                val request = ServiceBuilder.buildService()
+                val request = ServiceBuilder2.buildService()
                 val call = request.otp(
                     MyDataItem(
                         email = userEmail,
@@ -112,13 +112,16 @@ class OtpFragment : Fragment() {
                             timerCountDown?.cancel()
                             val fragmentManager = activity?.supportFragmentManager
                             val fragmentTransaction = fragmentManager?.beginTransaction()
-                            fragmentTransaction?.replace(R.id.fragment_container, PasswordFragment())
+                            fragmentTransaction?.replace(
+                                R.id.fragment_container,
+                                PasswordFragment()
+                            )
                             otpProgressbar.visibility = View.GONE
                             fragmentTransaction?.commit()
 
 
                         } else {
-                            otpEditText.error="OTP is incorrect"
+                            otpEditText.error = "OTP is incorrect"
                             otpProgressbar.visibility = View.GONE
                             verify.isClickable = true
 

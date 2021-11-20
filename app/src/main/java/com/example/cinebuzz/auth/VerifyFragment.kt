@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.cinebuzz.R
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.google.android.material.textfield.TextInputEditText
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -44,7 +45,7 @@ class VerifyFragment : Fragment() {
             } else {
                 next.isClickable = false
                 verifyProgressBar.visibility = View.VISIBLE
-                val request = ServiceBuilder.buildService()
+                val request = ServiceBuilder2.buildService()
                 val call = request.verify(
                     MyDataItem(email = emailEdit.text.toString().trim().lowercase())
                 )

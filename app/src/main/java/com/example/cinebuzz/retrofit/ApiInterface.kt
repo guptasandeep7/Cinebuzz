@@ -67,8 +67,8 @@ interface ApiInterface {
     @POST("wishlist")
     fun wishlistAll(@Body data: WishlistDataItem): Call<ArrayList<String>>
 
-    @GET("refreshlist")
-    fun refreshList():Call<ResponseBody>
+    @POST("refreshlist")
+    fun refreshList(@Body data: WishlistDataItem):Call<ResponseBody>
 
     @POST("movie/history")
     fun history(@Body data: WishlistDataItem):Call<String>

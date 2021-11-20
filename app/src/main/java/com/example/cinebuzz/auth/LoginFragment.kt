@@ -21,6 +21,7 @@ import com.example.cinebuzz.SplashScreen.Companion.logInState
 import com.example.cinebuzz.SplashScreen.Companion.saveUserDetails
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -77,7 +78,7 @@ class LoginFragment : Fragment() {
             } else {
                 login.isClickable = false
                 loginProgressbar.visibility = View.VISIBLE
-                val request = ServiceBuilder.buildService()
+                val request = ServiceBuilder2.buildService()
                 val call = request.login(
                     MyDataItem(
                         email = emailEditText2.text.toString().trim().lowercase(),

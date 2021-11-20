@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import coil.load
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen.Companion.BASEURL
+import com.example.cinebuzz.SplashScreen.Companion.USERID
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.WishlistDataItem
@@ -29,19 +30,18 @@ class RandomMovie : AppCompatActivity() {
     lateinit var cardView: CardView
     lateinit var ratingBar: RatingBar
 
-    //    lateinit var progressBar: ProgressBar
     private lateinit var Shimmer: ShimmerFrameLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.random_movie)
 
         supportActionBar?.setBackgroundDrawable(
-                ColorDrawable(
-                        ContextCompat.getColor(
-                                this,
-                                android.R.color.black
-                        )
+            ColorDrawable(
+                ContextCompat.getColor(
+                    this,
+                    android.R.color.black
                 )
+            )
         )
         movieImage = findViewById(R.id.movie_image)
         movieName = findViewById(R.id.movie_names)
@@ -55,6 +55,7 @@ class RandomMovie : AppCompatActivity() {
         findMovie()
 
         nextBtn.setOnClickListener(View.OnClickListener {
+            nextBtn.text = "Next"
             findMovie()
         })
 
@@ -62,11 +63,11 @@ class RandomMovie : AppCompatActivity() {
 
     fun findMovie() {
         val request1 = ServiceBuilder.buildService()
-        val call1 = request1.random(MoviesDataItem(genre = category))
+        val call1 = request1.random(MoviesDataItem(genre = category, userid = USERID))
         call1.enqueue(object : Callback<MoviesDataItem?> {
             override fun onResponse(
-                    call: Call<MoviesDataItem?>,
-                    response: Response<MoviesDataItem?>
+                call: Call<MoviesDataItem?>,
+                response: Response<MoviesDataItem?>
             ) {
                 if (response.isSuccessful) {
                     Shimmer.stopShimmer()
@@ -77,7 +78,6 @@ class RandomMovie : AppCompatActivity() {
                         placeholder(R.drawable.randomise_icon)
                         crossfade(true)
                     }
-                    Toast.makeText(this@RandomMovie, responseBody.name, Toast.LENGTH_SHORT).show()
                     movieName.text = responseBody.name.toString()
                     getRating(responseBody._id.toString())
                     cardView.setOnClickListener {
@@ -87,6 +87,7 @@ class RandomMovie : AppCompatActivity() {
                     }
                 } else {
                     Toast.makeText(applicationContext, "No movie found", Toast.LENGTH_SHORT).show()
+                    nextBtn.text = "Again"
                 }
             }
 
@@ -101,8 +102,8 @@ class RandomMovie : AppCompatActivity() {
         val call = request.rating(WishlistDataItem(Movieid = movieId))
         call.enqueue(object : Callback<String?> {
             override fun onResponse(
-                    call: Call<String?>,
-                    response: Response<String?>
+                call: Call<String?>,
+                response: Response<String?>
             ) {
                 if (response.isSuccessful) {
                     if (response.body() == null) {
@@ -119,7 +120,7 @@ class RandomMovie : AppCompatActivity() {
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
                 Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
-                        .show()
+                    .show()
             }
         })
     }
@@ -128,11 +129,11 @@ class RandomMovie : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         val request1 = ServiceBuilder.buildService()
-        val call1 = request1.refreshList()
+        val call1 = request1.refreshList(WishlistDataItem(userid = USERID))
         call1.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(
-                    call: Call<ResponseBody?>,
-                    response: Response<ResponseBody?>
+                call: Call<ResponseBody?>,
+                response: Response<ResponseBody?>
             ) {
             }
 
