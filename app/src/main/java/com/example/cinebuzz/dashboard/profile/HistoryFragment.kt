@@ -93,7 +93,7 @@ class HistoryFragment : Fragment() {
                             poster = responseBody.poster
                         )
                     )
-                    adapter = ProfilePageAdapter(historyList, 2)
+                    adapter = ProfilePageAdapter(activity,historyList, 2)
                     historyRecylcer.adapter = adapter
                     historyRecylcer.layoutManager =
                         LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)

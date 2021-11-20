@@ -83,4 +83,7 @@ interface ApiInterface {
 
     @POST("changepass")
     fun changePassword(@Body data: MyDataItem): Call<String>
+
+    @POST("feedback")
+    fun feedback(@Body data: MyDataItem): Call<String>
 }
