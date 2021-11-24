@@ -34,6 +34,7 @@ class HistoryFragment : Fragment() {
         historyRecylcer = view.findViewById(R.id.history_recyclerview)
         Shimmer = view.findViewById(R.id.historyShimmer)
         clearAll=view.findViewById(R.id.clearAll)
+        clearAll.visibility=View.GONE
         val request1 = ServiceBuilder.buildService()
         val call1 = request1.showHistory(
             WishlistDataItem(userid = SplashScreen.USERID)
@@ -92,11 +93,14 @@ class HistoryFragment : Fragment() {
                             name = responseBody.name,
                             poster = responseBody.poster
                         )
+
                     )
                     adapter = ProfilePageAdapter(activity,historyList, 2)
                     historyRecylcer.adapter = adapter
                     historyRecylcer.layoutManager =
                         LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                  if (historyRecylcer.adapter!=null)
+                    clearAll.visibility=View.VISIBLE
                 } else {
                     Toast.makeText(context, "No movie found", Toast.LENGTH_SHORT).show()
                 }
@@ -118,6 +122,7 @@ class HistoryFragment : Fragment() {
                 response: Response<String?>
             ) {
                 if (response.isSuccessful) {
+                    clearAll.visibility=View.GONE
                     Toast.makeText(context, "History Cleared", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(

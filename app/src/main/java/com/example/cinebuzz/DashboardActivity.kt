@@ -45,13 +45,14 @@ class DashboardActivity : AppCompatActivity() {
         val drawerName=hearderView.findViewById<TextView>(R.id.drawerName)
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
+        drawerName.text=SplashScreen.USERNAME
         toggle.syncState()
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         navView.setNavigationItemSelectedListener {
 
-            drawerName.text=SplashScreen.USERNAME
+
             when (it.itemId) {
                 R.id.about_us -> {
                     val intent= Intent(this, AboutUs::class.java)
@@ -64,6 +65,7 @@ class DashboardActivity : AppCompatActivity() {
                 R.id.feedback -> {
                     val intent= Intent(this, Feedback::class.java)
                     startActivity(intent)
+                    finish()
                 }
                 R.id.change_password ->{
                     val intent= Intent(this, ChangePassword::class.java)

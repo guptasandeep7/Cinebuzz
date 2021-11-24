@@ -20,6 +20,7 @@
             android:text="@string/clearall"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <com.facebook.shimmer.ShimmerFrameLayout

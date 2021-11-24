@@ -46,7 +46,7 @@ class Feedback : AppCompatActivity() {
                         )
                             .show()
                         startActivity(Intent(this@Feedback, DashboardActivity::class.java))
-
+                          finish()
                     } else {
                         Toast.makeText(
                             this@Feedback, response.code().toString(), Toast.LENGTH_SHORT
