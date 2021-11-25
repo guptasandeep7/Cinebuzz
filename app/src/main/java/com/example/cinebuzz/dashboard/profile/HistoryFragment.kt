@@ -135,6 +135,7 @@ class HistoryFragment : Fragment() {
                 if (response.isSuccessful) {
                     clearAll.visibility = View.GONE
                     Toast.makeText(context, "History Cleared", Toast.LENGTH_SHORT).show()
+                    historyList.clear()
                 } else {
                     Toast.makeText(
                         context,

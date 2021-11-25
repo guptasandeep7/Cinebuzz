@@ -5,16 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
+import com.example.cinebuzz.SplashScreen
 import com.example.cinebuzz.SplashScreen.Companion.USERID
+import com.example.cinebuzz.dashboard.PlayMovie
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.example.cinebuzz.retrofit.WishlistDataItem
 import com.facebook.shimmer.ShimmerFrameLayout
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +31,8 @@ class WishlistFragment : Fragment() {
     private val movieList = ArrayList<MoviesDataItem>()
     private lateinit var adapter: ProfilePageAdapter
     private lateinit var Shimmer: ShimmerFrameLayout
+    lateinit var movieId: String
+
     lateinit var contex: Context
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +42,7 @@ class WishlistFragment : Fragment() {
         contex = requireContext()
         wishlistRecylcer = view.findViewById(R.id.wishlist_recyclerview)
         Shimmer = view.findViewById(R.id.whislistShimmer)
+       val image = view.findViewById<ImageButton>(R.id.wishlist_btn)
         val request1 = ServiceBuilder.buildService()
         val call1 = request1.wishlistAll(
             WishlistDataItem(userid = USERID)
@@ -64,6 +73,38 @@ class WishlistFragment : Fragment() {
             }
         })
 
+//        image.setOnClickListener {
+//            val request2 = ServiceBuilder2.buildService()
+//            val call2 = request2.wishlistToggle(
+//                WishlistDataItem(
+//                    Movieid = movieId,
+//                    userid = USERID
+//                )
+//            )
+//            call2.enqueue(object : Callback<ResponseBody?> {
+//                override fun onResponse(
+//                    call: Call<ResponseBody?>,
+//                    response: Response<ResponseBody?>
+//                ) {
+//                    if (response.isSuccessful) {
+//                        if (response.code() == 301) {
+//                            Toast.makeText(contex, "item removed", Toast.LENGTH_SHORT).show()
+//                        } else {
+//                            Toast.makeText(
+//                                context,
+//                                response.body().toString(),
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+//                        }
+//                    }
+//                }
+//                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+//                    Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//            })
+
+//        }
         return view
     }
 
@@ -101,4 +142,38 @@ class WishlistFragment : Fragment() {
             }
         })
     }
+//    fun showWishlistt() {
+//        val request3 = ServiceBuilder2.buildService()
+//        val call3 = request3.wishlistCheck(
+//            WishlistDataItem(
+//                Movieid = movieId,
+//                userid = PlayMovie.USERID
+//            )
+//        )
+//        call3.enqueue(object : Callback<String?> {
+//            override fun onResponse(
+//                call: Call<String?>,
+//                response: Response<String?>
+//            ) {
+//                if (response.isSuccessful) {
+//                    when (response.body().toString()) {
+//                        "1" -> image.setImageResource(R.drawable.ic_like_icon)
+//                        "0" -> image.setImageResource(R.drawable.ic_vector__14_)
+//                        else -> Toast.makeText(
+//                            context,
+//                            response.body().toString(),
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    }
+//                } else {
+//                    Toast.makeText(context, "not added to wishlist", Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<String?>, t: Throwable) {
+//                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//    }
 }

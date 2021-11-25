@@ -165,8 +165,10 @@ class PlayMovie : AppCompatActivity() {
         submit.setOnClickListener {
             if (ratingBar2.rating != 0F) {
                 sendRating()
-                if (review.text.toString().isNotEmpty())
+                if (review.text.toString().isNotEmpty()) {
                     sendReview()
+                    showReview()
+                }
                 ratingBar2.visibility = View.GONE
                 writeReview.visibility = View.GONE
                 playEditText.visibility = View.GONE
