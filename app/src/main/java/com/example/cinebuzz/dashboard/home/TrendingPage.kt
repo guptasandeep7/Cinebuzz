@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +30,10 @@ class TrendingPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.trending)
-        supportActionBar?.hide()
+        val toolbar:Toolbar = findViewById(R.id.toolbar8)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_keyboard_backspace_24)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val trendingText=findViewById<TextView>(R.id.trend)
         var category = intent.getStringExtra("Category")
         recyclerView=findViewById(R.id.TrendingRecyclerView)

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.cinebuzz.DashboardActivity
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen
@@ -20,52 +21,52 @@ class Feedback : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.feedback)
+        val toolbar: Toolbar = findViewById(R.id.toolbar2)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_keyboard_backspace_24)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val feed = findViewById<TextInputEditText>(R.id.Feedback)
+        val submit = findViewById<Button>(R.id.submit_feedback)
 
-        val feed = findViewById<TextInputEditText>(R.id.feedback)
-        val submit = findViewById<Button>(R.id.submit)
         submit.setOnClickListener {
-            val request = ServiceBuilder.buildService()
-            val call = request.feedback(
-                MyDataItem(
-                    email = SplashScreen.USEREMAIL,
-                    feed = feed?.text.toString()
+            if (feed.text.toString().isNotEmpty()) {
+                val request = ServiceBuilder.buildService()
+                val call = request.feedback(
+                    MyDataItem(
+                        email = SplashScreen.USEREMAIL,
+                        feed = feed.text.toString()
+                    )
                 )
-            )
-            call.enqueue(object : Callback<String?> {
-                override fun onResponse(
-                    call: Call<String?>,
-                    response: Response<String?>
-                ) {
-                    if (response.isSuccessful) {
+                call.enqueue(object : Callback<String?> {
+                    override fun onResponse(
+                        call: Call<String?>,
+                        response: Response<String?>
+                    ) {
+                        if (response.isSuccessful) {
 
-                        Toast.makeText(
-                            this@Feedback,
-                            "Thanks For Your Feedback",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                        startActivity(Intent(this@Feedback, DashboardActivity::class.java))
-                          finish()
-                    } else {
-                        Toast.makeText(
-                            this@Feedback, response.code().toString(), Toast.LENGTH_SHORT
-                        ).show()
-
-
+                            Toast.makeText(
+                                this@Feedback,
+                                "Thanks For Your Feedback",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            startActivity(Intent(this@Feedback, DashboardActivity::class.java))
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this@Feedback, response.code().toString(), Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
+                    override fun onFailure(call: Call<String?>, t: Throwable) {
 
-                }
-
-                override fun onFailure(call: Call<String?>, t: Throwable) {
-
-                    Toast.makeText(this@Feedback, "Failed ${t.message}", Toast.LENGTH_SHORT)
-                        .show()
-
-
-                }
-            })
-
+                        Toast.makeText(this@Feedback, "Failed ${t.message}", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                })
+            }
+            else  feed.error = "Please write feedback"
         }
     }
 }

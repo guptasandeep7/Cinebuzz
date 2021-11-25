@@ -19,12 +19,16 @@
         <activity
             android:name=".dashboard.home.TrendingPage"
             android:exported="true"
+            android:parentActivityName=".DashboardActivity"
+            android:theme="@style/Theme.Cinebuzz"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity
             android:name=".dashboard.RandomMovie"
+            android:parentActivityName=".dashboard.RandomMovie"
+            android:theme="@style/Theme.Cinebuzz"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".SplashScreen"
@@ -37,6 +41,8 @@
         </activity>
         <activity
             android:name=".dashboard.PlayMovie"
+            android:theme="@style/Theme.Cinebuzz"
+            android:parentActivityName=".DashboardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="true">
             <tools:validation testUrl="https://cine---buzz.herokuapp.com/movieid" />
@@ -59,15 +65,21 @@
                     android:pathPrefix="/movieid" />
             </intent-filter>
         </activity>
-        <activity android:name=".dashboard.drawer.Feedback" />
-        <activity android:name=".dashboard.drawer.PrivacyPolicy" />
+        <activity android:name=".dashboard.drawer.Feedback"
+            android:theme="@style/Theme.Cinebuzz"
+            android:parentActivityName=".DashboardActivity"/>
+        <activity android:name=".dashboard.drawer.PrivacyPolicy"
+            android:theme="@style/Theme.Cinebuzz"
+            android:parentActivityName=".DashboardActivity"/>
         <activity
             android:name=".Play"
             android:screenOrientation="sensorLandscape"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name=".model.OfflinePage" />
         <activity android:name=".dashboard.drawer.ChangePassword" />
-        <activity android:name=".dashboard.drawer.AboutUs" />
+        <activity android:name=".dashboard.drawer.AboutUs"
+            android:theme="@style/Theme.Cinebuzz"
+            android:parentActivityName=".DashboardActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"
