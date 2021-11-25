@@ -25,7 +25,7 @@ class HistoryFragment : Fragment() {
     private var historyList = ArrayList<MoviesDataItem>()
     private lateinit var adapter: ProfilePageAdapter
     private lateinit var Shimmer: ShimmerFrameLayout
-    lateinit var clearAll:TextView
+    lateinit var clearAll: TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,8 +33,15 @@ class HistoryFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_history, container, false)
         historyRecylcer = view.findViewById(R.id.history_recyclerview)
         Shimmer = view.findViewById(R.id.historyShimmer)
-        clearAll=view.findViewById(R.id.clearAll)
-        clearAll.visibility=View.GONE
+        clearAll = view.findViewById(R.id.clearAll)
+        clearAll.visibility = View.GONE
+
+        val builder = android.app.AlertDialog.Builder(context)
+        builder.setTitle("History")
+            .setMessage("Do you want to clear history ?")
+            .setPositiveButton(R.string.clear_history) { dialog, id -> clearAll() }
+            .setNeutralButton(R.string.cancel) { dialog, id -> }
+
         val request1 = ServiceBuilder.buildService()
         val call1 = request1.showHistory(
             WishlistDataItem(userid = SplashScreen.USERID)
@@ -68,11 +75,13 @@ class HistoryFragment : Fragment() {
         })
 
         clearAll.setOnClickListener {
-            clearAll()
+            val alertDialog: android.app.AlertDialog = builder.create()
+            alertDialog.show()
         }
 
         return view
     }
+
 
     fun profile_history(id: String) {
         val request1 = ServiceBuilder.buildService()
@@ -95,12 +104,12 @@ class HistoryFragment : Fragment() {
                         )
 
                     )
-                    adapter = ProfilePageAdapter(activity,historyList, 2)
+                    adapter = ProfilePageAdapter(activity, historyList, 2)
                     historyRecylcer.adapter = adapter
                     historyRecylcer.layoutManager =
                         LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-                  if (historyRecylcer.adapter!=null)
-                    clearAll.visibility=View.VISIBLE
+                    if (historyRecylcer.adapter != null)
+                        clearAll.visibility = View.VISIBLE
                 } else {
                     Toast.makeText(context, "No movie found", Toast.LENGTH_SHORT).show()
                 }
@@ -111,7 +120,9 @@ class HistoryFragment : Fragment() {
             }
         })
     }
+
     fun clearAll() {
+
         val request2 = ServiceBuilder.buildService()
         val call2 = request2.deleteHistory(
             WishlistDataItem(userid = SplashScreen.USERID)
@@ -122,7 +133,7 @@ class HistoryFragment : Fragment() {
                 response: Response<String?>
             ) {
                 if (response.isSuccessful) {
-                    clearAll.visibility=View.GONE
+                    clearAll.visibility = View.GONE
                     Toast.makeText(context, "History Cleared", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(

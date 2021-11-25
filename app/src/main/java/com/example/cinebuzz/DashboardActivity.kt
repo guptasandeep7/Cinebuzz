@@ -2,6 +2,7 @@ package com.example.cinebuzz
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
@@ -24,12 +25,9 @@ import kotlinx.coroutines.launch
 
 class DashboardActivity : AppCompatActivity() {
 
-
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var navController: NavController
     lateinit var toggle: ActionBarDrawerToggle
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,45 +36,57 @@ class DashboardActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         val navView = findViewById<NavigationView>(R.id.nav_view)
-        val hearderView=navView.getHeaderView(0)
-        val drawerName=hearderView.findViewById<TextView>(R.id.drawerName)
+        val hearderView = navView.getHeaderView(0)
+        val drawerName = hearderView.findViewById<TextView>(R.id.drawerName)
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
-        drawerName.text=SplashScreen.USERNAME
+        drawerName.text = SplashScreen.USERNAME
         toggle.syncState()
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        navView.setNavigationItemSelectedListener {
 
+        val builder = android.app.AlertDialog.Builder(this)
+        builder.setTitle("Sign Out")
+            .setMessage("Are you sure you want to Sign Out ?")
+            .setPositiveButton(R.string.sign_out) { dialog, id ->
+                lifecycleScope.launch { logInState(false) }
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
+            .setNeutralButton(R.string.cancel) { dialog, id ->
+            }
+
+        navView.setNavigationItemSelectedListener {
 
             when (it.itemId) {
                 R.id.about_us -> {
-                    val intent= Intent(this, AboutUs::class.java)
+                    val intent = Intent(this, AboutUs::class.java)
                     startActivity(intent)
+                    drawerLayout.closeDrawers()
                 }
                 R.id.privacy_policy -> {
-                    val intent= Intent(this, PrivacyPolicy::class.java)
+                    val intent = Intent(this, PrivacyPolicy::class.java)
                     startActivity(intent)
+                    drawerLayout.closeDrawers()
                 }
                 R.id.feedback -> {
-                    val intent= Intent(this, Feedback::class.java)
+                    val intent = Intent(this, Feedback::class.java)
                     startActivity(intent)
-                    finish()
+                    drawerLayout.closeDrawers()
                 }
-                R.id.change_password ->{
-                    val intent= Intent(this, ChangePassword::class.java)
+                R.id.change_password -> {
+                    val intent = Intent(this, ChangePassword::class.java)
                     startActivity(intent)
+                    drawerLayout.closeDrawers()
                 }
-                R.id.signout ->{
-                    lifecycleScope.launch {  logInState(false) }
-                    startActivity(Intent(this,MainActivity::class.java))
-                    finish()
+                R.id.signout -> {
+                    drawerLayout.closeDrawers()
+                    val alertDialog: android.app.AlertDialog = builder.create()
+                    alertDialog.show()
                 }
-
             }
             true
         }
@@ -92,6 +102,18 @@ class DashboardActivity : AppCompatActivity() {
             true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+            val builder = android.app.AlertDialog.Builder(this)
+            builder.setTitle("Exit")
+                .setMessage("Are you sure you want to Exit?")
+                .setPositiveButton(R.string.exit) { dialog, id ->
+                    finish()
+                }
+                .setNeutralButton(R.string.cancel) { dialog, id -> }
+            val exit = builder.create()
+            exit.show()
     }
 
 }

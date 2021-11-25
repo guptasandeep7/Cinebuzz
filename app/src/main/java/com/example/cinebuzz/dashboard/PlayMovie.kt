@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -95,6 +96,10 @@ class PlayMovie : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.play_movie)
+        val toolbar: Toolbar = findViewById(R.id.toolbar4)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_keyboard_backspace_24)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         dataStore = applicationContext?.createDataStore(name = "UserDetails")!!
         lifecycleScope.launch {
@@ -272,7 +277,7 @@ class PlayMovie : AppCompatActivity() {
                 call: Call<ReviewDataItem?>,
                 response: Response<ReviewDataItem?>
             ) {
-                if (response.isSuccessful && response.body()!=null) {
+                if (response.isSuccessful && response.body() != null) {
                     val responseBody = response.body()!!
                     reviewList.add(
                         ReviewDataItem(

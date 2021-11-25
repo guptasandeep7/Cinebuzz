@@ -69,8 +69,6 @@
         android:elevation="10dp"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
-
-
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

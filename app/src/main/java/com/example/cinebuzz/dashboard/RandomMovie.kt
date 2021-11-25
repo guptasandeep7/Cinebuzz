@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import coil.load
@@ -34,6 +35,10 @@ class RandomMovie : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.random_movie)
+        val toolbar: Toolbar = findViewById(R.id.toolbar6)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_keyboard_backspace_24)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         supportActionBar?.setBackgroundDrawable(
             ColorDrawable(
