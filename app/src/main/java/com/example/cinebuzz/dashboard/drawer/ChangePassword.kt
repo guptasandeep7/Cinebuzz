@@ -13,6 +13,7 @@ import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen
 import com.example.cinebuzz.auth.SignupFragment
 import com.example.cinebuzz.auth.VerifyFragment
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.google.android.material.textfield.TextInputEditText
@@ -98,11 +99,9 @@ class ChangePassword : AppCompatActivity() {
 
                     override fun onFailure(call: Call<String?>, t: Throwable) {
 
-                        Toast.makeText(
-                            this@ChangePassword,
-                            "Failed ${t.message}",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        val transaction = supportFragmentManager.beginTransaction()
+                        transaction.replace(R.id.change, SomthingWentWrong())
+                        transaction.commit()
                         done.isClickable = true
                         passwordProgressbar.visibility = View.GONE
 

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.example.cinebuzz.R
 import com.example.cinebuzz.auth.SignupFragment.Companion.userEmail
 import com.example.cinebuzz.auth.SignupFragment.Companion.userName
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.google.android.material.textfield.TextInputEditText
@@ -78,7 +79,11 @@ class OtpFragment : Fragment() {
 
                 override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
                     otpProgressbar.visibility = View.GONE
-                    Toast.makeText(context, "Failed ${t.message}", Toast.LENGTH_SHORT).show()
+                    val fragmentManager = activity?.supportFragmentManager
+                    val fragmentTransaction = fragmentManager?.beginTransaction()
+                    fragmentTransaction?.replace(R.id.fragment_container, SomthingWentWrong())
+                    fragmentTransaction?.addToBackStack(null)
+                    fragmentTransaction?.commit()
                 }
             })
         }
@@ -109,7 +114,7 @@ class OtpFragment : Fragment() {
                     ) {
                         if (response.isSuccessful) {
 
-                            timerCountDown?.cancel()
+                            timerCountDown.cancel()
                             val fragmentManager = activity?.supportFragmentManager
                             val fragmentTransaction = fragmentManager?.beginTransaction()
                             fragmentTransaction?.replace(
@@ -131,7 +136,11 @@ class OtpFragment : Fragment() {
 
                     override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
 
-                        Toast.makeText(context, "Failed ${t.message}", Toast.LENGTH_SHORT).show()
+                        val fragmentManager = activity?.supportFragmentManager
+                        val fragmentTransaction = fragmentManager?.beginTransaction()
+                        fragmentTransaction?.replace(R.id.fragment_container, SomthingWentWrong())
+                        fragmentTransaction?.addToBackStack(null)
+                        fragmentTransaction?.commit()
                         otpProgressbar.visibility = View.GONE
                         verify.isClickable = true
 

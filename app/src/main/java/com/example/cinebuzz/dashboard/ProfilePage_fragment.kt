@@ -13,6 +13,7 @@ import com.example.cinebuzz.SplashScreen
 import com.example.cinebuzz.SplashScreen.Companion.USEREMAIL
 import com.example.cinebuzz.SplashScreen.Companion.USERNAME
 import com.example.cinebuzz.dashboard.profile.PageAdapter
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.WishlistDataItem
 import com.google.android.material.imageview.ShapeableImageView
@@ -82,7 +83,11 @@ class ProfilePage_fragment : Fragment() {
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.constraint, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()
             }
         })
 

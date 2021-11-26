@@ -15,6 +15,7 @@ import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen
 import com.example.cinebuzz.SplashScreen.Companion.USERID
 import com.example.cinebuzz.dashboard.PlayMovie
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.ServiceBuilder2
@@ -69,42 +70,12 @@ class WishlistFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ArrayList<String>?>, t: Throwable) {
-                Toast.makeText(contex, "failed ${t.message}", Toast.LENGTH_SHORT).show()
-            }
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.wish, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()            }
         })
-
-//        image.setOnClickListener {
-//            val request2 = ServiceBuilder2.buildService()
-//            val call2 = request2.wishlistToggle(
-//                WishlistDataItem(
-//                    Movieid = movieId,
-//                    userid = USERID
-//                )
-//            )
-//            call2.enqueue(object : Callback<ResponseBody?> {
-//                override fun onResponse(
-//                    call: Call<ResponseBody?>,
-//                    response: Response<ResponseBody?>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        if (response.code() == 301) {
-//                            Toast.makeText(contex, "item removed", Toast.LENGTH_SHORT).show()
-//                        } else {
-//                            Toast.makeText(
-//                                context,
-//                                response.body().toString(),
-//                                Toast.LENGTH_SHORT
-//                            ).show()
-//                        }
-//                    }
-//                }
-//                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-//                    Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//            })
-
-//        }
         return view
     }
 
@@ -139,6 +110,11 @@ class WishlistFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<MoviesDataItem?>, t: Throwable) {
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.wish, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()
             }
         })
     }
