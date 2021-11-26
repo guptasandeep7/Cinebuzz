@@ -8,13 +8,21 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.cinebuzz.R
+import com.example.cinebuzz.SplashScreen
 import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import com.example.cinebuzz.dashboard.PlayMovie
 import com.example.cinebuzz.retrofit.MoviesDataItem
+import com.example.cinebuzz.retrofit.ServiceBuilder2
+import com.example.cinebuzz.retrofit.WishlistDataItem
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ProfilePageAdapter(private val context: Context?,private val wishlist: ArrayList<MoviesDataItem>, private val type: Int) :
     RecyclerView.Adapter<ProfilePageAdapter.ProfileViewHolder>() {
@@ -47,6 +55,39 @@ class ProfilePageAdapter(private val context: Context?,private val wishlist: Arr
             context?.startActivity(intent)
         }
 
+        holder.wishlistBtn.setOnClickListener {
+            val request2 = ServiceBuilder2.buildService()
+            val call2 = request2.wishlistToggle(
+                WishlistDataItem(
+                    Movieid = item._id,
+                    userid = SplashScreen.USERID
+                )
+            )
+            call2.enqueue(object : Callback<ResponseBody?> {
+                override fun onResponse(
+                    call: Call<ResponseBody?>,
+                    response: Response<ResponseBody?>
+                ) {
+                    if (response.code() == 301) {
+                            Toast.makeText(context, "movie removed", Toast.LENGTH_SHORT).show()
+                        wishlist.removeAt(holder.bindingAdapterPosition)
+                        notifyItemRemoved(holder.bindingAdapterPosition)
+                        } else {
+                            Toast.makeText(
+                                context,
+                                response.code().toString(),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+
+                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                    Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
+
+        }
     }
 
     override fun getItemCount(): Int {
@@ -58,7 +99,7 @@ class ProfilePageAdapter(private val context: Context?,private val wishlist: Arr
         val movieName = itemView.findViewById<TextView>(R.id.profile_movie_name)
         val wishlistBtn = itemView.findViewById<ImageButton>(R.id.wishlist_btn)
         val line = itemView.findViewById<View>(R.id.profile_line)
-        val cardView=itemView.findViewById<CardView>(R.id.profileCardView)
+        val cardView=itemView.findViewById<ImageView>(R.id.profile_movie_image)
     }
 
 }

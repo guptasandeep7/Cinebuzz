@@ -75,6 +75,9 @@ class PlayMovie : AppCompatActivity() {
 
     private lateinit var reviewsRecylcer: RecyclerView
     private lateinit var Shimmer: ShimmerFrameLayout
+    private lateinit var Shimmer1: ShimmerFrameLayout
+    private lateinit var Shimmer2: ShimmerFrameLayout
+    private lateinit var Shimmer3: ShimmerFrameLayout
     private lateinit var reviews: ArrayList<ReviewDataItem>
     private lateinit var adapter: ReviewsAdapter
     lateinit var movieImage: ImageView
@@ -119,6 +122,9 @@ class PlayMovie : AppCompatActivity() {
         movieImage = findViewById(R.id.imageView3)
         movieName = findViewById(R.id.textView8)
         Shimmer = findViewById(R.id.playshimmer)
+        Shimmer1 = findViewById(R.id.playshimmertext)
+        Shimmer2 = findViewById(R.id.playshimmerrating)
+        Shimmer3 = findViewById(R.id.playshimmerplot)
         plot = findViewById(R.id.movie_plot)
         rating = findViewById(R.id.movie_rating)
         wishlist = findViewById(R.id.wishlist)
@@ -165,8 +171,10 @@ class PlayMovie : AppCompatActivity() {
         submit.setOnClickListener {
             if (ratingBar2.rating != 0F) {
                 sendRating()
-                if (review.text.toString().isNotEmpty())
+                if (review.text.toString().isNotEmpty()) {
                     sendReview()
+                    showReview()
+                }
                 ratingBar2.visibility = View.GONE
                 writeReview.visibility = View.GONE
                 playEditText.visibility = View.GONE
@@ -378,11 +386,16 @@ class PlayMovie : AppCompatActivity() {
                 if (response.isSuccessful) {
                     Shimmer.stopShimmer()
                     Shimmer.visibility = View.GONE
+                    Shimmer3.stopShimmer()
+                    Shimmer3.visibility = View.GONE
+                    Shimmer1.stopShimmer()
+                    Shimmer1.visibility = View.GONE
                     val responseBody = response.body()!!
                     movieImage.load(BASEURL + responseBody.poster.toString()) {
                         placeholder(R.drawable.randomise_icon)
                         crossfade(true)
                     }
+                    plot.visibility=View.VISIBLE
                     movieName.text = responseBody.name
                     plot.text = responseBody.plot
                     showWishlist()
@@ -455,10 +468,14 @@ class PlayMovie : AppCompatActivity() {
                 response: Response<String?>
             ) {
                 if (response.isSuccessful) {
+                    Shimmer2.stopShimmer()
+                    Shimmer2.visibility = View.GONE
                     if (response.body() == null) {
                         rating.rating = 0F
+                        rating.visibility=View.VISIBLE
                     } else {
                         rating.rating = response.body()!!.toFloat()
+                        rating.visibility=View.VISIBLE
                     }
 
                 }

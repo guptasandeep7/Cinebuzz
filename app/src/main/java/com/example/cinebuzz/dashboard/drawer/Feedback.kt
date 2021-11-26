@@ -2,6 +2,7 @@ package com.example.cinebuzz.dashboard.drawer
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.cinebuzz.DashboardActivity
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.google.android.material.textfield.TextInputEditText
@@ -61,8 +63,10 @@ class Feedback : AppCompatActivity() {
                     }
                     override fun onFailure(call: Call<String?>, t: Throwable) {
 
-                        Toast.makeText(this@Feedback, "Failed ${t.message}", Toast.LENGTH_SHORT)
-                            .show()
+                        val transaction = supportFragmentManager.beginTransaction()
+                        transaction.replace(R.id.feedb, SomthingWentWrong())
+                        transaction.commit()
+                        submit.visibility=View.GONE
                     }
                 })
             }

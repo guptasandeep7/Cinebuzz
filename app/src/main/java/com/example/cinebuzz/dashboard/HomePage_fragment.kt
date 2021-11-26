@@ -16,7 +16,10 @@ import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen
+import com.example.cinebuzz.auth.VerifyFragment
 import com.example.cinebuzz.dashboard.home.TrendingPage
+import com.example.cinebuzz.databinding.SomethingWentWrongBinding
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.recyclerview.HomePageAdapter
 import com.example.cinebuzz.retrofit.Latest
 import com.example.cinebuzz.retrofit.MoviesDataItem
@@ -68,7 +71,7 @@ class HomePage_fragment : Fragment() {
         Shimmer6 = view.findViewById(R.id.Slidershimmer)
         val imageSlider = view.findViewById<ImageSlider>(R.id.imageSlider)
         val imageList = ArrayList<SlideModel>()
-        var picture = ArrayList<Latest>()
+        val picture = ArrayList<Latest>()
         val request = ServiceBuilder.buildService()
         val call = request.latest()
         call.enqueue(object : Callback<List<Latest>?> {
@@ -114,7 +117,11 @@ class HomePage_fragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<Latest>?>, t: Throwable) {
-                Toast.makeText(context, "${t.message}", Toast.LENGTH_SHORT).show()
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.home, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()
             }
         })
 
@@ -157,7 +164,11 @@ class HomePage_fragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
-                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.home, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()
             }
         })
         val request2 = ServiceBuilder.buildService()
@@ -192,7 +203,11 @@ class HomePage_fragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
-                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.home, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()
 
 
             }
@@ -229,7 +244,11 @@ class HomePage_fragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
-                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.home, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()
             }
         })
         val request4 = ServiceBuilder.buildService()
@@ -264,7 +283,11 @@ class HomePage_fragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
-                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.home, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()
             }
         })
         val request5 = ServiceBuilder.buildService()
@@ -299,7 +322,11 @@ class HomePage_fragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
-                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.home, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()
             }
         })
 

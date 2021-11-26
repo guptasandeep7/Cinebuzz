@@ -47,17 +47,17 @@
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/playshimmer"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/textView8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content">
 
-                    <include layout="@layout/slider_shimmer_rows" />
+                    <include layout="@layout/play_movie_shimmer" />
 
                 </LinearLayout>
 
@@ -72,6 +72,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/playshimmertext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView3">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <include layout="@layout/profile_text_shimmer" />
+                </LinearLayout>
+
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
@@ -80,12 +98,29 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/roboto"
                 android:letterSpacing="0.04"
-                android:text="Movie Name"
+                android:text=""
                 android:textColor="#FFFFFF"
                 android:textSize="32sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/playshimmerrating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView8">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <include layout="@layout/profile_text_shimmer" />
+                </LinearLayout>
+
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
             <RatingBar
                 android:id="@+id/movie_rating"
                 style="@android:style/Widget.Holo.Light.RatingBar.Indicator"
@@ -100,6 +135,7 @@
                 android:progressBackgroundTint="#8A8A8A"
                 android:progressTint="#EAB52F"
                 android:rating="0"
+                android:visibility="invisible"
                 android:secondaryProgressTint="@android:color/transparent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -159,7 +195,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movie_rating"
                 app:srcCompat="@drawable/ic_frame_43" />
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/playshimmerplot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/playImage">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <include layout="@layout/profile_plot_shimmer" />
+                </LinearLayout>
+
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
             <TextView
                 android:id="@+id/movie_plot"
                 android:layout_width="match_parent"
@@ -167,7 +220,8 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="25dp"
-                android:text="the Avengers, American comic strip superhero team whose frequently changing roster often included some of the most popular characters in the Marvel Comics universe."
+                android:text="the Avengers, American comic strip superhero team whose frequently changing roster often included some of the most popular characters in the Marvel Comics universe. "
+                android:visibility="invisible"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -253,6 +307,8 @@
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/playEdittext" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

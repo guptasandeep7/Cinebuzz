@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
 import com.example.cinebuzz.dashboard.PlayMovie
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.recyclerview.TrendingPageAdapter
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
@@ -91,8 +92,9 @@ class TrendingPage : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
-                Toast.makeText(this@TrendingPage,"failed ${t.message}", Toast.LENGTH_SHORT).show()
-            }
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.trendg, SomthingWentWrong())
+                transaction.commit()            }
         })
 
 

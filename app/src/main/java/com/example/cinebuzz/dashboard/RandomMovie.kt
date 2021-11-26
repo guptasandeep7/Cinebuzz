@@ -10,9 +10,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import coil.load
+import com.example.cinebuzz.DashboardActivity
+import com.example.cinebuzz.MainActivity
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import com.example.cinebuzz.SplashScreen.Companion.USERID
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.WishlistDataItem
@@ -96,7 +99,12 @@ class RandomMovie : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<MoviesDataItem?>, t: Throwable) {
-                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+//                val intent = Intent(this@RandomMovie, SomthingWentWrong()::class.java)
+//                startActivity(intent)
+                val fragmentManager = this@RandomMovie.supportFragmentManager
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.random, SomthingWentWrong())
+                fragmentTransaction.commit()
             }
         })
     }
@@ -123,8 +131,10 @@ class RandomMovie : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
-                    .show()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.random, SomthingWentWrong())
+                transaction.addToBackStack(null)
+                transaction.commit()
             }
         })
     }
@@ -142,8 +152,9 @@ class RandomMovie : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT).show()
-            }
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.random, SomthingWentWrong())
+                transaction.commit()      }
         })
 
     }
