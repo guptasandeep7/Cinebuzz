@@ -161,7 +161,7 @@ class HomePage_fragment : Fragment() {
             }
         })
         val request2 = ServiceBuilder.buildService()
-        val call2 = request2.action()
+        val call2 = request2.action("Action")
         call2.enqueue(object : Callback<List<MoviesDataItem>?> {
             override fun onResponse(
                 call: Call<List<MoviesDataItem>?>,
@@ -198,7 +198,7 @@ class HomePage_fragment : Fragment() {
             }
         })
         val request3 = ServiceBuilder.buildService()
-        val call3 = request3.comedy()
+        val call3 = request3.action("Comedy")
         call3.enqueue(object : Callback<List<MoviesDataItem>?> {
             override fun onResponse(
                 call: Call<List<MoviesDataItem>?>,
@@ -233,7 +233,7 @@ class HomePage_fragment : Fragment() {
             }
         })
         val request4 = ServiceBuilder.buildService()
-        val call4 = request4.horror()
+        val call4 = request4.action("Comedy")
         call4.enqueue(object : Callback<List<MoviesDataItem>?> {
             override fun onResponse(
                 call: Call<List<MoviesDataItem>?>,
@@ -268,7 +268,7 @@ class HomePage_fragment : Fragment() {
             }
         })
         val request5 = ServiceBuilder.buildService()
-        val call5 = request5.drama()
+        val call5 = request5.action("Drama")
         call5.enqueue(object : Callback<List<MoviesDataItem>?> {
             override fun onResponse(
                 call: Call<List<MoviesDataItem>?>,
