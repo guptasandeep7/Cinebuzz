@@ -39,4 +39,6 @@
     <string name="cancel">Cancel</string>
     <string name="clear_history">Clear</string>
     <string name="exit">Exit</string>
+    <string name="permission_granted">Permission Granted</string>
+    <string name="permission_required">Permission Required</string>
 </resources>

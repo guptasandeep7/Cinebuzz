@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.cinebuzz.DashboardActivity
 import com.example.cinebuzz.R
+import com.example.cinebuzz.SplashScreen.Companion.DPURL
 import com.example.cinebuzz.SplashScreen.Companion.TOKEN
 import com.example.cinebuzz.SplashScreen.Companion.USEREMAIL
 import com.example.cinebuzz.SplashScreen.Companion.USERID
@@ -98,15 +99,16 @@ class LoginFragment : Fragment() {
                                 USERNAME = userData?.name.toString()
                                 USEREMAIL = userData?.email.toString()
                                 USERID = userData?.id.toString()
+                                DPURL = userData?.dpUrl?:"NaN"
                                 saveUserDetails("USERNAME", USERNAME)
                                 saveUserDetails("USEREMAIL", USEREMAIL)
                                 saveUserDetails("TOKEN", TOKEN)
                                 saveUserDetails("USERID", USERID)
+                                saveUserDetails("DPURL", DPURL)
+                                startActivity(Intent(activity, DashboardActivity::class.java))
+                                activity?.finish()
                             }
                             loginProgressbar.visibility = View.GONE
-                            startActivity(Intent(activity, DashboardActivity::class.java))
-                            activity?.finish()
-
                         } else if (response.code() == 301) {
                             Toast.makeText(context, "Wrong Password", Toast.LENGTH_SHORT).show()
                             login.isClickable = true

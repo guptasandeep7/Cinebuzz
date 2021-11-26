@@ -98,19 +98,18 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
                                 SplashScreen.USERNAME = userData?.name.toString()
                                 SplashScreen.USEREMAIL = userData?.email.toString()
                                 SplashScreen.USERID = userData?.id.toString()
+                                SplashScreen.DPURL = userData?.dpUrl?:"NaN"
                                 SplashScreen.saveUserDetails("USERNAME", SplashScreen.USERNAME)
                                 SplashScreen.saveUserDetails("USEREMAIL", SplashScreen.USEREMAIL)
                                 SplashScreen.saveUserDetails("TOKEN", SplashScreen.TOKEN)
                                 SplashScreen.saveUserDetails("USERID", SplashScreen.USERID)
+                                SplashScreen.saveUserDetails("DPURL", SplashScreen.DPURL)
+                                startActivity(Intent(activity, DashboardActivity::class.java))
+                                activity?.finish()
                             }
                             binding.password1.text!!.clear()
                             confirmPassEditText.text!!.clear()
                             passwordProgressbar.visibility = View.GONE
-
-                            startActivity(Intent(activity, DashboardActivity::class.java))
-                            activity?.finish()
-
-
                         } else {
                             Toast.makeText(context, response.code().toString(), Toast.LENGTH_SHORT)
                                 .show()

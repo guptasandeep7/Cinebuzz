@@ -9,26 +9,25 @@ import com.example.cinebuzz.*
 import kotlinx.coroutines.launch
 
 class OfflinePage : AppCompatActivity() {
-    private lateinit var cld : ConnectionCheck
+    private lateinit var cld: ConnectionCheck
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.offline_page)
-    val tryagain=findViewById<Button>(R.id.offlineButton)
-    checkNetworkConnection()
-        tryagain.setOnClickListener{
+        val tryagain = findViewById<Button>(R.id.offlineButton)
+        checkNetworkConnection()
+        tryagain.setOnClickListener {
             cld.observe(this, { isConnected ->
-
-                if (isConnected){
+                if (isConnected) {
                     lifecycleScope.launch {
-                        if (SplashScreen.isLogedIn() == true)
-                        {
-                            val intent=Intent(this@OfflinePage, DashboardActivity::class.java)
+                        if (SplashScreen.isLogedIn() == true) {
+                            val intent = Intent(this@OfflinePage, DashboardActivity::class.java)
                             startActivity(intent)
+                            onStop()
                             finish()
-                        }
-                        else{
-                            val intent=Intent(this@OfflinePage, MainActivity::class.java)
+                        } else {
+                            val intent = Intent(this@OfflinePage, MainActivity::class.java)
                             startActivity(intent)
+                            onStop()
                             finish()
                         }
                     }
@@ -37,32 +36,30 @@ class OfflinePage : AppCompatActivity() {
             })
         }
 
-}
+    }
 
-private fun checkNetworkConnection() {
-    cld = ConnectionCheck(application)
+    private fun checkNetworkConnection() {
+        cld = ConnectionCheck(application)
 
-    cld.observe(this, { isConnected ->
+        cld.observe(this, { isConnected ->
 
-        if (isConnected){
-            lifecycleScope.launch {
-                if (SplashScreen.isLogedIn() == true)
-                {
-                    val intent=Intent(this@OfflinePage, DashboardActivity::class.java)
-                    startActivity(intent)
-                    onStop()
-                    finish()
+            if (isConnected) {
+                lifecycleScope.launch {
+                    if (SplashScreen.isLogedIn() == true) {
+                        val intent = Intent(this@OfflinePage, DashboardActivity::class.java)
+                        startActivity(intent)
+                        onStop()
+                        finish()
+                    } else {
+                        val intent = Intent(this@OfflinePage, MainActivity::class.java)
+                        startActivity(intent)
+                        onStop()
+                        finish()
+                    }
                 }
-                else{
-                    val intent=Intent(this@OfflinePage, MainActivity::class.java)
-                    startActivity(intent)
-                    onStop()
-                    finish()
-                }
+
             }
 
-        }
-
-    })
-}
+        })
+    }
 }

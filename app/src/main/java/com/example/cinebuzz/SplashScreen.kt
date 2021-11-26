@@ -68,6 +68,7 @@ class SplashScreen : AppCompatActivity() {
                 USEREMAIL = getUserDetails("USEREMAIL")!!
                 TOKEN = getUserDetails("TOKEN")!!
                 USERID = getUserDetails("USERID")!!
+                DPURL = getUserDetails("DPURL")?:"NaN"
                 val intent=Intent(this@SplashScreen, OfflinePage::class.java)
                 startActivity(intent)
                 finish()

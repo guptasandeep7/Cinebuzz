@@ -235,8 +235,32 @@ class PlayMovie : AppCompatActivity() {
             movieId = intent.getStringExtra("MOVIEID").toString()
         }
         showMovie()
+//        getUserRating()
     }
+    fun getUserRating(){
+        val request = ServiceBuilder2.buildService()
+        val call = request.getRating(
+            WishlistDataItem(
+                Movieid = movieId,
+                userid = USERID,
+            )
+        )
+        call.enqueue(object : Callback<String?> {
+            override fun onResponse(
+                call: Call<String?>,
+                response: Response<String?>
+            ) {
+                if (response.isSuccessful) {
+                    ratingBar2.rating = response.body()?.toFloat() ?: 0F
+                }
+            }
 
+            override fun onFailure(call: Call<String?>, t: Throwable) {
+                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+    }
     fun sendRating() {
         val request = ServiceBuilder2.buildService()
         val call = request.sendRating(
