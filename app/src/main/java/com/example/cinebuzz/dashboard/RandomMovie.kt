@@ -154,6 +154,7 @@ class RandomMovie : AppCompatActivity() {
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.random, SomthingWentWrong())
+                transaction.addToBackStack(null)
                 transaction.commit()      }
         })
 

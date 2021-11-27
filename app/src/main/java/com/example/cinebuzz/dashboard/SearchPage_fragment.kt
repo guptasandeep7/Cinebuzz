@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,7 @@ class SearchPage_fragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SearchPageAdapter
     lateinit var searchEditText: TextInputEditText
+    lateinit var searchText: TextView
     private lateinit var Shimmer: ShimmerFrameLayout
     var movies = ArrayList<MoviesDataItem>()
 
@@ -43,6 +45,7 @@ class SearchPage_fragment : Fragment() {
 
         searchEditText = view.findViewById(R.id.searchEditText)
         Shimmer = view.findViewById(R.id.SearchShimmer)
+        searchText = view.findViewById(R.id.searchtext)
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -76,9 +79,10 @@ class SearchPage_fragment : Fragment() {
                     call: Call<List<MoviesDataItem>?>,
                     response: Response<List<MoviesDataItem>?>
                 ) {
-                    if (response.isSuccessful) {
+                    if (response.isSuccessful && response.body()!!.isNotEmpty()) {
                         Shimmer.stopShimmer()
                         Shimmer.visibility = View.GONE
+                        searchText.visibility=View.GONE
                         val responseBody: List<MoviesDataItem> = response.body()!!
                         for (movie in responseBody)
                             movies.add(movie)
@@ -86,7 +90,11 @@ class SearchPage_fragment : Fragment() {
                         recyclerView.adapter = adapter
                         recyclerView.layoutManager =
                             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-                    } else Toast.makeText(context, "Movie not found", Toast.LENGTH_SHORT).show()
+                    } else  {
+                        searchText.visibility=View.VISIBLE
+                        Shimmer.stopShimmer()
+                        Shimmer.visibility = View.GONE
+                    }
                 }
 
                 override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {

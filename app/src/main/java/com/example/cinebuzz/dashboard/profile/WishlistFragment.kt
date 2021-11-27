@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,14 +25,16 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class WishlistFragment : Fragment() {
-    companion object{
+    companion object {
         lateinit var none2: TextView
+        lateinit var WishlistProgressbar: ProgressBar
     }
 
     lateinit var wishlistRecylcer: RecyclerView
     private val movieList = ArrayList<MoviesDataItem>()
     private lateinit var adapter: ProfilePageAdapter
     private lateinit var Shimmer: ShimmerFrameLayout
+
     lateinit var movieId: String
 
     lateinit var contex: Context
@@ -47,9 +46,10 @@ class WishlistFragment : Fragment() {
         contex = requireContext()
         wishlistRecylcer = view.findViewById(R.id.wishlist_recyclerview)
         Shimmer = view.findViewById(R.id.whislistShimmer)
-       val image = view.findViewById<ImageButton>(R.id.wishlist_btn)
+        WishlistProgressbar = view.findViewById(R.id.wishlist_progressBar)
+        WishlistProgressbar.visibility=View.VISIBLE
+        val image = view.findViewById<ImageButton>(R.id.wishlist_btn)
         none2 = view.findViewById(R.id.none2)
-        none2.visibility = View.VISIBLE
         val request1 = ServiceBuilder.buildService()
         val call1 = request1.wishlistAll(
             WishlistDataItem(userid = USERID)
@@ -66,6 +66,7 @@ class WishlistFragment : Fragment() {
                     for (item in responseBody) {
                         profile_wishlist(item)
                     }
+                    none2.visibility = View.VISIBLE
                 } else {
                     Toast.makeText(
                         contex,
@@ -80,7 +81,8 @@ class WishlistFragment : Fragment() {
                 val fragmentTransaction = fragmentManager?.beginTransaction()
                 fragmentTransaction?.replace(R.id.wish, SomthingWentWrong())
                 fragmentTransaction?.addToBackStack(null)
-                fragmentTransaction?.commit()            }
+                fragmentTransaction?.commit()
+            }
         })
         return view
     }
@@ -98,6 +100,7 @@ class WishlistFragment : Fragment() {
                 response: Response<MoviesDataItem?>
             ) {
                 if (response.isSuccessful) {
+                    WishlistProgressbar.visibility=View.GONE
                     val responseBody = response.body()!!
                     movieList.add(
                         MoviesDataItem(
@@ -106,12 +109,12 @@ class WishlistFragment : Fragment() {
                             _id = responseBody._id
                         )
                     )
-                    adapter = ProfilePageAdapter(activity,movieList, 1)
+                    adapter = ProfilePageAdapter(activity, movieList, 1)
                     wishlistRecylcer.adapter = adapter
                     wishlistRecylcer.layoutManager =
                         LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
                     if (wishlistRecylcer.adapter != null) {
-                        none2.visibility=View.GONE
+                        none2.visibility = View.GONE
                     }
                 } else {
                     Toast.makeText(contex, "No movie found", Toast.LENGTH_SHORT).show()
@@ -127,38 +130,4 @@ class WishlistFragment : Fragment() {
             }
         })
     }
-//    fun showWishlistt() {
-//        val request3 = ServiceBuilder2.buildService()
-//        val call3 = request3.wishlistCheck(
-//            WishlistDataItem(
-//                Movieid = movieId,
-//                userid = PlayMovie.USERID
-//            )
-//        )
-//        call3.enqueue(object : Callback<String?> {
-//            override fun onResponse(
-//                call: Call<String?>,
-//                response: Response<String?>
-//            ) {
-//                if (response.isSuccessful) {
-//                    when (response.body().toString()) {
-//                        "1" -> image.setImageResource(R.drawable.ic_like_icon)
-//                        "0" -> image.setImageResource(R.drawable.ic_vector__14_)
-//                        else -> Toast.makeText(
-//                            context,
-//                            response.body().toString(),
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
-//                } else {
-//                    Toast.makeText(context, "not added to wishlist", Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<String?>, t: Throwable) {
-//                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
-//            }
-//        })
-//    }
 }

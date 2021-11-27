@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -29,6 +30,7 @@ class HistoryFragment : Fragment() {
     private lateinit var Shimmer: ShimmerFrameLayout
     lateinit var clearAll: TextView
     lateinit var none: TextView
+    lateinit var HistoryProgressbar: ProgressBar
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,9 +39,10 @@ class HistoryFragment : Fragment() {
         historyRecylcer = view.findViewById(R.id.history_recyclerview)
         Shimmer = view.findViewById(R.id.historyShimmer)
         clearAll = view.findViewById(R.id.clearAll)
+        HistoryProgressbar = view.findViewById(R.id.history_progressBar)
+        HistoryProgressbar.visibility=View.VISIBLE
         none = view.findViewById(R.id.none)
         clearAll.visibility = View.GONE
-        none.visibility = View.VISIBLE
 
         val builder = android.app.AlertDialog.Builder(context)
         builder.setTitle("History")
@@ -58,7 +61,8 @@ class HistoryFragment : Fragment() {
             override fun onResponse(
                 call: Call<ArrayList<String>?>,
                 response: Response<ArrayList<String>?>
-            ) {
+            )
+            {
                 if (response.isSuccessful) {
                     Shimmer.stopShimmer()
                     Shimmer.visibility = View.GONE
@@ -66,7 +70,6 @@ class HistoryFragment : Fragment() {
                     for (item in responseBody) {
                         profile_history(item)
                     }
-
                 } else {
                     Toast.makeText(
                         context,
@@ -75,6 +78,7 @@ class HistoryFragment : Fragment() {
                     ).show()
 
                 }
+                none.visibility = View.VISIBLE
             }
 
             override fun onFailure(call: Call<ArrayList<String>?>, t: Throwable) {
@@ -107,6 +111,7 @@ class HistoryFragment : Fragment() {
                 response: Response<MoviesDataItem?>
             ) {
                 if (response.isSuccessful) {
+                    HistoryProgressbar.visibility=View.GONE
                     val responseBody = response.body()!!
                     historyList.add(
                         MoviesDataItem(
@@ -124,12 +129,6 @@ class HistoryFragment : Fragment() {
                         clearAll.visibility = View.VISIBLE
                         none.visibility=View.GONE
                     }
-//                    if (adapter.getItemCount()==0)
-//                        {
-//                        none.text="No Movie"
-//                        none.visibility=View.VISIBLE
-//
-//                       }
                 } else {
                     Toast.makeText(context, "No movie found", Toast.LENGTH_SHORT).show()
                 }
@@ -157,7 +156,7 @@ class HistoryFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     clearAll.visibility = View.GONE
-                    none.text="No Movie"
+                    none.text="History Not Found"
                     none.visibility=View.VISIBLE
                     Toast.makeText(context, "History Cleared", Toast.LENGTH_SHORT).show()
                     historyList.clear()

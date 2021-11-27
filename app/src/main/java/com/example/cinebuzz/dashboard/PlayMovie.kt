@@ -48,33 +48,17 @@ class PlayMovie : AppCompatActivity() {
         lateinit var DPURL: String
         lateinit var TOKEN: String
         lateinit var dataStore: DataStore<Preferences>
-        suspend fun logInState(value: Boolean) {
-            val dataStoreKey = preferencesKey<Boolean>("LOGIN")
-            dataStore.edit { UserDetails ->
-                UserDetails[dataStoreKey] = value
-            }
-        }
-
-        suspend fun saveUserDetails(key: String, value: String) {
-            val dataStoreKey = preferencesKey<String>(key)
-            dataStore.edit { UserDetails ->
-                UserDetails[dataStoreKey] = value
-            }
-
-        }
 
         suspend fun isLogedIn(): Boolean? {
             val dataStoreKey = preferencesKey<Boolean>("LOGIN")
             val preferences = dataStore.data.first()
             return preferences[dataStoreKey]
         }
-
         suspend fun getUserDetails(key: String): String? {
             val dataStoreKey = preferencesKey<String>(key)
             val preferences = dataStore.data.first()
             return preferences[dataStoreKey]
         }
-
     }
 
     private lateinit var reviewsRecylcer: RecyclerView
@@ -82,7 +66,6 @@ class PlayMovie : AppCompatActivity() {
     private lateinit var Shimmer1: ShimmerFrameLayout
     private lateinit var Shimmer2: ShimmerFrameLayout
     private lateinit var Shimmer3: ShimmerFrameLayout
-    private lateinit var reviews: ArrayList<ReviewDataItem>
     private lateinit var adapter: ReviewsAdapter
     lateinit var movieImage: ImageView
     lateinit var movieName: TextView
@@ -200,9 +183,13 @@ class PlayMovie : AppCompatActivity() {
         wishlist.setOnClickListener {
             if (wishlistState == 1) {
                 wishlist.setImageResource(R.drawable.ic_frame)
+                Toast.makeText(this@PlayMovie, "Removed from wishlist", Toast.LENGTH_SHORT)
+                    .show()
                 wishlistState = 0
             } else {
                 wishlist.setImageResource(R.drawable.ic_frame__1_)
+                Toast.makeText(this@PlayMovie, "Added to wishlist", Toast.LENGTH_SHORT)
+                    .show()
                 wishlistState = 1
             }
         }
@@ -242,8 +229,10 @@ class PlayMovie : AppCompatActivity() {
                 response: Response<ResponseBody?>
             ) {}
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                Toast.makeText(this@PlayMovie, "failed ${t.message}", Toast.LENGTH_SHORT)
-                    .show()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.play, SomthingWentWrong())
+                transaction.addToBackStack(null)
+                transaction.commit()
             }
         })
     }
@@ -264,15 +253,13 @@ class PlayMovie : AppCompatActivity() {
                     }
 
                 }
-//                else {
-//                    Toast.makeText(this@PlayMovie, "", Toast.LENGTH_SHORT).show()
-//
-//                }
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
-                    .show()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.play, SomthingWentWrong())
+                transaction.addToBackStack(null)
+                transaction.commit()
             }
         })
     }
@@ -296,15 +283,13 @@ class PlayMovie : AppCompatActivity() {
                         .show()
 
                 }
-//                else {
-//                    Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
-//
-//                }
             }
 
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
-                    .show()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.play, SomthingWentWrong())
+                transaction.addToBackStack(null)
+                transaction.commit()
             }
         })
     }
@@ -331,15 +316,13 @@ class PlayMovie : AppCompatActivity() {
                     reviewsRecylcer.layoutManager =
                         LinearLayoutManager(this@PlayMovie, LinearLayoutManager.VERTICAL, false)
                 }
-//                else {
-//                    Toast.makeText(this@PlayMovie, "no review", Toast.LENGTH_SHORT).show()
-//
-//                }
             }
 
             override fun onFailure(call: Call<ReviewDataItem?>, t: Throwable) {
-                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
-                    .show()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.play, SomthingWentWrong())
+                transaction.addToBackStack(null)
+                transaction.commit()
             }
         })
     }
@@ -359,15 +342,13 @@ class PlayMovie : AppCompatActivity() {
                     }
 
                 }
-//                else {
-//                    Toast.makeText(this@PlayMovie, "no review", Toast.LENGTH_SHORT).show()
-//
-//                }
             }
 
             override fun onFailure(call: Call<ArrayList<WishlistDataItem>?>, t: Throwable) {
-                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
-                    .show()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.play, SomthingWentWrong())
+                transaction.addToBackStack(null)
+                transaction.commit()
             }
         })
     }
@@ -386,20 +367,13 @@ class PlayMovie : AppCompatActivity() {
                 call: Call<ResponseBody?>,
                 response: Response<ResponseBody?>
             ) {
-//                if (response.isSuccessful) {
-//                    Toast.makeText(this@PlayMovie, "Thanks for review", Toast.LENGTH_SHORT)
-//                        .show()
-//
-//                }
-//                else {
-//                    Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
-//
-//                }
             }
 
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
-                    .show()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.play, SomthingWentWrong())
+                transaction.addToBackStack(null)
+                transaction.commit()
             }
         })
     }
@@ -449,13 +423,6 @@ class PlayMovie : AppCompatActivity() {
                             startActivity(intent)
                         }
                     }
-//                     else {
-//                        Toast.makeText(
-//                            applicationContext,
-//                            "No movie found" + response.code(),
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
                 }
             }
             override fun onFailure(call: Call<MoviesDataItem?>, t: Throwable) {
@@ -505,8 +472,10 @@ class PlayMovie : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                Toast.makeText(this@PlayMovie, "failed ${t.message}", Toast.LENGTH_SHORT).show()
-            }
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.play, SomthingWentWrong())
+                transaction.addToBackStack(null)
+                transaction.commit()              }
         })
     }
 
@@ -530,15 +499,13 @@ class PlayMovie : AppCompatActivity() {
                     }
 
                 }
-//                else {
-//                    Toast.makeText(this@PlayMovie, "no rating", Toast.LENGTH_SHORT).show()
-//
-//                }
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
-                    .show()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.play, SomthingWentWrong())
+                transaction.addToBackStack(null)
+                transaction.commit()
             }
         })
     }
@@ -554,8 +521,10 @@ class PlayMovie : AppCompatActivity() {
         call4.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {}
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                Toast.makeText(this@PlayMovie, "failed ${t.message}", Toast.LENGTH_SHORT).show()
-            }
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.play, SomthingWentWrong())
+                transaction.addToBackStack(null)
+                transaction.commit()               }
         })
     }
 
