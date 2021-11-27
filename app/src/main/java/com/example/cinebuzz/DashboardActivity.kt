@@ -57,6 +57,7 @@ class DashboardActivity : AppCompatActivity() {
         else{
             drawerPhoto.load(SplashScreen.BASEURL + SplashScreen.DPURL) {
                 placeholder(R.drawable.ic_undraw_profile_pic_ic5t_2)
+                error(R.drawable.ic_undraw_profile_pic_ic5t_2)
                 crossfade(true)
             }
         }

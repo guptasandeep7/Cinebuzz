@@ -36,6 +36,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PlayMovie : AppCompatActivity() {
+    var wishlistState: Int = 0
+    var originalWishlistState = 0
     companion object {
         val BASEURL = "https://cine---buzz.herokuapp.com/"
         lateinit var USERNAME: String
@@ -108,6 +110,7 @@ class PlayMovie : AppCompatActivity() {
                 USEREMAIL = getUserDetails("USEREMAIL")!!
                 TOKEN = getUserDetails("TOKEN")!!
                 USERID = getUserDetails("USERID")!!
+                DPURL = getUserDetails("DPURL") ?: "NaN"
             } else {
                 val intent = Intent(this@PlayMovie, MainActivity::class.java)
                 startActivity(intent)
@@ -179,37 +182,13 @@ class PlayMovie : AppCompatActivity() {
         }
 
         wishlist.setOnClickListener {
-            val request2 = ServiceBuilder2.buildService()
-            val call2 =
-                request2.wishlistToggle(WishlistDataItem(Movieid = movieId, userid = USERID))
-            call2.enqueue(object : Callback<ResponseBody?> {
-                override fun onResponse(
-                    call: Call<ResponseBody?>,
-                    response: Response<ResponseBody?>
-                ) {
-                    when {
-                        response.isSuccessful -> {
-                            wishlist.setImageResource(R.drawable.ic_frame__1_)
-                        }
-                        response.code() == 301 -> {
-                            wishlist.setImageResource(R.drawable.ic_frame)
-                        }
-                        else -> {
-                            Toast.makeText(
-                                this@PlayMovie,
-                                response.body().toString(),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                    Toast.makeText(this@PlayMovie, "failed ${t.message}", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            })
-
+            if (wishlistState == 1) {
+                wishlist.setImageResource(R.drawable.ic_frame)
+                wishlistState = 0
+            } else {
+                wishlist.setImageResource(R.drawable.ic_frame__1_)
+                wishlistState = 1
+            }
         }
 
     }
@@ -235,9 +214,25 @@ class PlayMovie : AppCompatActivity() {
             movieId = intent.getStringExtra("MOVIEID").toString()
         }
         showMovie()
-//        getUserRating()
     }
-    fun getUserRating(){
+
+    private fun addToWishlist() {
+        val request2 = ServiceBuilder2.buildService()
+        val call2 =
+            request2.wishlistToggle(WishlistDataItem(Movieid = movieId, userid = USERID))
+        call2.enqueue(object : Callback<ResponseBody?> {
+            override fun onResponse(
+                call: Call<ResponseBody?>,
+                response: Response<ResponseBody?>
+            ) {}
+            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                Toast.makeText(this@PlayMovie, "failed ${t.message}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+    }
+
+    fun getUserRating() {
         val request = ServiceBuilder2.buildService()
         val call = request.getRating(
             WishlistDataItem(
@@ -252,7 +247,8 @@ class PlayMovie : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     ratingBar2.rating = response.body()?.toFloat() ?: 0F
-                }
+                } else
+                    ratingBar2.rating = 0F
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
@@ -261,6 +257,7 @@ class PlayMovie : AppCompatActivity() {
             }
         })
     }
+
     fun sendRating() {
         val request = ServiceBuilder2.buildService()
         val call = request.sendRating(
@@ -302,11 +299,11 @@ class PlayMovie : AppCompatActivity() {
                 response: Response<ReviewDataItem?>
             ) {
                 if (response.isSuccessful && response.body() != null) {
-                    val responseBody = response.body()!!
+                    val responseBody = response.body()
                     reviewList.add(
                         ReviewDataItem(
-                            name = responseBody.name,
-                            dpUrl = responseBody.dpUrl ?: "Nan",
+                            name = responseBody?.name,
+                            dpUrl = responseBody?.dpUrl ?: "NaN",
                             reviewText = reviewText
                         )
                     )
@@ -411,6 +408,7 @@ class PlayMovie : AppCompatActivity() {
                     plot.text = responseBody.plot
                     showWishlist()
                     getRating()
+                    getUserRating()
                     showReview()
                     playBtn.setOnClickListener {
                         addToHistory()
@@ -450,8 +448,16 @@ class PlayMovie : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     when (response.body().toString()) {
-                        "1" -> wishlist.setImageResource(R.drawable.ic_frame__1_)
-                        "0" -> wishlist.setImageResource(R.drawable.ic_frame)
+                        "1" -> {
+                            wishlist.setImageResource(R.drawable.ic_frame__1_)
+                            wishlistState = 1
+                            originalWishlistState=1
+                        }
+                        "0" -> {
+                            wishlist.setImageResource(R.drawable.ic_frame)
+                            wishlistState = 0
+                            originalWishlistState=0
+                        }
                         else -> Toast.makeText(
                             this@PlayMovie,
                             response.body().toString(),
@@ -515,6 +521,12 @@ class PlayMovie : AppCompatActivity() {
         })
     }
 
+    override fun onBackPressed() {
+        if(originalWishlistState!=wishlistState){
+            addToWishlist()
+        }
+        super.onBackPressed()
+    }
 }
 
 

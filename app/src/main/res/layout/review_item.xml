@@ -10,6 +10,8 @@
         android:layout_height="35dp"
         android:layout_marginStart="26dp"
         android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        style="@style/ShapeAppearance.App.CircleImageView"
         android:src="@drawable/ic_undraw_profile_pic_ic5t_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

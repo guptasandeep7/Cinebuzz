@@ -233,7 +233,7 @@ class HomePage_fragment : Fragment() {
             }
         })
         val request4 = ServiceBuilder.buildService()
-        val call4 = request4.action("Comedy")
+        val call4 = request4.action("Horrer")
         call4.enqueue(object : Callback<List<MoviesDataItem>?> {
             override fun onResponse(
                 call: Call<List<MoviesDataItem>?>,
