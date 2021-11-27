@@ -242,21 +242,24 @@ class PlayMovie : AppCompatActivity() {
 
     fun getUserRating() {
         val request = ServiceBuilder2.buildService()
-        val call = request.getRating(
-            WishlistDataItem(
-                Movieid = movieId,
-                userid = USERID,
-            )
-        )
+        val call = request.getRating(WishlistDataItem(Movieid = movieId, userid = USERID))
         call.enqueue(object : Callback<String?> {
             override fun onResponse(
                 call: Call<String?>,
                 response: Response<String?>
             ) {
                 if (response.isSuccessful) {
-                    ratingBar2.rating = response.body()?.toFloat() ?: 0F
-                } else
-                    ratingBar2.rating = 0F
+                    if (response.body() == null) {
+                        ratingBar2.rating = 0F
+                    } else {
+                        ratingBar2.rating = response.body()!!.toFloat()
+                    }
+
+                }
+//                else {
+//                    Toast.makeText(this@PlayMovie, "", Toast.LENGTH_SHORT).show()
+//
+//                }
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
