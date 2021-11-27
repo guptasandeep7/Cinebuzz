@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import com.example.cinebuzz.DashboardActivity
 import com.example.cinebuzz.R
@@ -33,6 +34,10 @@ class ChangePassword : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.change_password)
+        val toolbar: Toolbar = findViewById(R.id.toolbar7)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_keyboard_backspace_24)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
          done = findViewById(R.id.done)
         oldPassword = findViewById(R.id.password4)
         newPassword = findViewById(R.id.password3)

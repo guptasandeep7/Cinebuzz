@@ -164,28 +164,20 @@ private fun sendDp(uri: Uri) {
     val file = FileUtils.getFile(context, uri)
     val requestFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
     val imageFile = MultipartBody.Part.createFormData("dp", file.name, requestFile)
-    val email = USEREMAIL.toRequestBody(okhttp3.MultipartBody.FORM)
+    val email = USEREMAIL.toRequestBody(MultipartBody.FORM)
     val request = ServiceBuilder.buildService()
     val call = request.changeDp(email, imageFile)
     call.enqueue(object : Callback<String?> {
         override fun onResponse(call: Call<String?>, response: Response<String?>) {
             if (response.isSuccessful) {
-                Toast.makeText(context, imageFile.toString(), Toast.LENGTH_SHORT).show()
-                Toast.makeText(
-                    context,
-                    "successfull ${response.body().toString()}",
-                    Toast.LENGTH_SHORT
-                ).show()
                 DPURL = response.body().toString()
                 lifecycleScope.launch {
                     saveUserDetails("DPURL", DPURL)
                 }
-                Toast.makeText(context, DPURL, Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(context, response.code(), Toast.LENGTH_SHORT).show()
             }
         }
-
         override fun onFailure(call: Call<String?>, t: Throwable) {
             Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
         }

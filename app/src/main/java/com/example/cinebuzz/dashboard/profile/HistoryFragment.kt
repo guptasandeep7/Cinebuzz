@@ -104,7 +104,8 @@ class HistoryFragment : Fragment() {
                     historyList.add(
                         MoviesDataItem(
                             name = responseBody.name,
-                            poster = responseBody.poster
+                            poster = responseBody.poster,
+                            _id = responseBody._id
                         )
 
                     )

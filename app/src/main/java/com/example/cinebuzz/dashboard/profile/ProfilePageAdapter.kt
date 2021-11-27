@@ -56,6 +56,7 @@ class ProfilePageAdapter(private val context: Context?,private val wishlist: Arr
         }
 
         holder.wishlistBtn.setOnClickListener {
+            holder.wishlistBtn.isEnabled = false
             val request2 = ServiceBuilder2.buildService()
             val call2 = request2.wishlistToggle(
                 WishlistDataItem(

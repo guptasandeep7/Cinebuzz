@@ -77,7 +77,8 @@
             android:screenOrientation="sensorLandscape"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name=".model.OfflinePage" />
-        <activity android:name=".dashboard.drawer.ChangePassword" />
+        <activity android:name=".dashboard.drawer.ChangePassword"
+            android:parentActivityName=".DashboardActivity"/>
         <activity android:name=".dashboard.drawer.AboutUs"
             android:theme="@style/Theme.Cinebuzz"
             android:parentActivityName=".DashboardActivity"/>

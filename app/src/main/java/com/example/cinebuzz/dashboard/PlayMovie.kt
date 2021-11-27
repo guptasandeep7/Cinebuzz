@@ -341,6 +341,7 @@ class PlayMovie : AppCompatActivity() {
     }
 
     fun showReview() {
+        reviewList.clear()
         val request = ServiceBuilder2.buildService()
         val call = request.showReview(WishlistDataItem(Movieid = movieId))
         call.enqueue(object : Callback<ArrayList<WishlistDataItem>?> {
