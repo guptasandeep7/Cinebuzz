@@ -16,6 +16,7 @@ import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen
 import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import com.example.cinebuzz.dashboard.PlayMovie
+import com.example.cinebuzz.dashboard.profile.WishlistFragment.Companion.none2
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.example.cinebuzz.retrofit.WishlistDataItem
@@ -34,10 +35,15 @@ class ProfilePageAdapter(private val context: Context?,private val wishlist: Arr
     override fun onBindViewHolder(holder: ProfileViewHolder, position: Int) {
 
         val item = wishlist[position]
-
         if (type == 1) {
             holder.wishlistBtn.visibility = View.VISIBLE
             holder.line.visibility = View.VISIBLE
+
+//            if (holder.historyRecylcer==null)
+//            {
+//                holder.none2.text="No Movie"
+//                holder.none2.visibility=View.VISIBLE
+//            }
         }
         else {
             holder.wishlistBtn.visibility = View.GONE
@@ -72,6 +78,10 @@ class ProfilePageAdapter(private val context: Context?,private val wishlist: Arr
                             Toast.makeText(context, "movie removed", Toast.LENGTH_SHORT).show()
                         wishlist.removeAt(holder.bindingAdapterPosition)
                         notifyItemRemoved(holder.bindingAdapterPosition)
+                        if(wishlist.isEmpty()){
+                            none2.text="NoWishlist"
+                            none2.visibility=View.VISIBLE
+                        }
                         } else {
                             Toast.makeText(
                                 context,
@@ -88,6 +98,7 @@ class ProfilePageAdapter(private val context: Context?,private val wishlist: Arr
             })
 
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -100,6 +111,9 @@ class ProfilePageAdapter(private val context: Context?,private val wishlist: Arr
         val wishlistBtn = itemView.findViewById<ImageButton>(R.id.wishlist_btn)
         val line = itemView.findViewById<View>(R.id.profile_line)
         val cardView=itemView.findViewById<ImageView>(R.id.profile_movie_image)
+       // val none2 = itemView.findViewById<TextView>(R.id.none2)
+        //val none = itemView.findViewById<TextView>(R.id.none)
+       // val historyRecylcer = itemView.findViewById<RecyclerView>(R.id.history_recyclerview)
     }
 
 }

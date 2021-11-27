@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/category_scroll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/user_image"
@@ -24,7 +24,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView" />
-
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/change_dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="86dp"
+            android:background="#E6C7EB"
+            android:src="@drawable/ic_baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="@+id/user_image"
+            app:layout_constraintEnd_toEndOf="@+id/user_image"
+            app:layout_constraintTop_toTopOf="@+id/user_image"
+            app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView" />
         <TextView
             android:id="@+id/user_name"
             android:layout_width="wrap_content"

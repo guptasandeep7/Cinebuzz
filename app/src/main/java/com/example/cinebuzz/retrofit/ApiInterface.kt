@@ -81,7 +81,7 @@ interface ApiInterface {
     @PUT("movie/rating")
     fun sendRating(@Body data: WishlistDataItem): Call<ResponseBody>
 
-    @PUT("movie/rating/your")
+    @POST("movie/rating/your")
     fun getRating(@Body data: WishlistDataItem): Call<String>
 
     @POST("movie/review")

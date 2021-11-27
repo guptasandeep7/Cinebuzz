@@ -43,7 +43,11 @@ import retrofit2.Response
 
 
 class ProfilePage_fragment : Fragment() {
-    lateinit var movieCount: TextView
+    companion object{
+        lateinit var movieCount: TextView
+       // lateinit var none:TextView
+    }
+
     lateinit var userPhoto: ShapeableImageView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val viewPager = view.findViewById<ViewPager2>(R.id.viewpager_UserProfile)

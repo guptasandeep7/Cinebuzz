@@ -69,5 +69,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/clearAll"
             tools:listitem="@layout/profile_item" />
+        <TextView
+            android:id="@+id/none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/ropa_sans"
+            android:text="NoMovie"
+            android:visibility="invisible"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/historyShimmer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
