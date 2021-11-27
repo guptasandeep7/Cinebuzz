@@ -139,7 +139,11 @@ class PlayMovie : AppCompatActivity() {
         playEditText = findViewById(R.id.playEdittext)
         review = findViewById(R.id.review)
         submit = findViewById(R.id.submit)
-
+        ratingBar2.visibility = View.GONE
+        writeReview.visibility = View.GONE
+        playEditText.visibility = View.GONE
+        review.visibility = View.GONE
+        submit.visibility = View.GONE
 
         handleIntent(intent)
         shareBtn.setOnClickListener {
