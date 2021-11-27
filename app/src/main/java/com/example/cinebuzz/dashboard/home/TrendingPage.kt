@@ -49,19 +49,19 @@ class TrendingPage : AppCompatActivity() {
             }
             "action"-> {
                 trendingText.text="Action"
-                request1.action()
+                request1.action("Action")
             }
             "comedy"-> {
                 trendingText.text="Comedy"
-                request1.comedy()
+                request1.action("Comedy")
             }
             "horror"-> {
                 trendingText.text="Horror"
-                request1.horror()
+                request1.action("Horrer")
             }
             "drama"->{
                 trendingText.text="Drama"
-                request1.drama()
+                request1.action("Drama")
             }
             else -> request1.trending()
         }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -172,7 +173,7 @@ class HomePage_fragment : Fragment() {
             }
         })
         val request2 = ServiceBuilder.buildService()
-        val call2 = request2.action()
+        val call2 = request2.action("Action")
         call2.enqueue(object : Callback<List<MoviesDataItem>?> {
             override fun onResponse(
                 call: Call<List<MoviesDataItem>?>,
@@ -213,7 +214,7 @@ class HomePage_fragment : Fragment() {
             }
         })
         val request3 = ServiceBuilder.buildService()
-        val call3 = request3.comedy()
+        val call3 = request3.action("Comedy")
         call3.enqueue(object : Callback<List<MoviesDataItem>?> {
             override fun onResponse(
                 call: Call<List<MoviesDataItem>?>,
@@ -252,7 +253,7 @@ class HomePage_fragment : Fragment() {
             }
         })
         val request4 = ServiceBuilder.buildService()
-        val call4 = request4.horror()
+        val call4 = request4.action("Horrer")
         call4.enqueue(object : Callback<List<MoviesDataItem>?> {
             override fun onResponse(
                 call: Call<List<MoviesDataItem>?>,
@@ -291,7 +292,7 @@ class HomePage_fragment : Fragment() {
             }
         })
         val request5 = ServiceBuilder.buildService()
-        val call5 = request5.drama()
+        val call5 = request5.action("Drama")
         call5.enqueue(object : Callback<List<MoviesDataItem>?> {
             override fun onResponse(
                 call: Call<List<MoviesDataItem>?>,
@@ -363,5 +364,22 @@ class HomePage_fragment : Fragment() {
             startActivity(intent)
         }
         return view
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val builder = android.app.AlertDialog.Builder(activity)
+                builder.setTitle("Exit")
+                    .setMessage("Are you sure you want to Exit?")
+                    .setPositiveButton(R.string.exit) { dialog, id ->
+                        activity?.finish()
+                    }
+                    .setNeutralButton(R.string.cancel) { dialog, id -> }
+                val exit = builder.create()
+                exit.show()
+            }
+        })
     }
 }

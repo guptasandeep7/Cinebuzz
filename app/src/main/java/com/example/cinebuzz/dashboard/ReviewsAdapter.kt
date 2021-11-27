@@ -4,15 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import com.example.cinebuzz.dashboard.profile.ReviewDataItem
-import com.google.android.exoplayer2.source.dash.manifest.BaseUrl
-import okio.blackholeSink
 
 class ReviewsAdapter(private var reviews: List<ReviewDataItem>) :
     RecyclerView.Adapter<ReviewsAdapter.ReviewViewHolder>() {
@@ -27,13 +24,13 @@ class ReviewsAdapter(private var reviews: List<ReviewDataItem>) :
 
         val item = reviews[position]
         holder.reviewName.text = item.name
-        if (item.dpUrl=="Nan"){
+        if (item.dpUrl == "NaN") {
             holder.reviewDp.setImageResource(R.drawable.ic_undraw_profile_pic_ic5t_2)
-        }
-        else{
-            holder.reviewDp.load(BASEURL +item.dpUrl) {
+        } else {
+            holder.reviewDp.load(BASEURL + item.dpUrl) {
                 crossfade(true)
                 placeholder(R.drawable.ic_undraw_profile_pic_ic5t_2)
+                error(R.drawable.ic_undraw_profile_pic_ic5t_2)
             }
         }
 

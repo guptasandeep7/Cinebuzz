@@ -7,9 +7,11 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shapeableImageView"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginStart="24dp"
+        android:scaleType="centerCrop"
+        style="@style/ShapeAppearance.App.CircleImageView"
         android:src="@drawable/ic_undraw_profile_pic_ic5t_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +22,6 @@
         android:id="@+id/drawerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto"
         android:text="@string/username"
