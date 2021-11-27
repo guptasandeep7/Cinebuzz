@@ -21,6 +21,8 @@ import com.example.cinebuzz.MainActivity
 import com.example.cinebuzz.Play
 import com.example.cinebuzz.R
 import com.example.cinebuzz.dashboard.profile.ReviewDataItem
+import com.example.cinebuzz.model.Error404
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.ServiceBuilder2
@@ -91,6 +93,7 @@ class PlayMovie : AppCompatActivity() {
     lateinit var shareBtn: ImageView
     lateinit var playBtn: ImageView
     lateinit var rateThisMovie: TextView
+    lateinit var reviewText: TextView
     lateinit var ratingBar2: RatingBar
     lateinit var writeReview: TextView
     lateinit var playEditText: TextInputLayout
@@ -129,6 +132,7 @@ class PlayMovie : AppCompatActivity() {
         Shimmer2 = findViewById(R.id.playshimmerrating)
         Shimmer3 = findViewById(R.id.playshimmerplot)
         plot = findViewById(R.id.movie_plot)
+        reviewText = findViewById(R.id.reviewtext)
         rating = findViewById(R.id.movie_rating)
         wishlist = findViewById(R.id.wishlist)
         shareBtn = findViewById(R.id.share_btn)
@@ -419,36 +423,45 @@ class PlayMovie : AppCompatActivity() {
                     Shimmer3.visibility = View.GONE
                     Shimmer1.stopShimmer()
                     Shimmer1.visibility = View.GONE
-                    val responseBody = response.body()!!
-                    movieImage.load(BASEURL + responseBody.poster.toString()) {
-                        placeholder(R.drawable.randomise_icon)
-                        crossfade(true)
+                    val responseBody = response.body()
+                    if (response.body() == null) {
+                        val transaction = supportFragmentManager.beginTransaction()
+                        transaction.replace(R.id.play, Error404())
+                        transaction.commit()
+                        rateThisMovie.visibility=View.GONE
+                        reviewText.visibility=View.GONE
+                    } else {
+                        movieImage.load(BASEURL + responseBody?.poster.toString()) {
+                            placeholder(R.drawable.randomise_icon)
+                            crossfade(true)
+                        }
+                        plot.visibility = View.VISIBLE
+                        movieName.text = responseBody?.name
+                        plot.text = responseBody?.plot
+                        showWishlist()
+                        getRating()
+                        getUserRating()
+                        showReview()
+                        playBtn.setOnClickListener {
+                            addToHistory()
+                            val intent = Intent(applicationContext, Play::class.java)
+                            intent.putExtra("VIDEOURL", responseBody?.video.toString())
+                            startActivity(intent)
+                        }
                     }
-                    plot.visibility=View.VISIBLE
-                    movieName.text = responseBody.name
-                    plot.text = responseBody.plot
-                    showWishlist()
-                    getRating()
-                    getUserRating()
-                    showReview()
-                    playBtn.setOnClickListener {
-                        addToHistory()
-                        val intent = Intent(applicationContext, Play::class.java)
-                        intent.putExtra("VIDEOURL", responseBody.video.toString())
-                        startActivity(intent)
-                    }
-                } else {
-                    Toast.makeText(
-                        applicationContext,
-                        "No movie found" + response.code(),
-                        Toast.LENGTH_SHORT
-                    ).show()
+//                     else {
+//                        Toast.makeText(
+//                            applicationContext,
+//                            "No movie found" + response.code(),
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    }
                 }
             }
-
             override fun onFailure(call: Call<MoviesDataItem?>, t: Throwable) {
-                Toast.makeText(applicationContext, "failed ${t.message}", Toast.LENGTH_SHORT)
-                    .show()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.play, Error404())
+                transaction.commit()
             }
         })
 

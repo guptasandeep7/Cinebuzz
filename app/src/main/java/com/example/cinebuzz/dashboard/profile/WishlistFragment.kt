@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +28,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class WishlistFragment : Fragment() {
+    companion object{
+        lateinit var none2: TextView
+    }
 
     lateinit var wishlistRecylcer: RecyclerView
     private val movieList = ArrayList<MoviesDataItem>()
@@ -44,6 +48,8 @@ class WishlistFragment : Fragment() {
         wishlistRecylcer = view.findViewById(R.id.wishlist_recyclerview)
         Shimmer = view.findViewById(R.id.whislistShimmer)
        val image = view.findViewById<ImageButton>(R.id.wishlist_btn)
+        none2 = view.findViewById(R.id.none2)
+        none2.visibility = View.VISIBLE
         val request1 = ServiceBuilder.buildService()
         val call1 = request1.wishlistAll(
             WishlistDataItem(userid = USERID)
@@ -104,6 +110,9 @@ class WishlistFragment : Fragment() {
                     wishlistRecylcer.adapter = adapter
                     wishlistRecylcer.layoutManager =
                         LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                    if (wishlistRecylcer.adapter != null) {
+                        none2.visibility=View.GONE
+                    }
                 } else {
                     Toast.makeText(contex, "No movie found", Toast.LENGTH_SHORT).show()
                 }

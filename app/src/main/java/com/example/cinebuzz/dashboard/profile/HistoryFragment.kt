@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen
+import com.example.cinebuzz.dashboard.ProfilePage_fragment
 import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
@@ -27,6 +28,7 @@ class HistoryFragment : Fragment() {
     private lateinit var adapter: ProfilePageAdapter
     private lateinit var Shimmer: ShimmerFrameLayout
     lateinit var clearAll: TextView
+    lateinit var none: TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,12 +37,17 @@ class HistoryFragment : Fragment() {
         historyRecylcer = view.findViewById(R.id.history_recyclerview)
         Shimmer = view.findViewById(R.id.historyShimmer)
         clearAll = view.findViewById(R.id.clearAll)
+        none = view.findViewById(R.id.none)
         clearAll.visibility = View.GONE
+        none.visibility = View.VISIBLE
 
         val builder = android.app.AlertDialog.Builder(context)
         builder.setTitle("History")
             .setMessage("Do you want to clear history ?")
-            .setPositiveButton(R.string.clear_history) { dialog, id -> clearAll() }
+            .setPositiveButton(R.string.clear_history) { dialog, id ->
+                ProfilePage_fragment.movieCount.text="0"
+                clearAll()
+            }
             .setNeutralButton(R.string.cancel) { dialog, id -> }
 
         val request1 = ServiceBuilder.buildService()
@@ -113,8 +120,16 @@ class HistoryFragment : Fragment() {
                     historyRecylcer.adapter = adapter
                     historyRecylcer.layoutManager =
                         LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-                    if (historyRecylcer.adapter != null)
+                    if (historyRecylcer.adapter != null) {
                         clearAll.visibility = View.VISIBLE
+                        none.visibility=View.GONE
+                    }
+//                    if (adapter.getItemCount()==0)
+//                        {
+//                        none.text="No Movie"
+//                        none.visibility=View.VISIBLE
+//
+//                       }
                 } else {
                     Toast.makeText(context, "No movie found", Toast.LENGTH_SHORT).show()
                 }
@@ -142,6 +157,8 @@ class HistoryFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     clearAll.visibility = View.GONE
+                    none.text="No Movie"
+                    none.visibility=View.VISIBLE
                     Toast.makeText(context, "History Cleared", Toast.LENGTH_SHORT).show()
                     historyList.clear()
                 } else {
