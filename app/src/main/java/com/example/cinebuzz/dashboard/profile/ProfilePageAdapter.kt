@@ -35,12 +35,6 @@ class ProfilePageAdapter(private val context: Context?,private val wishlist: Arr
         if (type == 1) {
             holder.wishlistBtn.visibility = View.VISIBLE
             holder.line.visibility = View.VISIBLE
-
-//            if (holder.historyRecylcer==null)
-//            {
-//                holder.none2.text="No Movie"
-//                holder.none2.visibility=View.VISIBLE
-//            }
         }
         else {
             holder.wishlistBtn.visibility = View.GONE

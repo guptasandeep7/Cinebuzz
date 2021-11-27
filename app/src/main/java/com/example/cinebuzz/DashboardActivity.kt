@@ -2,11 +2,8 @@ package com.example.cinebuzz
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -16,9 +13,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import coil.load
-import com.example.cinebuzz.SplashScreen.Companion.isLogedIn
+import coil.transform.CircleCropTransformation
 import com.example.cinebuzz.SplashScreen.Companion.logInState
-import com.example.cinebuzz.dashboard.HomePage_fragment
 import com.example.cinebuzz.dashboard.drawer.AboutUs
 import com.example.cinebuzz.dashboard.drawer.ChangePassword
 import com.example.cinebuzz.dashboard.drawer.Feedback
@@ -51,12 +47,12 @@ class DashboardActivity : AppCompatActivity() {
 
         drawerName.text = SplashScreen.USERNAME
 
-        if(SplashScreen.DPURL =="NaN"){
+        if (SplashScreen.DPURL == "NaN") {
             drawerPhoto.setImageResource(R.drawable.ic_undraw_profile_pic_ic5t_2)
-        }
-        else{
+        } else {
             drawerPhoto.load(SplashScreen.BASEURL + SplashScreen.DPURL) {
                 placeholder(R.drawable.ic_undraw_profile_pic_ic5t_2)
+                transformations(CircleCropTransformation())
                 error(R.drawable.ic_undraw_profile_pic_ic5t_2)
                 crossfade(true)
             }
@@ -67,7 +63,7 @@ class DashboardActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val intent = Intent(this,MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         val builder = android.app.AlertDialog.Builder(this)
         builder.setTitle("Sign Out")
             .setMessage("Are you sure you want to Sign Out ?")

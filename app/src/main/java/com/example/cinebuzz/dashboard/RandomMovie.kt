@@ -99,8 +99,6 @@ class RandomMovie : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<MoviesDataItem?>, t: Throwable) {
-//                val intent = Intent(this@RandomMovie, SomthingWentWrong()::class.java)
-//                startActivity(intent)
                 val fragmentManager = this@RandomMovie.supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.replace(R.id.random, SomthingWentWrong())

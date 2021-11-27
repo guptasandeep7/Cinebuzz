@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen.Companion.BASEURL
 import com.example.cinebuzz.dashboard.profile.ReviewDataItem
@@ -30,6 +31,7 @@ class ReviewsAdapter(private var reviews: List<ReviewDataItem>) :
             holder.reviewDp.load(BASEURL + item.dpUrl) {
                 crossfade(true)
                 placeholder(R.drawable.ic_undraw_profile_pic_ic5t_2)
+                transformations(CircleCropTransformation())
                 error(R.drawable.ic_undraw_profile_pic_ic5t_2)
             }
         }
