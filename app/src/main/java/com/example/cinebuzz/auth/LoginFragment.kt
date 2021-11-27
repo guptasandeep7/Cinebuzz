@@ -20,6 +20,7 @@ import com.example.cinebuzz.SplashScreen.Companion.USERID
 import com.example.cinebuzz.SplashScreen.Companion.USERNAME
 import com.example.cinebuzz.SplashScreen.Companion.logInState
 import com.example.cinebuzz.SplashScreen.Companion.saveUserDetails
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.ServiceBuilder2
@@ -105,10 +106,12 @@ class LoginFragment : Fragment() {
                                 saveUserDetails("TOKEN", TOKEN)
                                 saveUserDetails("USERID", USERID)
                                 saveUserDetails("DPURL", DPURL)
+
                                 startActivity(Intent(activity, DashboardActivity::class.java))
                                 activity?.finish()
                             }
                             loginProgressbar.visibility = View.GONE
+
                         } else if (response.code() == 301) {
                             Toast.makeText(context, "Wrong Password", Toast.LENGTH_SHORT).show()
                             login.isClickable = true
@@ -123,7 +126,11 @@ class LoginFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<MyDataItem?>, t: Throwable) {
-                        Toast.makeText(context, "Failed ${t.message}", Toast.LENGTH_SHORT).show()
+                        val fragmentManager = activity?.supportFragmentManager
+                        val fragmentTransaction = fragmentManager?.beginTransaction()
+                        fragmentTransaction?.replace(R.id.fragment_container, SomthingWentWrong())
+                        fragmentTransaction?.addToBackStack(null)
+                        fragmentTransaction?.commit()
                         login.isClickable = true
                         loginProgressbar.visibility = View.GONE
                     }

@@ -9,6 +9,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.cinebuzz.R
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.ServiceBuilder2
@@ -74,7 +75,11 @@ class VerifyFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                        Toast.makeText(context, "Failed ${t.message}", Toast.LENGTH_SHORT).show()
+                        val fragmentManager = activity?.supportFragmentManager
+                        val fragmentTransaction = fragmentManager?.beginTransaction()
+                        fragmentTransaction?.replace(R.id.fragment_container, SomthingWentWrong())
+                        fragmentTransaction?.addToBackStack(null)
+                        fragmentTransaction?.commit()
                         next.isClickable = true
                         verifyProgressBar.visibility = View.GONE
                     }

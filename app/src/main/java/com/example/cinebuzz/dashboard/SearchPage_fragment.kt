@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.recyclerview.SearchPageAdapter
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.SearchHistoryDataItem
@@ -52,30 +53,6 @@ class SearchPage_fragment : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
-
-//        val request1 = ServiceBuilder.buildService()
-//        val call1 = request1.history()
-//        call1.enqueue(object : Callback<List<SearchHistoryDataItem>?> {
-//            override fun onResponse(call: Call<List<SearchHistoryDataItem>?>, response: Response<List<SearchHistoryDataItem>?>) {
-//                if(response.isSuccessful) {
-//
-//
-//                    val responseBody=response.body()!!
-//                    for(movie in responseBody) {
-//                        history.add(movie)
-//                    }
-//                    adapter= SearchPageAdapter(activity,history)
-//                    recyclerView.adapter=adapter
-//                    recyclerView.layoutManager=
-//                        LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<List<SearchHistoryDataItem>?>, t: Throwable) {
-//                Toast.makeText(context,"failed ${t.message}", Toast.LENGTH_SHORT).show()
-//            }
-//        })
-
         return view
     }
 
@@ -113,7 +90,11 @@ class SearchPage_fragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<List<MoviesDataItem>?>, t: Throwable) {
-                    Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+                    val fragmentManager = activity?.supportFragmentManager
+                    val fragmentTransaction = fragmentManager?.beginTransaction()
+                    fragmentTransaction?.replace(R.id.search, SomthingWentWrong())
+                    fragmentTransaction?.addToBackStack(null)
+                    fragmentTransaction?.commit()
                 }
             })
     }

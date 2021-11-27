@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="411dp"
+            android:layout_height="238dp"
+            android:background="@color/grey_font"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView8"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="24dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:background="@color/grey_font"-->
+<!--            android:fontFamily="@font/roboto"-->
+<!--            android:letterSpacing="0.04"-->
+<!--            android:text=""-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textSize="32sp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/image2" />-->
+
+<!--                    <RatingBar-->
+<!--                        android:id="@+id/movie_rating"-->
+<!--                        style="@android:style/Widget.Holo.Light.RatingBar.Indicator"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="24dp"-->
+<!--                        android:layout_marginTop="6dp"-->
+<!--                        android:indeterminate="false"-->
+<!--                        android:isIndicator="true"-->
+<!--                        android:max="5"-->
+<!--                        android:numStars="5"-->
+<!--                        android:background="@color/grey_font"-->
+<!--                        android:progressBackgroundTint="#8A8A8A"-->
+<!--                        android:progressTint="#EAB52F"-->
+<!--                        android:rating="0"-->
+<!--                        android:secondaryProgressTint="@android:color/transparent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/textView8" />-->
+
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/movie_plot"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="25dp"-->
+<!--                        android:layout_marginTop="100dp"-->
+<!--                        android:layout_marginEnd="25dp"-->
+<!--                        android:background="@color/grey_font"-->
+<!--                        android:text="                                   "-->
+<!--                        android:textColor="@color/grey_font"-->
+<!--                        android:textSize="45sp"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/movie_rating" />-->
+
+
+        </androidx.cardview.widget.CardView>
+

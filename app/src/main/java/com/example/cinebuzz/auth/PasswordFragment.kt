@@ -18,6 +18,7 @@ import com.example.cinebuzz.auth.SignupFragment.Companion.userEmail
 import com.example.cinebuzz.auth.SignupFragment.Companion.userName
 import com.example.cinebuzz.auth.VerifyFragment.Companion.forgot
 import com.example.cinebuzz.databinding.PasswordFragmentBinding
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.google.android.material.textfield.TextInputEditText
@@ -122,7 +123,11 @@ class PasswordFragment : Fragment(R.layout.password_fragment) {
 
                     override fun onFailure(call: Call<MyDataItem?>, t: Throwable) {
 
-                        Toast.makeText(context, "Failed ${t.message}", Toast.LENGTH_SHORT).show()
+                        val fragmentManager = activity?.supportFragmentManager
+                        val fragmentTransaction = fragmentManager?.beginTransaction()
+                        fragmentTransaction?.replace(R.id.fragment_container, SomthingWentWrong())
+                        fragmentTransaction?.addToBackStack(null)
+                        fragmentTransaction?.commit()
                         signBtn.isClickable = true
                         passwordProgressbar.visibility = View.GONE
 

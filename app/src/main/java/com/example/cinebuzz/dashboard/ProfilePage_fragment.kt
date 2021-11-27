@@ -25,6 +25,7 @@ import com.example.cinebuzz.SplashScreen.Companion.USERNAME
 import com.example.cinebuzz.SplashScreen.Companion.saveUserDetails
 import com.example.cinebuzz.dashboard.profile.PageAdapter
 import com.example.cinebuzz.model.FileUtils
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.WishlistDataItem
 import com.google.android.material.imageview.ShapeableImageView
@@ -132,7 +133,6 @@ class ProfilePage_fragment : Fragment() {
                     )
                 }
             }
-
             else -> {
                 requestPermissionLauncher.launch(
                     Manifest.permission.READ_EXTERNAL_STORAGE
@@ -215,7 +215,11 @@ fun count() {
         }
 
         override fun onFailure(call: Call<String?>, t: Throwable) {
-            Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.constraint, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()
         }
     })
 

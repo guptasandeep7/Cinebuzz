@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinebuzz.R
 import com.example.cinebuzz.SplashScreen
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.MoviesDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
 import com.example.cinebuzz.retrofit.WishlistDataItem
@@ -70,8 +71,11 @@ class HistoryFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ArrayList<String>?>, t: Throwable) {
-                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
-            }
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.hist, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()            }
         })
 
         clearAll.setOnClickListener {
@@ -116,8 +120,11 @@ class HistoryFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<MoviesDataItem?>, t: Throwable) {
-                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
-            }
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.hist, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()            }
         })
     }
 
@@ -135,6 +142,7 @@ class HistoryFragment : Fragment() {
                 if (response.isSuccessful) {
                     clearAll.visibility = View.GONE
                     Toast.makeText(context, "History Cleared", Toast.LENGTH_SHORT).show()
+                    historyList.clear()
                 } else {
                     Toast.makeText(
                         context,
@@ -146,8 +154,11 @@ class HistoryFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                Toast.makeText(context, "failed ${t.message}", Toast.LENGTH_SHORT).show()
-            }
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.hist, SomthingWentWrong())
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()            }
         })
     }
 
