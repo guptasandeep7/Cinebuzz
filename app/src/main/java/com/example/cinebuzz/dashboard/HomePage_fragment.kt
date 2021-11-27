@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -336,5 +337,22 @@ class HomePage_fragment : Fragment() {
             startActivity(intent)
         }
         return view
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val builder = android.app.AlertDialog.Builder(activity)
+                builder.setTitle("Exit")
+                    .setMessage("Are you sure you want to Exit?")
+                    .setPositiveButton(R.string.exit) { dialog, id ->
+                        activity?.finish()
+                    }
+                    .setNeutralButton(R.string.cancel) { dialog, id -> }
+                val exit = builder.create()
+                exit.show()
+            }
+        })
     }
 }

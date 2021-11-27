@@ -125,21 +125,5 @@ class DashboardActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onBackPressed() {
-        if(supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) is HomePage_fragment) {
-            val builder = android.app.AlertDialog.Builder(this)
-            builder.setTitle("Exit")
-                .setMessage("Are you sure you want to Exit?")
-                .setPositiveButton(R.string.exit) { dialog, id ->
-                    finish()
-                }
-                .setNeutralButton(R.string.cancel) { dialog, id -> }
-            val exit = builder.create()
-            exit.show()
-        }
-        else{
-            super.onBackPressed()
-        }
-    }
 
 }
