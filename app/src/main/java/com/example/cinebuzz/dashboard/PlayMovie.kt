@@ -183,13 +183,9 @@ class PlayMovie : AppCompatActivity() {
         wishlist.setOnClickListener {
             if (wishlistState == 1) {
                 wishlist.setImageResource(R.drawable.ic_frame)
-                Toast.makeText(this@PlayMovie, "Removed from wishlist", Toast.LENGTH_SHORT)
-                    .show()
                 wishlistState = 0
             } else {
                 wishlist.setImageResource(R.drawable.ic_frame__1_)
-                Toast.makeText(this@PlayMovie, "Added to wishlist", Toast.LENGTH_SHORT)
-                    .show()
                 wishlistState = 1
             }
         }
@@ -528,11 +524,11 @@ class PlayMovie : AppCompatActivity() {
         })
     }
 
-    override fun onBackPressed() {
+    override fun onStop() {
         if(originalWishlistState!=wishlistState){
             addToWishlist()
         }
-        super.onBackPressed()
+        super.onStop()
     }
 }
 

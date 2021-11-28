@@ -41,9 +41,7 @@ class Play : AppCompatActivity() {
             addMediaItem(mediaItem)
             try {
                 prepare()
-                if (playWhenReady) {
-                    play()
-                }
+                play()
             }catch (e:Exception){
                 startActivity(Intent(this@Play,SomethingWentWrongBinding::class.java))
             }
