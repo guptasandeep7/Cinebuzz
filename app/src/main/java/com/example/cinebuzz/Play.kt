@@ -1,5 +1,6 @@
 package com.example.cinebuzz
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -9,10 +10,12 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.cinebuzz.SplashScreen.Companion.BASEURL
+import com.example.cinebuzz.databinding.SomethingWentWrongBinding
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.PlayerView
+import java.lang.Exception
 
 class Play : AppCompatActivity() {
 
@@ -35,10 +38,15 @@ class Play : AppCompatActivity() {
         val mediaItem = MediaItem.fromUri(Uri.parse(videoURL))
 
         with(player) {
-
             addMediaItem(mediaItem)
-            prepare()
-            play()
+            try {
+                prepare()
+                if (playWhenReady) {
+                    play()
+                }
+            }catch (e:Exception){
+                startActivity(Intent(this@Play,SomethingWentWrongBinding::class.java))
+            }
 
             addListener(object : Player.Listener {
                 override fun onIsPlayingChanged(isPlaying: Boolean) =
@@ -58,6 +66,7 @@ class Play : AppCompatActivity() {
         }
 
     }
+
 
     override fun onPause() {
         super.onPause()
