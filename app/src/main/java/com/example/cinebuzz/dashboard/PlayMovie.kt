@@ -412,6 +412,20 @@ class PlayMovie : AppCompatActivity() {
                             startActivity(intent)
                         }
                 }
+                else if(response.code()==404){
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.play, Error404())
+                    transaction.commit()
+                    rateThisMovie.visibility=View.GONE
+                    reviewText.visibility=View.GONE
+                    plot.visibility=View.GONE
+                    Shimmer.stopShimmer()
+                    Shimmer.visibility = View.GONE
+                    Shimmer3.stopShimmer()
+                    Shimmer3.visibility = View.GONE
+                    Shimmer1.stopShimmer()
+                    Shimmer1.visibility = View.GONE
+                }
                 else{
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.play, Error404())

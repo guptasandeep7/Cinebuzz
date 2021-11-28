@@ -44,7 +44,7 @@ class HomePageAdapter(
     }
 
     override fun getItemCount(): Int {
-        return HomePageMovies.size
+        return 4
     }
 
     class HomeViewHolder(itemView: View, listener: onItemClickListener?) :

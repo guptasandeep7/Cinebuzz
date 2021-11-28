@@ -47,7 +47,6 @@ class WishlistFragment : Fragment() {
         wishlistRecylcer = view.findViewById(R.id.wishlist_recyclerview)
         Shimmer = view.findViewById(R.id.whislistShimmer)
         WishlistProgressbar = view.findViewById(R.id.wishlist_progressBar)
-        WishlistProgressbar.visibility=View.VISIBLE
         val image = view.findViewById<ImageButton>(R.id.wishlist_btn)
         none2 = view.findViewById(R.id.none2)
         val request1 = ServiceBuilder.buildService()

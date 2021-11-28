@@ -40,7 +40,7 @@ class HistoryFragment : Fragment() {
         Shimmer = view.findViewById(R.id.historyShimmer)
         clearAll = view.findViewById(R.id.clearAll)
         HistoryProgressbar = view.findViewById(R.id.history_progressBar)
-        HistoryProgressbar.visibility=View.VISIBLE
+       // HistoryProgressbar.visibility=View.VISIBLE
         none = view.findViewById(R.id.none)
         clearAll.visibility = View.GONE
 
