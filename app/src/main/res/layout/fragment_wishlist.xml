@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wish"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dashboard.profile.WishlistFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/whislistShimmer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/wishlist_recyclerview">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/profile_shimmer" />
+
+            <include layout="@layout/profile_shimmer" />
+
+            <include layout="@layout/profile_shimmer" />
+
+            <include layout="@layout/profile_shimmer" />
+
+            <include layout="@layout/profile_shimmer" />
+
+            <include layout="@layout/profile_shimmer" />
+
+            <include layout="@layout/profile_shimmer" />
+
+            <include layout="@layout/profile_shimmer" />
+
+        </LinearLayout>
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/wishlist_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/profile_item" />
+
+        <TextView
+            android:id="@+id/none2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/ropa_sans"
+            android:text="No Movie Added"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/wishlist_recyclerview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/whislistShimmer" />
+        <ProgressBar
+            android:id="@+id/wishlist_progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.392" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

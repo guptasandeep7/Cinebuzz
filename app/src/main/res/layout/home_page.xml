@@ -1,20 +1,412 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@+id/home"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HomePage"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+
+    <HorizontalScrollView
+        android:id="@+id/scroll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Trending">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/homeShimmer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/Trending">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </HorizontalScrollView>
+    <HorizontalScrollView
+        android:id="@+id/scroll2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Action">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/homeShimmer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/Action">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </HorizontalScrollView>
+    <HorizontalScrollView
+        android:id="@+id/scroll3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Comedy">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/homeShimmer3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/Comedy">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </HorizontalScrollView>
+    <HorizontalScrollView
+        android:id="@+id/scroll4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Horror">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/homeShimmer4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/Horror">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:id="@+id/scroll5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Drama">
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/homeShimmer5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/Drama">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+
+                <include layout="@layout/home_shimmer_rows" />
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </HorizontalScrollView>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/Slidershimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <include layout="@layout/slider_shimmer_rows" />
+
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <com.denzcoskun.imageslider.ImageSlider
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:id="@+id/imageSlider"
+        app:iss_auto_cycle="true"
+        app:iss_delay="0"
+        app:iss_placeholder="@android:color/darker_gray"
+        app:iss_error_image="@android:color/darker_gray"
+        app:iss_corner_radius="5"
+        app:iss_selected_dot="@drawable/default_selected_dot"
+        app:iss_unselected_dot="@drawable/default_unselected_dot"
+        app:iss_period="1000"
+        app:iss_text_align="center"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Trending"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TrendingText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Action"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ActionText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Comedy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ComedyText" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Horror"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HorrorText" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Drama"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DramaText" />
+
+    <TextView
+        android:id="@+id/TrendingText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/roboto"
+        android:letterSpacing="0.04"
+        android:text="Trending"
+        android:textColor="@color/text_shadow_white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageSlider" />
+
+    <TextView
+        android:id="@+id/ActionText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="157dp"
+        android:letterSpacing="0.04"
+        android:text="Action"
+        android:textColor="@color/text_shadow_white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TrendingText" />
+
+    <TextView
+        android:id="@+id/ComedyText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="157dp"
+        android:letterSpacing="0.04"
+        android:text="Comedy"
+        android:textColor="@color/text_shadow_white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ActionText" />
+
+    <TextView
+        android:id="@+id/HorrorText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="157dp"
+        android:letterSpacing="0.04"
+        android:text="Horror"
+        android:textColor="@color/text_shadow_white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ComedyText" />
+
+    <TextView
+        android:id="@+id/DramaText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="157dp"
+        android:letterSpacing="0.04"
+        android:text="Drama"
+        android:textColor="@color/text_shadow_white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HorrorText" />
+
+    <ImageView
+        android:id="@+id/Arrow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingHorizontal="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/TrendingText"
+        app:layout_constraintEnd_toEndOf="@+id/TrendingText"
+        app:layout_constraintTop_toTopOf="@+id/TrendingText"
+        app:srcCompat="@drawable/ic_vector__12_" />
+    <ImageView
+        android:id="@+id/Arrow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingHorizontal="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ActionText"
+        app:layout_constraintEnd_toEndOf="@+id/ActionText"
+        app:layout_constraintTop_toTopOf="@+id/ActionText"
+        app:srcCompat="@drawable/ic_vector__12_" />
+    <ImageView
+        android:id="@+id/Arrow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingHorizontal="15dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ComedyText"
+        app:layout_constraintEnd_toEndOf="@+id/ComedyText"
+        app:layout_constraintTop_toTopOf="@+id/ComedyText"
+        app:srcCompat="@drawable/ic_vector__12_" />
+    <ImageView
+        android:id="@+id/Arrow4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingHorizontal="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/HorrorText"
+        app:layout_constraintEnd_toEndOf="@+id/HorrorText"
+        app:layout_constraintTop_toTopOf="@+id/HorrorText"
+        app:srcCompat="@drawable/ic_vector__12_" />
+    <ImageView
+        android:id="@+id/Arrow5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingHorizontal="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/DramaText"
+        app:layout_constraintEnd_toEndOf="@+id/DramaText"
+        app:layout_constraintTop_toTopOf="@+id/DramaText"
+        app:srcCompat="@drawable/ic_vector__12_" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+    </ScrollView>

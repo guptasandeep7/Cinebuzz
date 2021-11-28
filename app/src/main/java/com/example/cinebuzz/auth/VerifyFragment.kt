@@ -9,8 +9,10 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.cinebuzz.R
+import com.example.cinebuzz.model.SomthingWentWrong
 import com.example.cinebuzz.retrofit.MyDataItem
 import com.example.cinebuzz.retrofit.ServiceBuilder
+import com.example.cinebuzz.retrofit.ServiceBuilder2
 import com.google.android.material.textfield.TextInputEditText
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -44,9 +46,9 @@ class VerifyFragment : Fragment() {
             } else {
                 next.isClickable = false
                 verifyProgressBar.visibility = View.VISIBLE
-                val request = ServiceBuilder.buildService()
+                val request = ServiceBuilder2.buildService()
                 val call = request.verify(
-                    MyDataItem(email = emailEdit.text.toString().trim())
+                    MyDataItem(email = emailEdit.text.toString().trim().lowercase())
                 )
                 call.enqueue(object : Callback<ResponseBody?> {
                     override fun onResponse(
@@ -55,7 +57,7 @@ class VerifyFragment : Fragment() {
                     ) {
                         if (response.isSuccessful) {
 
-                            SignupFragment.userEmail = emailEdit.text.toString()
+                            SignupFragment.userEmail = emailEdit.text.toString().lowercase()
                             emailEdit.text!!.clear()
                             verifyProgressBar.visibility = View.GONE
 
@@ -73,7 +75,11 @@ class VerifyFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                        Toast.makeText(context, "Failed ${t.message}", Toast.LENGTH_SHORT).show()
+                        val fragmentManager = activity?.supportFragmentManager
+                        val fragmentTransaction = fragmentManager?.beginTransaction()
+                        fragmentTransaction?.replace(R.id.fragment_container, SomthingWentWrong())
+                        fragmentTransaction?.addToBackStack(null)
+                        fragmentTransaction?.commit()
                         next.isClickable = true
                         verifyProgressBar.visibility = View.GONE
                     }

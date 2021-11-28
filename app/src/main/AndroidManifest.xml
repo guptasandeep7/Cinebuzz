@@ -1,27 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.cinebuzz">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
+        android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cinebuzz">
         <activity
             android:name=".DashboardActivity"
             android:exported="false" />
         <activity
+            android:name=".dashboard.home.TrendingPage"
+            android:exported="true"
+            android:parentActivityName=".DashboardActivity"
+            android:theme="@style/Theme.Cinebuzz"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity
+            android:name=".dashboard.RandomMovie"
+            android:parentActivityName=".dashboard.RandomMovie"
+            android:theme="@style/Theme.Cinebuzz"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".dashboard.PlayMovie"
+            android:theme="@style/Theme.Cinebuzz"
+            android:parentActivityName=".DashboardActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="true">
+            <tools:validation testUrl="https://cine---buzz.herokuapp.com/movieid" />
+
+                        <intent-filter>
+                            <action android:name="android.intent.action.SEND" />
+                            <category android:name="android.intent.category.DEFAULT" />
+                            <data android:mimeType="text/plain" />
+                        </intent-filter>
+            <intent-filter android:autoVerify="true"
+                tools:targetApi="m">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="cine---buzz.herokuapp.com"
+                    android:pathPrefix="/movieid" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".dashboard.drawer.Feedback"
+            android:theme="@style/Theme.Cinebuzz"
+            android:parentActivityName=".DashboardActivity"/>
+        <activity android:name=".dashboard.drawer.PrivacyPolicy"
+            android:theme="@style/Theme.Cinebuzz"
+            android:parentActivityName=".DashboardActivity"/>
+        <activity
+            android:name=".Play"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name=".model.OfflinePage" />
+        <activity android:name=".dashboard.drawer.ChangePassword"
+            android:parentActivityName=".DashboardActivity"/>
+        <activity android:name=".dashboard.drawer.AboutUs"
+            android:theme="@style/Theme.Cinebuzz"
+            android:parentActivityName=".DashboardActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"

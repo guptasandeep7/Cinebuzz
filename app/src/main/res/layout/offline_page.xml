@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212">
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
+        app:srcCompat="@drawable/ic_no_connection_bro_1" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:text="You’re offline"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:letterSpacing="0.04"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto"
+        android:letterSpacing="0.04"
+        android:text="Check your internet connection and try again"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <Button
+        android:id="@+id/offlineButton"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:text="Try Again"
+        android:letterSpacing="0.04"
+        android:fontFamily="@font/roboto"
+        android:textSize="24sp"
+        android:backgroundTint="#BA68C8"
+        android:foreground="?attr/selectableItemBackground"
+        android:background="@drawable/border_curve"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/ribeye"
+            android:gravity="left|center_vertical"
+            android:text="Cinebuzz"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+    </androidx.appcompat.widget.Toolbar>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

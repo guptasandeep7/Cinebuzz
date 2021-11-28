@@ -22,4 +22,23 @@
     <string name="verify_email">Verify Email</string>
     <string name="enter_your_email_id">Enter your Email ID</string>
     <string name="login">Login</string>
+    <string name="about_us">About Us</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="feedback">Feedback</string>
+    <string name="change_password">Change Password</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="username">UserName</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="privacypolicy">In today\'s business world, companies depend heavily on data and information derived from it. Indeed, information is essential for all company employees, from the top executives to the operations level.\n\nProtecting data, especially private, personal information, is crucial in a complex world where so much depends upon it. The most important step for business owners to protect their customers\' data is to create a concise and transparent Privacy Policy.\n\nA Privacy Policy is a legal document, which informs your website\'s visitors about the data collected on them and how your company will use it.\n\nA good Privacy Policy should outline what data is being collected and explain why you\'re collecting it, who has access to it, and the time frame during which you plan to store it.\n\nIt should also include any third parties with whom your company shares personal or private information, as well as any steps taken to ensure the security of such information.\n\nThis article will cover the components of a good Privacy Policy.</string>
+    <string name="clearall"><u>ClearAll</u></string>
+    <string name="submit">Submit</string>
+    <string name="rate_this_movie"><u>Rate this movie</u></string>
+    <string name="about">"Cinebuzz is an android app in which users can watch movies as per their choice and rate them. \n\n\nSandeep (Android Developer) \n\nJyotsna (Android Developer) \n\nMohit (Node Developer) \n\nAnanya (UI/UX Designer) "</string>
+    <string name="cancel">Cancel</string>
+    <string name="clear_history">Clear</string>
+    <string name="exit">Exit</string>
+    <string name="permission_granted">Permission Granted</string>
+    <string name="permission_required">Permission Required</string>
 </resources>

@@ -1,6 +1,316 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar4"
+            android:paddingStart="16dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/ribeye"
+                android:gravity="left|center_vertical"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+        </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:layout_marginTop="?attr/actionBarSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black">
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/playshimmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/textView8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <include layout="@layout/play_movie_shimmer" />
+
+                </LinearLayout>
+
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="411dp"
+                android:layout_height="238dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/playshimmertext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView3">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <include layout="@layout/profile_text_shimmer" />
+                </LinearLayout>
+
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto"
+                android:letterSpacing="0.04"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="32sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/playshimmerrating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView8">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <include layout="@layout/profile_text_shimmer" />
+                </LinearLayout>
+
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+            <RatingBar
+                android:id="@+id/movie_rating"
+                style="@android:style/Widget.Holo.Light.RatingBar.Indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="6dp"
+                android:indeterminate="false"
+                android:isIndicator="true"
+                android:max="5"
+                android:numStars="5"
+                android:progressBackgroundTint="#8A8A8A"
+                android:progressTint="#EAB52F"
+                android:rating="0"
+                android:visibility="invisible"
+                android:secondaryProgressTint="@android:color/transparent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/reviewtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:letterSpacing="0.04"
+                android:text="Reviews"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/submit" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reviews_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:background="@color/black"
+                android:paddingBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reviewtext" />
+
+            <ImageView
+                android:id="@+id/wishlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_rating"
+                app:srcCompat="@drawable/ic_frame" />
+
+            <ImageView
+                android:id="@+id/playImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/share_btn"
+                app:layout_constraintStart_toEndOf="@+id/wishlist"
+                app:layout_constraintTop_toBottomOf="@+id/movie_rating"
+                app:srcCompat="@drawable/ic_component_33" />
+
+            <ImageView
+                android:id="@+id/share_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="65dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_rating"
+                app:srcCompat="@drawable/ic_frame_43" />
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/playshimmerplot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/playImage">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <include layout="@layout/profile_plot_shimmer" />
+                </LinearLayout>
+
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+            <TextView
+                android:id="@+id/movie_plot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:text="the Avengers, American comic strip superhero team whose frequently changing roster often included some of the most popular characters in the Marvel Comics universe. "
+                android:visibility="invisible"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playImage" />
+
+
+            <TextView
+                android:id="@+id/rate_this_movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/rate_this_movie"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_plot" />
+
+            <RatingBar
+                android:id="@+id/ratingBar2"
+                style="@android:style/Widget.Holo.Light.RatingBar.Indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="6dp"
+                android:isIndicator="false"
+                android:progressTint="#EAB52F"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rate_this_movie" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="Write a review"
+                android:textColor="#BA68C8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/playEdittext"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:drawablePadding="10dp"
+                android:layout_marginTop="16dp"
+                android:textColorHint="#7DBA68C8"
+                app:boxStrokeWidthFocused="0dp"
+                app:helperTextTextColor="#FD0320"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textView9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/review"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/border_curve"
+                    android:backgroundTint="#FBE1FF"
+                    android:hint="Type Something...."
+                    android:inputType="text"
+                    android:letterSpacing="0.04"
+                    android:lines="1"
+                    android:paddingStart="11dp"
+                    android:paddingEnd="11dp"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/border_curve"
+                android:text="@string/submit"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playEdittext" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
