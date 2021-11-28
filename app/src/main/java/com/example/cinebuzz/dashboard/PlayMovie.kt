@@ -386,7 +386,7 @@ class PlayMovie : AppCompatActivity() {
                 call: Call<MoviesDataItem?>,
                 response: Response<MoviesDataItem?>
             ) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful&&response.body()!=null) {
                     Shimmer.stopShimmer()
                     Shimmer.visibility = View.GONE
                     Shimmer3.stopShimmer()
@@ -394,13 +394,6 @@ class PlayMovie : AppCompatActivity() {
                     Shimmer1.stopShimmer()
                     Shimmer1.visibility = View.GONE
                     val responseBody = response.body()
-                    if (response.body() == null) {
-                        val transaction = supportFragmentManager.beginTransaction()
-                        transaction.replace(R.id.play, Error404())
-                        transaction.commit()
-                        rateThisMovie.visibility=View.GONE
-                        reviewText.visibility=View.GONE
-                    } else {
                         movieImage.load(BASEURL + responseBody?.poster.toString()) {
                             placeholder(R.drawable.randomise_icon)
                             crossfade(true)
@@ -418,13 +411,35 @@ class PlayMovie : AppCompatActivity() {
                             intent.putExtra("VIDEOURL", responseBody?.video.toString())
                             startActivity(intent)
                         }
-                    }
+                }
+                else{
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.play, Error404())
+                    transaction.commit()
+                    rateThisMovie.visibility=View.GONE
+                    reviewText.visibility=View.GONE
+                    plot.visibility=View.GONE
+                    Shimmer.stopShimmer()
+                    Shimmer.visibility = View.GONE
+                    Shimmer3.stopShimmer()
+                    Shimmer3.visibility = View.GONE
+                    Shimmer1.stopShimmer()
+                    Shimmer1.visibility = View.GONE
                 }
             }
             override fun onFailure(call: Call<MoviesDataItem?>, t: Throwable) {
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.play, Error404())
                 transaction.commit()
+                rateThisMovie.visibility=View.GONE
+                reviewText.visibility=View.GONE
+                plot.visibility=View.GONE
+                Shimmer.stopShimmer()
+                Shimmer.visibility = View.GONE
+                Shimmer3.stopShimmer()
+                Shimmer3.visibility = View.GONE
+                Shimmer1.stopShimmer()
+                Shimmer1.visibility = View.GONE
             }
         })
 
