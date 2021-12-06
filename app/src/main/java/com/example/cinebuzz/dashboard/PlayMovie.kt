@@ -363,6 +363,9 @@ class PlayMovie : AppCompatActivity() {
                 call: Call<ResponseBody?>,
                 response: Response<ResponseBody?>
             ) {
+                if (response.isSuccessful){
+                    showReview()
+                }
             }
 
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
@@ -440,6 +443,7 @@ class PlayMovie : AppCompatActivity() {
                     Shimmer1.stopShimmer()
                     Shimmer1.visibility = View.GONE
                 }
+
             }
             override fun onFailure(call: Call<MoviesDataItem?>, t: Throwable) {
                 val transaction = supportFragmentManager.beginTransaction()
